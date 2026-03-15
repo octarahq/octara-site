@@ -1,5 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
+import i18next from "i18next";
 
 export type Translations = Record<string, string>;
 
@@ -41,4 +42,32 @@ export function detectLocale(acceptLanguage?: string): Locale {
   }
 
   return "en";
+}
+
+export async function initializeI18n(lang: Locale, translations: Translations): Promise<typeof i18next> {
+  const resources: Record<string, Record<string, any>> = {
+    [lang]: {
+      translation: translations,
+    },
+  };
+
+  if (!i18next.isInitialized) {
+    await i18next.init({
+      lng: lang,
+      fallbackLng: "en",
+      ns: ["translation"],
+      defaultNS: "translation",
+      resources,
+      interpolation: {
+        escapeValue: false,
+      },
+    });
+  } else {
+    i18next.changeLanguage(lang);
+    Object.keys(translations).forEach((key) => {
+      i18next.addResource(lang, "translation", key, translations[key]);
+    });
+  }
+
+  return i18next;
 }
