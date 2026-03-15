@@ -14,12 +14,13 @@ export default function Hero() {
         <div className="w-full h-48 lg:h-[280px] lg:col-span-1 bg-cover bg-center rounded-xl transform group-hover:scale-105 transition-transform duration-700" style={{backgroundImage: "url('/favicon.svg')"}}></div>
         <div className="p-6 lg:p-12 lg:col-span-2">
           <h1 className="text-4xl lg:text-6xl font-black text-slate-900 dark:text-white leading-tight mb-4 tracking-tight">
-            {titleLines.map((line, idx) => (
+            {titleLines.map((line: string, idx: number) => (
               <React.Fragment key={idx}>
                 {line}
                 {idx < titleLines.length - 1 && <br />}
               </React.Fragment>
             ))}
+
           </h1>
           <p className="max-w-2xl text-slate-600 dark:text-slate-300 text-lg lg:text-xl">{t("careers.hero.description")}</p>
         </div>

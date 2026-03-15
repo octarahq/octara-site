@@ -7,7 +7,7 @@ import { useI18n } from '@/lib/I18nProvider'
 export default function Positions() {
   const { t } = useI18n();
 
-  const openingsText = (t("careers.positions.count") ?? "{count} opportunities").replace("{count}", "2");
+  const openingsText = t("careers.positions.count", { count: 2 }) ?? "2 opportunities";
 
   return (
     <section className="w-full px-6 lg:px-40 pb-24 max-w-[1200px] mx-auto">

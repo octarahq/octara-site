@@ -42,7 +42,7 @@ export default function Metrics({ projects, metrics }: { projects?: any[]; metri
         <p className="text-2xl font-bold">{availability}%</p>
       </div>
       <div className="bg-slate-50 dark:bg-primary/5 p-5 rounded-xl border border-slate-200 dark:border-primary/10">
-        <p className="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider mb-1">{t("status.metrics.daysWithout")}</p>
+        <p className="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider mb-1">{t("status.metrics.daysWithout", { days: String(daysWithoutIncident ?? 0) })}</p>
         <p className="text-2xl font-bold">{daysWithoutIncident !== null ? `${daysWithoutIncident} ${t("status.metrics.daysSuffix")}` : t("status.metrics.none")}</p>
       </div>
       <div className="bg-slate-50 dark:bg-primary/5 p-5 rounded-xl border border-slate-200 dark:border-primary/10">

@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
 
 try {
   require('./server/timer-bootstrap.cjs');
@@ -6,8 +7,11 @@ try {
   console.error('[next.config] timer error', e);
 }
 
+const withNextIntl = createNextIntlPlugin();
+
 const nextConfig: NextConfig = {
   /* config options here */
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);
+
