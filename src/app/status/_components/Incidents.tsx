@@ -67,7 +67,7 @@ export default function Incidents({ status }: { status?: OctaraStatus | null }) 
               <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed line-clamp-2">
                 {latest.message || t("status.incidents.noUpdates")}
               </p>
-              <p className="text-[11px] text-slate-400 dark:text-slate-500 mt-3">{t("status.incidents.lastUpdated").replace("{when}", dateLabel)}</p>
+              <p className="text-[11px] text-slate-400 dark:text-slate-500 mt-3">{t("status.incidents.lastUpdated").replace("{date}", dateLabel)}</p>
             </div>
           )
         })}

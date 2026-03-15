@@ -90,11 +90,12 @@ export default function Footer() {
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 border-t border-slate-200 dark:border-slate-800 pt-8">
           <p className="text-slate-500 dark:text-slate-500 text-sm">
-            {t("footer.copy").replace("{year}", String(year))} <Link href="https://creativecommons.org/licenses/by-nc-sa/4.0/" className="text-primary" target="_blank">
+            {t("footer.copy", { year: String(year) })} <Link href="https://creativecommons.org/licenses/by-nc-sa/4.0/" className="text-primary" target="_blank">
               {t("footer.license")}
             </Link>
             .
           </p>
+
           <div className="flex gap-4">
             <button
               type="button"

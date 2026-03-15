@@ -1,176 +1,21 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Hero from "./_components/Hero";
-import Incidents from "./_components/Incidents";
-import History from "./_components/History";
-import Metrics from "./_components/Metrics";
-import Services from "./_components/Services";
-import { I18nProvider, useI18n } from "@/lib/I18nProvider";
+import { I18nProvider } from "@/lib/I18nProvider";
+import { getMessages, getLocale } from "next-intl/server";
+import StatusContent from "./StatusContent";
 
-const INCIDENT_URL =
-  "https://raw.githubusercontent.com/octarahq/.github/main/assets/incidents.json";
-
-export default function Page() {
-  const [projects, setProjects] = useState<any[]>([]);
-  const [metrics, setMetrics] = useState<any | null>(null);
-  const [status, setStatus] = useState<any | null>(null);
-
-  useEffect(() => {
-    let mounted = true;
-
-    async function loadSnapshot() {
-      try {
-        const res = await fetch("/api/status-snapshot");
-        const json = await res.json();
-        if (!mounted) return;
-        setProjects(Array.isArray(json?.projects) ? json.projects : []);
-        setMetrics(json?.metrics ?? null);
-      } catch (e) {
-        // ignore
-      }
-    }
-
-    async function loadIncidents() {
-      try {
-        const res = await fetch(INCIDENT_URL);
-        if (!res.ok) return;
-        const json = await res.json();
-        if (!mounted) return;
-        setStatus(json);
-      } catch (e) {
-        // ignore
-      }
-    }
-
-    loadSnapshot();
-    loadIncidents();
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
-
-  const lastUpdated = status?.lastUpdated ? new Date(status.lastUpdated) : null;
-  const lastUpdatedText = lastUpdated
-    ? lastUpdated.toLocaleString("fr-FR", {
-        day: "2-digit",
-        month: "short",
-        hour: "2-digit",
-        minute: "2-digit",
-        timeZone: "UTC",
-      })
-    : "—";
-
-  const downCount = projects.reduce((count, project) => {
-    const statuses = Object.values(project.statusUrls || {}).map((s: any) => (s as any)?.status);
-    return count + statuses.filter((s) => s === "down").length;
-  }, 0);
-
-  const hasDown = downCount > 0;
-
-  const bgGradient = hasDown
-    ? "linear-gradient(to right, rgba(239,68,68,0.2), rgba(244,63,94,0.1))"
-    : "linear-gradient(to right, rgba(16,185,129,0.2), rgba(59,130,246,0.1))";
-  const borderColor = hasDown ? "rgba(239,68,68,0.3)" : "rgba(16,185,129,0.3)";
-  const pingColor = hasDown ? "rgba(239,68,68,0.75)" : "rgba(16,185,129,0.75)";
-  const dotColor = hasDown ? "#ef4444" : "#10b981";
-
+export default async function Page() {
+  const messages = await getMessages();
+  const locale = await getLocale();
 
   return (
-    <I18nProvider pagePath="/status">
+    <I18nProvider locale={locale} messages={messages}>
       <Header />
-
-      {/* Header area uses the client i18n hook inside the provider */}
-      <StatusHeaderArea
-        bgGradient={bgGradient}
-        borderColor={borderColor}
-        pingColor={pingColor}
-        dotColor={dotColor}
-        downCount={downCount}
-        hasDown={hasDown}
-        lastUpdatedText={lastUpdatedText}
-      />
-
-      <main className="flex-1 px-6 md:px-20 lg:px-40 py-10 max-w-[1200px] mx-auto w-full">
-        <Hero projects={projects} />
-        <Incidents status={status} />
-        <History status={status} />
-        <Metrics projects={projects} metrics={metrics} />
-        <Services projects={projects} />
-      </main>
-
+      <StatusContent />
       <Footer />
     </I18nProvider>
   );
 }
 
-function StatusHeaderArea({
-  bgGradient,
-  borderColor,
-  pingColor,
-  dotColor,
-  downCount,
-  hasDown,
-  lastUpdatedText,
-}: {
-  bgGradient: string;
-  borderColor: string;
-  pingColor: string;
-  dotColor: string;
-  downCount: number;
-  hasDown: boolean;
-  lastUpdatedText: string;
-}) {
-  const { t } = useI18n();
 
-  const get = (key: string, fallback: string) => {
-    const v = t(key);
-    return v && v !== key ? v : fallback;
-  };
-
-  const downTitle = get("status.page.title.down", "1 system down");
-  const downTitleMany = get("status.page.title.downMany", "{count} systems down");
-  const title = hasDown
-    ? downCount === 1
-      ? downTitle
-      : downTitleMany.replace("{count}", String(downCount))
-    : get("status.page.title", "Tous les systèmes opérationnels");
-
-  const lastUpdatedLabel = (() => {
-    const v = t("status.page.lastUpdated");
-    if (v && v !== "status.page.lastUpdated") return v.replace("{when}", lastUpdatedText);
-    return `Dernière mise à jour : ${lastUpdatedText} UTC`;
-  })();
-
-  return (
-    <div
-      className="w-full bg-gradient-to-r to-primary/10 border-b px-6 md:px-20 lg:px-40 py-12"
-      style={{
-        backgroundImage: bgGradient,
-        borderBottomColor: borderColor,
-      }}
-    >
-      <div className="max-w-[1200px] mx-auto flex flex-wrap justify-between items-center gap-8">
-        <div className="flex flex-col gap-4">
-          <div className="flex items-center gap-4">
-            <span className="relative flex h-6 w-6">
-              <span
-                className="animate-ping absolute inline-flex h-full w-full rounded-full"
-                style={{ backgroundColor: pingColor }}
-              ></span>
-              <span
-                className="relative inline-flex rounded-full h-6 w-6"
-                style={{ backgroundColor: dotColor }}
-              ></span>
-            </span>
-            <h1 className="text-4xl md:text-6xl font-black tracking-tight">{title}</h1>
-          </div>
-          <p className="text-slate-500 dark:text-slate-400 text-lg font-medium">{lastUpdatedLabel}</p>
-        </div>
-      </div>
-    </div>
-  );
-}

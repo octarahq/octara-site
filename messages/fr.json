@@ -1,0 +1,346 @@
+{
+  "nav": {
+    "status": "Statut",
+    "about": "Qui sommes nous ?",
+    "careers": "Carrières"
+  },
+  "hero": {
+    "title": {
+      "prefix": "Découvrez",
+      "brand": "Octara"
+    },
+    "description": "Octara est une organisation dédiée à créer des outils impactants et à favoriser une communauté collaborative et passionnée pour tous.",
+    "join_discord": "Rejoindre Discord",
+    "view_github": "Voir GitHub"
+  },
+  "stats": {
+    "projects": "Projets",
+    "stars": "Étoiles GitHub",
+    "repos": "Répertoires"
+  },
+  "projects": {
+    "title": "Nos projets",
+    "description": "Voici tous les projets que nous avons réalisés",
+    "none": "Aucun projet trouvé.",
+    "github": "GitHub"
+  },
+  "footer": {
+    "copy": "© {year} Octara. Open source sous",
+    "license": "CC BY-NC-SA 4.0",
+    "copyLink": "Copier le lien",
+    "copied": "Copié",
+    "tagline": "Outils open source et communauté pour tous.",
+    "product": "Produit",
+    "linkStatus": "Statut",
+    "linkAbout": "À propos",
+    "linkCareers": "Carrières",
+    "company": "Entreprise",
+    "linkCompany": "À propos d'Octara",
+    "legal": "Légal",
+    "linkTerms": "Conditions",
+    "linkPrivacy": "Confidentialité"
+  },
+  "about": {
+    "hero": {
+      "title": "Innover pour un futur durable.",
+      "description": "Octara est né d'une vision simple : transformer la technologie et la rendre accessible à tous."
+    },
+    "history": {
+      "title": "Notre histoire",
+      "paragraph1": "Fondée en 2023 sous le nom de LMC Group, Octara a commencé comme une communauté d'entraide pour de l'aide informatique. Notre objectif initial était de pouvoir accompagner les nouveaux développeurs dans leurs projets.",
+      "paragraph2": "Au fil des années, nous avons grandi en créant LMC Bot qui a permis d'agrandir notre communauté, puis nous nous sommes diversifiés en nous développant dans d'autres domaines."
+    },
+    "mission": {
+      "title": "Notre mission",
+      "description": "Rendre l'informatique accessible à tous, sans barrières, en respectant la vie privée."
+    },
+    "values": {
+      "title": "Nos valeurs",
+      "integrity": {
+        "title": "Intégrité",
+        "description": "Nous agissons avec transparence et honnêteté dans chaque projet que nous réalisons."
+      },
+      "innovation": {
+        "title": "Innovation",
+        "description": "Nous explorons sans cesse de nouvelles frontières."
+      },
+      "opensource": {
+        "title": "Open Source",
+        "description": "Nous essayons de promouvoir et de contribuer au développement de logiciels open source."
+      },
+      "impact": {
+        "title": "Impact",
+        "description": "Chaque projet doit contribuer positivement à la société."
+      }
+    },
+    "cta": {
+      "title": "Prêt à façonner l'avenir avec nous ?",
+      "description": "Nous sommes toujours à la recherche de talents passionnés pour rejoindre notre aventure et repousser les limites.",
+      "openings": "Voir les postes ouverts",
+      "contact": "Nous contacter"
+    }
+  },
+  "privacy": {
+    "title": "Politique de confidentialité",
+    "updated": "Dernière mise à jour : 2026-03-15",
+    "introTitle": "Introduction",
+    "intro": "LMC Group (\"nous\", \"notre\") s'engage à protéger la vie privée des visiteurs et des utilisateurs de nos sites web, applications et services dans le monde entier. Cette politique de confidentialité explique quelles informations nous collectons, comment nous les utilisons, quand nous les partageons et les droits dont vous disposez.",
+    "section1": {
+      "title": "1. Informations que nous collectons",
+      "body": "Nous pouvons collecter : (a) des informations que vous fournissez directement (par exemple, formulaire de contact ou données de compte) ; (b) des informations d'utilisation (analyses, journaux et données d'interaction) ; et (c) des données techniques (appareil, navigateur, adresse IP et cookies). Nous minimisons la collecte de données et ne conservons que ce qui est nécessaire pour fournir et améliorer nos services."
+    },
+    "section2": {
+      "title": "2. Comment nous utilisons les informations",
+      "body": "Nous utilisons les données pour fournir et maintenir les services, répondre aux demandes, améliorer les fonctionnalités, sécuriser nos systèmes et communiquer des mises à jour importantes. Lorsque requis, nous nous appuyons sur des intérêts légitimes, l'exécution du contrat ou le consentement comme bases légales du traitement."
+    },
+    "section3": {
+      "title": "3. Partage et divulgation",
+      "body": "Nous pouvons partager des informations avec des prestataires de services qui agissent en notre nom, avec des affiliés, ou lorsque la loi l'exige. Nous ne vendons pas les données personnelles à des tiers. Nous prenons des mesures contractuelles et techniques pour protéger les données partagées avec les sous-traitants."
+    },
+    "section4": {
+      "title": "4. Cookies et technologies similaires",
+      "body": "Nous utilisons les cookies et technologies similaires pour la fonctionnalité, l'analyse et l'amélioration de l'expérience utilisateur. Vous pouvez contrôler vos préférences en matière de cookies via votre navigateur et, lorsque disponible, via des contrôles sur le site."
+    },
+    "section5": {
+      "title": "5. Transferts internationaux",
+      "body": "LMC Group opère à l'échelle mondiale. Les données personnelles peuvent être transférées et traitées dans des pays aux lois sur la protection des données différentes. Lors des transferts internationaux, nous utilisons des garanties appropriées telles que des contrats ou d'autres mécanismes autorisés par la loi."
+    },
+    "section6": {
+      "title": "6. Conservation et sécurité des données",
+      "body": "Nous ne conservons les données personnelles que le temps nécessaire aux fins décrites. Nous utilisons des mesures techniques et organisationnelles raisonnables pour protéger les données personnelles, mais aucun système n'est complètement sécurisé — faites preuve de prudence lorsque vous partagez des informations sensibles."
+    },
+    "section7": {
+      "title": "7. Vos droits",
+      "body": "Sous réserve du droit local, vous pouvez avoir le droit d'accéder, de corriger, de supprimer ou de limiter le traitement de vos données personnelles, ou de vous opposer au traitement. Pour exercer ces droits, contactez-nous via les coordonnées ci-dessous."
+    },
+    "section8": {
+      "title": "8. Enfants",
+      "body": "Nos services ne sont pas destinés aux enfants de moins de 16 ans. Nous ne collectons pas sciemment de données personnelles d'enfants. Si vous pensez que nous avons collecté des données d'un enfant, veuillez nous contacter pour demander leur suppression."
+    },
+    "section9": {
+      "title": "9. Modifications de cette politique",
+      "body": "Nous pouvons mettre à jour cette politique de temps à autre. Nous publierons la version révisée avec une date d'entrée en vigueur mise à jour. La poursuite de l'utilisation de nos services après les modifications constitue une acceptation de la politique mise à jour."
+    },
+    "section10": {
+      "title": "10. Contact",
+      "body": "Pour des questions ou pour exercer vos droits, contactez-nous sur notre serveur Discord."
+    },
+    "contact": {
+      "title": "Des questions sur cette politique ?",
+      "desc": "Notre équipe est là pour vous aider à répondre à vos questions sur la vie privée.",
+      "button": "Contacter le Support"
+    }
+  },
+  "careers": {
+    "hero": {
+      "title": "Rejoignez \nOctara",
+      "description": "Nous construisons l'avenir de la technologie open source. Octara est une initiative communautaire portée par la passion et l'innovation collective."
+    },
+    "mission": {
+      "title": "Façonnez l'avenir de la technologie",
+      "description": "Octara est actuellement un projet autofinancé centré sur la communauté. Nous recherchons des personnes qui croient en l'accès libre à la technologie et qui souhaitent apporter leurs compétences à un écosystème en pleine croissance.",
+      "important": "Information importante :",
+      "volunteer": "Toutes les positions actuellement listées sont volontaires et non rémunérées. Nous construisons la base ensemble en visant un avenir durable pour toutes et tous.",
+      "future": "Si un jour Octara devient une véritable entité économique, toutes les personnes ayant contribué au développement d'Octara, quel que soit leur poste, se verront offrir une récompense à la clé — par exemple l'accès à des services supplémentaires fournis gratuitement par rapport aux autres.",
+      "why": {
+        "title": "Pourquoi nous rejoindre ?",
+        "list1": "Contribuez à des outils open source à fort impact.",
+        "list2": "Renforcez votre portfolio avec des projets réels."
+      }
+    },
+    "positions": {
+      "title": "Postes ouverts",
+      "count": "{count} opportunités actives",
+      "role1": {
+        "title": "Community Manager",
+        "status": "Volontaire",
+        "description": "Dirigez notre présence numérique et favorisez l'engagement sur nos plateformes. Vous serez la voix d'Octara, faisant le lien entre développeur·euse·s et utilisateur·rice·s.",
+        "responsibilities": {
+          "title": "Responsabilités clés :",
+          "item1": "Publication de contenu"
+        }
+      },
+      "apply": "Postuler",
+      "role2": {
+        "title": "Contributeur·rice·s ouverts",
+        "status": "Volontaire",
+        "description": "Aidez-nous à construire l'infrastructure cœur d'Octara. Que vous soyez développeur·se, designer ou rédacteur·rice technique, nous avons des projets que nos compétences.",
+        "needs": "Besoins en cours :",
+        "need1": "Frontend & Backend",
+        "need2": "UI/UX Design"
+      }
+    },
+    "cta": {
+      "title": "Vous ne savez pas par où commencer ?",
+      "description": "Rejoignez notre Discord pour trouver la mission qui vous correspond.",
+      "button": "Rejoindre Discord"
+    }
+  },
+  "terms": {
+    "title": "Conditions d'utilisation",
+    "updated": "Dernière mise à jour : 2026-03-15",
+    "intro": "Ces Conditions d'utilisation (\"Conditions\") s'appliquent à votre accès et à votre utilisation des services, sites web et applications fournis par LMC Group (\"nous\", \"notre\"). En utilisant nos services, vous acceptez ces Conditions. Si vous n'acceptez pas, n'utilisez pas nos services.",
+    "section1": {
+      "title": "1. Utilisation des services",
+      "body": "Vous pouvez utiliser nos services uniquement à des fins légales et conformément aux présentes Conditions. Nous pouvons imposer des règles supplémentaires pour certains produits ou fonctionnalités."
+    },
+    "section2": {
+      "title": "2. Comptes",
+      "body": "Lorsque vous créez un compte, vous acceptez de fournir des informations exactes et de garder vos identifiants sécurisés. Vous êtes responsable de toute activité liée à votre compte."
+    },
+    "section3": {
+      "title": "3. Propriété intellectuelle",
+      "body": "Tout le contenu fourni par LMC Group est protégé par des droits de propriété intellectuelle. Vous ne pouvez pas reproduire ou redistribuer notre contenu sans autorisation, sauf si la loi l'autorise ou qu'une licence écrite le permet."
+    },
+    "section4": {
+      "title": "4. Contenu utilisateur",
+      "body": "Si vous soumettez du contenu à nos services, vous accordez à LMC Group une licence mondiale, gratuite et transférable pour utiliser, reproduire et afficher ce contenu dans la mesure nécessaire pour fournir le service. Vous êtes responsable du contenu que vous publiez."
+    },
+    "section5": {
+      "title": "5. Conduite interdite",
+      "body": "Vous acceptez de ne pas adopter de comportements illégaux, préjudiciables ou frauduleux ; de ne pas perturber nos services ; de ne pas contourner les mesures de sécurité ; et de ne pas violer les droits d'autrui. Nous pouvons suspendre ou résilier l'accès en cas de violation."
+    },
+    "section6": {
+      "title": "6. Avertissements et limitation de responsabilité",
+      "body": "NOS SERVICES SONT FOURNIS \"EN L'ÉTAT\" ET \"SELON LA DISPONIBILITÉ\". DANS LA LIMITE MAXIMALE AUTORISÉE PAR LA LOI, LMC GROUP DÉCLINE TOUTES GARANTIES. LA RESPONSABILITÉ DE LMC GROUP EST LIMITÉE DANS LES CONDITIONS PRÉVUES PAR LA LOI."
+    },
+    "section7": {
+      "title": "7. Modifications",
+      "body": "Nous pouvons modifier ces Conditions de temps à autre. Nous publierons les modifications avec une date d'entrée en vigueur mise à jour. La poursuite de l'utilisation des services après modification constitue une acceptation des Conditions mises à jour."
+    },
+    "section8": {
+      "title": "8. Droit applicable",
+      "body": "Ces Conditions sont régies et interprétées conformément au droit applicable. Tout litige relatif à leur interprétation ou exécution relève des tribunaux compétents, sauf disposition légale impérative contraire."
+    },
+    "section9": {
+      "title": "9. Divers",
+      "body": "Si une disposition des présentes Conditions est jugée invalide, les autres dispositions resteront en vigueur. L'absence d'exercice d'un droit ne constitue pas une renonciation."
+    },
+    "section10": {
+      "title": "10. Contact",
+      "body": "Pour toute question concernant ces Conditions, contactez-nous sur notre serveur Discord."
+    },
+    "contact": {
+      "title": "Des questions sur ces termes ?",
+      "desc": "Notre équipe juridique est là pour vous aider à comprendre vos droits.",
+      "button": "Contacter le Support"
+    }
+  },
+  "status": {
+    "page": {
+      "title": {
+        "operational": "Tous les systèmes opérationnels",
+        "down": "1 système hors service",
+        "downMany": "{count} systèmes hors service"
+      },
+      "lastUpdated": "Dernière mise à jour : {when} UTC"
+    },
+    "incidents": {
+      "title": "Incidents",
+      "none": "Aucun incident signalé",
+      "label": {
+        "investigating": "En cours d'investigation",
+        "identified": "Identifié",
+        "monitoring": "Surveillance en cours",
+        "resolved": "Résolu"
+      },
+      "lastUpdated": "Mis à jour : {date}",
+      "noUpdates": "Aucune mise à jour disponible"
+    },
+    "history": {
+      "title": "Historique",
+      "show": "Afficher l'historique complet",
+      "hide": "Masquer l'historique",
+      "noScheduled": "Aucune maintenance planifiée",
+      "noPast": "Aucun incident passé au cours des 90 derniers jours",
+      "maintenance": {
+        "scheduled": "Planifiée",
+        "inProgress": "En cours",
+        "completed": "Terminée"
+      }
+    },
+    "metrics": {
+      "availability": "Disponibilité",
+      "daysWithout": "{days} jours sans incident",
+      "daysSuffix": "j",
+      "responseTime": "Temps de réponse moyen",
+      "none": "Données non disponibles"
+    },
+    "services": {
+      "none": "Aucun service trouvé",
+      "live": "Opérationnel",
+      "maintenance": "Maintenance",
+      "degraded": "Performance dégradée",
+      "down": "Service interrompu",
+      "archived": "Archivé",
+      "experimental": "Expérimental"
+    }
+  }
+}
+      "body": "Octara s'efforce de fournir un service de haute qualité, mais ne peut garantir une disponibilité ininterrompue. Dans la mesure permise par la loi, Octara ne sera pas responsable des dommages indirects, accessoires ou consécutifs résultant de l'utilisation ou de l'incapacité d'utiliser nos services."
+    },
+    "section8": {
+      "title": "6. Droit Applicable",
+      "body": "Les présentes conditions sont régies et interprétées conformément aux lois de la République Française. Tout litige relatif à leur interprétation ou leur exécution relève de la compétence exclusive des tribunaux de Paris, sauf disposition légale impérative contraire."
+    },
+    "section9": {
+      "title": "7. Modifications",
+      "body": "Nous pouvons modifier ces Conditions de temps à autre. Nous publierons les modifications avec une date d'entrée en vigueur mise à jour. La poursuite de l'utilisation des services après les modifications constitue une acceptation des Conditions mises à jour."
+    },
+    "section10": {
+      "title": "8. Contact",
+      "body": "Pour toute question concernant ces Conditions, contactez-nous sur notre serveur Discord."
+    },
+    "contact": {
+      "title": "Des questions sur ces termes ?",
+      "desc": "Notre équipe juridique est là pour vous aider à comprendre vos droits.",
+      "button": "Contacter le Support"
+    }
+  },
+  "status": {
+    "page": {
+      "title": "Tous les systèmes opérationnels",
+      "lastUpdated": "Dernière mise à jour : {when} UTC"
+    },
+    "incidents": {
+      "title": "Incidents actifs",
+      "none": "Aucun incident actif n'est signalé pour le moment.",
+      "label": {
+        "investigating": "Investigation",
+        "identified": "Identifié",
+        "monitoring": "En surveillance",
+        "resolved": "Résolu"
+      },
+      "lastUpdated": "Dernière mise à jour : {when} UTC",
+      "noUpdates": "Pas de mise à jour disponible."
+    },
+    "history": {
+      "title": "Historique des maintenances",
+      "show": "Voir l'historique",
+      "hide": "Réduire l'historique",
+      "noScheduled": "Aucune maintenance planifiée n'est disponible pour le moment.",
+      "noPast": "Aucune maintenance passée n'a été trouvée.",
+      "status": {
+        "scheduled": "Planifié",
+        "in-progress": "En cours",
+        "completed": "Terminé"
+      }
+    },
+    "metrics": {
+      "availability": "Disponibilité moyenne",
+      "daysWithout": "Jours sans incident",
+      "daysSuffix": "jours",
+      "responseTime": "Temps de réponse",
+      "none": "—"
+    },
+    "services": {
+      "none": "Aucun projet disponible.",
+      "live": "Opérationnel",
+      "maintenance": "Maintenance",
+      "degraded": "Dégradé",
+      "down": "Hors service",
+      "archived": "Archivé",
+      "experimental": "Expérimental"
+    }
+  }
+}

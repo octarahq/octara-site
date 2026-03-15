@@ -71,9 +71,9 @@
   ],
   "metrics": {
     "availability": 87.5,
-    "avgResponseMs": 46,
+    "avgResponseMs": 48,
     "daysWithoutIncident": 0,
-    "lastIncidentAt": "2026-03-15T03:57:40.139Z",
-    "updatedAt": "2026-03-15T03:57:40.139Z"
+    "lastIncidentAt": "2026-03-15T04:28:50.441Z",
+    "updatedAt": "2026-03-15T04:28:50.441Z"
   }
 }
