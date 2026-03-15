@@ -33,7 +33,7 @@ export default function Services({ projects }: { projects?: SnapshotProject[] })
     return `rgba(${r}, ${g}, ${b}, ${alpha})`
   }
 
-  const severityOrder: Array<ProjectStatus | 'degraded'> = ['down', 'degraded', 'maintenance']
+  const severityOrder: Array<ProjectStatus | 'degraded'> = ['maintenance','down', 'degraded']
 
   return (
     <div className="space-y-8">
@@ -61,6 +61,7 @@ export default function Services({ projects }: { projects?: SnapshotProject[] })
                   const s = (v && v.status) || 'degraded'
                   const info = meta[s] || meta.degraded
                   const isProblem = ['maintenance', 'degraded', 'down'].includes(s)
+                  console.log(isProblem, s)
                   const subBg = isProblem ? hexToRgba(info.color, 0.05) : undefined
                   return (
                     <div key={k} className="flex items-center justify-between p-4 transition-colors" style={{ backgroundColor: subBg }}>

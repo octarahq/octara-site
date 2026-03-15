@@ -231,7 +231,9 @@
       "title": {
         "operational": "Tous les systèmes opérationnels",
         "down": "1 système hors service",
-        "downMany": "{count} systèmes hors service"
+        "downMany": "{count} systèmes hors service",
+        "maintenance": "1 système en maintenance",
+        "maintenanceMany": "{count} systèmes en maintenance"
       },
       "lastUpdated": "Dernière mise à jour : {when} UTC"
     },

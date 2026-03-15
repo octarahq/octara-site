@@ -231,7 +231,9 @@
       "title": {
         "operational": "All systems operational",
         "down": "1 system down",
-        "downMany": "{count} systems down"
+        "downMany": "{count} systems down",
+        "maintenance": "1 system in maintenance",
+        "maintenanceMany": "{count} systems in maintenance"
       },
       "lastUpdated": "Last updated: {when} UTC"
     },

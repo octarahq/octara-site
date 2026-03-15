@@ -67,19 +67,30 @@ export default function StatusContent() {
       })
     : "—";
 
-  const downCount = projects.reduce((count, project) => {
+  // Determine per-project severity. Priority: maintenance > down > degraded > active
+  const projectSeverities = projects.map((project) => {
     const statuses = Object.values(project.statusUrls || {}).map((s: any) => (s as any)?.status);
-    return count + statuses.filter((s) => s === "down").length;
-  }, 0);
+    if (project?.status === "maintenance") return "maintenance";
+    if (statuses.includes("down")) return "down";
+    if (statuses.includes("degraded")) return "degraded";
+    return "active";
+  });
+
+  const downCount = projectSeverities.filter((s) => s === "down").length;
+  const maintenanceCount = projectSeverities.filter((s) => s === "maintenance").length;
 
   const hasDown = downCount > 0;
+  const hasMaintenance = !hasDown && maintenanceCount > 0;
 
   const bgGradient = hasDown
     ? "linear-gradient(to right, rgba(239,68,68,0.2), rgba(244,63,94,0.1))"
+    : hasMaintenance
+    ? "linear-gradient(to right, rgba(245,158,11,0.12), rgba(245,158,11,0.06))"
     : "linear-gradient(to right, rgba(16,185,129,0.2), rgba(59,130,246,0.1))";
-  const borderColor = hasDown ? "rgba(239,68,68,0.3)" : "rgba(16,185,129,0.3)";
-  const pingColor = hasDown ? "rgba(239,68,68,0.75)" : "rgba(16,185,129,0.75)";
-  const dotColor = hasDown ? "#ef4444" : "#10b981";
+
+  const borderColor = hasDown ? "rgba(239,68,68,0.3)" : hasMaintenance ? "rgba(245,158,11,0.28)" : "rgba(16,185,129,0.3)";
+  const pingColor = hasDown ? "rgba(239,68,68,0.75)" : hasMaintenance ? "rgba(245,158,11,0.75)" : "rgba(16,185,129,0.75)";
+  const dotColor = hasDown ? "#ef4444" : hasMaintenance ? "#f59e0b" : "#10b981";
 
   return (
     <>
@@ -89,6 +100,8 @@ export default function StatusContent() {
         pingColor={pingColor}
         dotColor={dotColor}
         downCount={downCount}
+        maintenanceCount={maintenanceCount}
+        hasMaintenance={hasMaintenance}
         hasDown={hasDown}
         lastUpdatedText={lastUpdatedText}
       />
@@ -110,6 +123,8 @@ function StatusHeaderArea({
   pingColor,
   dotColor,
   downCount,
+  maintenanceCount,
+  hasMaintenance,
   hasDown,
   lastUpdatedText,
 }: {
@@ -118,6 +133,8 @@ function StatusHeaderArea({
   pingColor: string;
   dotColor: string;
   downCount: number;
+  maintenanceCount: number;
+  hasMaintenance: boolean;
   hasDown: boolean;
   lastUpdatedText: string;
 }) {
@@ -130,10 +147,17 @@ function StatusHeaderArea({
 
   const downTitle = t("status.page.title.down");
   const downTitleMany = t("status.page.title.downMany", { count: downCount });
+  const maintenanceTitle = t("status.page.title.maintenance");
+  const maintenanceTitleMany = t("status.page.title.maintenanceMany", { count: maintenanceCount });
+
   const title = hasDown
     ? downCount === 1
       ? (downTitle && downTitle !== "status.page.title.down" ? downTitle : "1 système hors service")
       : (downTitleMany && downTitleMany !== "status.page.title.downMany" ? downTitleMany : `${downCount} systèmes hors service`)
+    : hasMaintenance
+    ? maintenanceCount === 1
+      ? (maintenanceTitle && maintenanceTitle !== "status.page.title.maintenance" ? maintenanceTitle : "1 système en maintenance")
+      : (maintenanceTitleMany && maintenanceTitleMany !== "status.page.title.maintenanceMany" ? maintenanceTitleMany : `${maintenanceCount} systèmes en maintenance`)
     : get("status.page.title.operational", "Tous les systèmes opérationnels");
 
   const lastUpdatedLabel = (() => {

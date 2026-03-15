@@ -127,8 +127,11 @@ try {
               status: finalStatus,
             });
 
-            totalEndpoints += endpointResults.length;
-            upCount += endpointResults.filter((s) => s === "active").length;
+            // If the project is in maintenance, exclude its endpoints from incident calculations
+            if (finalStatus !== "maintenance") {
+              totalEndpoints += endpointResults.length;
+              upCount += endpointResults.filter((s) => s === "active").length;
+            }
             responseTimesAll = responseTimesAll.concat(responseTimes);
           }
         }
