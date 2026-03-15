@@ -67,7 +67,6 @@ export default function StatusContent() {
       })
     : "—";
 
-  // Determine per-project severity. Priority: maintenance > down > degraded > active
   const projectSeverities = projects.map((project) => {
     const statuses = Object.values(project.statusUrls || {}).map((s: any) => (s as any)?.status);
     if (project?.status === "maintenance") return "maintenance";

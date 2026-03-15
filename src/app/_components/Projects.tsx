@@ -36,7 +36,7 @@ export default function Projects() {
           )}
 
           {projects.map((project) => {
-            let baseDomain = "lmcgroup.xyz";
+            let baseDomain = "octara.xyz";
             let origin = "";
             try {
               const hostname = window.location.hostname;

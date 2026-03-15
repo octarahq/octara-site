@@ -1,5 +1,5 @@
 const INTERVAL_MS = 60_000;
-const BASE_DOMAIN = "lmcgroup.xyz";
+const BASE_DOMAIN = "octara.xyz";
 
 function normalizeMainUrl(siteRaw) {
   if (!siteRaw) return "";
