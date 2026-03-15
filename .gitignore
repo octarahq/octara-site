@@ -40,4 +40,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-/server/status-snapshot.json
+server/status-snapshot.json
