@@ -20,7 +20,6 @@ export function I18nProvider({
 
 export function useI18n() {
   const { useTranslations } = require('next-intl');
-  // Return a bridge to next-intl t()
   const t = useTranslations();
   return { t };
 }

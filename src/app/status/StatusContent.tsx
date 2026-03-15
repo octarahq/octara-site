@@ -15,6 +15,7 @@ export default function StatusContent() {
   const [projects, setProjects] = useState<any[]>([]);
   const [metrics, setMetrics] = useState<any | null>(null);
   const [status, setStatus] = useState<any | null>(null);
+  const [snapshotUpdated, setSnapshotUpdated] = useState<string | null>(null);
 
   useEffect(() => {
     let mounted = true;
@@ -26,6 +27,9 @@ export default function StatusContent() {
         if (!mounted) return;
         setProjects(Array.isArray(json?.projects) ? json.projects : []);
         setMetrics(json?.metrics ?? null);
+        
+        const updated = json?.metrics?.updatedAt ?? json?.updatedAt ?? null;
+        setSnapshotUpdated(updated ?? null);
       } catch (e) {
         // ignore
       }
@@ -51,7 +55,8 @@ export default function StatusContent() {
     };
   }, []);
 
-  const lastUpdated = status?.lastUpdated ? new Date(status.lastUpdated) : null;
+  const lastUpdatedSource = snapshotUpdated ?? status?.lastUpdated ?? null;
+  const lastUpdated = lastUpdatedSource ? new Date(lastUpdatedSource) : null;
   const lastUpdatedText = lastUpdated
     ? lastUpdated.toLocaleString("fr-FR", {
         day: "2-digit",

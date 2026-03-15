@@ -198,7 +198,32 @@
     },
     "section5": {
       "title": "5. Prohibited conduct",
-      "body": "You agree not to engage in any conduct that: (a) is illegal, harmful, or fraudulent; (b) interferes with the operation of our services; (c) avoids security or authentication measures; or (d) infringes the rights of others. We may suspend or terminate access for violations."
+      "body": "You must not use our services to engage in unlawful activity, infringe others' rights, transmit malware, or otherwise interfere with the operation of our services."
+    },
+    "section6": {
+      "title": "6. Disclaimers and limitation of liability",
+      "body": "OUR SERVICES ARE PROVIDED \"AS IS\" AND \"AS AVAILABLE\". TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, LMC GROUP DISCLAIMS ALL WARRANTIES. LMC GROUP'S LIABILITY IS LIMITED TO THE EXTENT PERMITTED BY LAW."
+    },
+    "section7": {
+      "title": "7. Termination",
+      "body": "We may suspend or terminate access to services for violations of these Terms or for other legitimate reasons. Termination does not limit other remedies available to us."
+    },
+    "section8": {
+      "title": "8. Governing law",
+      "body": "These Terms are governed by the laws applicable where LMC Group operates, subject to mandatory local consumer protections. Any disputes will be resolved in accordance with those laws."
+    },
+    "section9": {
+      "title": "9. Changes",
+      "body": "We may modify these Terms from time to time. We will post changes with an updated effective date. Continued use of the services after changes constitutes acceptance of the updated Terms."
+    },
+    "section10": {
+      "title": "10. Contact",
+      "body": "For questions about these Terms, contact us in our discord server."
+    },
+    "contact": {
+      "title": "Questions about these terms?",
+      "desc": "Our legal team is here to help you understand your rights.",
+      "button": "Contact Support"
     }
   },
   "status": {
@@ -247,81 +272,6 @@
       "maintenance": "Maintenance",
       "degraded": "Degraded performance",
       "down": "Service disruption",
-      "archived": "Archived",
-      "experimental": "Experimental"
-    }
-  }
-}
-      "body": "You must not use our services to engage in unlawful activity, infringe others' rights, transmit malware, or otherwise interfere with the operation of our services."
-    },
-    "section6": {
-      "title": "6. Disclaimers and limitation of liability",
-      "body": "OUR SERVICES ARE PROVIDED \"AS IS\" AND \"AS AVAILABLE\". TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, LMC GROUP DISCLAIMS ALL WARRANTIES. LMC GROUP'S LIABILITY IS LIMITED TO THE EXTENT PERMITTED BY LAW."
-    },
-    "section7": {
-      "title": "7. Termination",
-      "body": "We may suspend or terminate access to services for violations of these Terms or for other legitimate reasons. Termination does not limit other remedies available to us."
-    },
-    "section8": {
-      "title": "8. Governing law",
-      "body": "These Terms are governed by the laws applicable where LMC Group operates, subject to mandatory local consumer protections. Any disputes will be resolved in accordance with those laws."
-    },
-    "section9": {
-      "title": "9. Changes",
-      "body": "We may modify these Terms from time to time. We will post changes with an updated effective date. Continued use of the services after changes constitutes acceptance of the updated Terms."
-    },
-    "section10": {
-      "title": "10. Contact",
-      "body": "For questions about these Terms, contact us in our discord server."
-    },
-    "contact": {
-      "title": "Questions about these terms?",
-      "desc": "Our legal team is here to help you understand your rights.",
-      "button": "Contact Support"
-    }
-  },
-  "status": {
-    "page": {
-      "title": "All systems operational",
-      "lastUpdated": "Last updated: {when} UTC"
-    },
-    "incidents": {
-      "title": "Active incidents",
-      "none": "No active incident is reported right now.",
-      "label": {
-        "investigating": "Investigation",
-        "identified": "Identified",
-        "monitoring": "Monitoring",
-        "resolved": "Resolved"
-      },
-      "lastUpdated": "Last update: {when} UTC",
-      "noUpdates": "No update available."
-    },
-    "history": {
-      "title": "Maintenance history",
-      "show": "View history",
-      "hide": "Collapse history",
-      "noScheduled": "No scheduled maintenance is available at the moment.",
-      "noPast": "No past maintenance found.",
-      "status": {
-        "scheduled": "Scheduled",
-        "in-progress": "In progress",
-        "completed": "Completed"
-      }
-    },
-    "metrics": {
-      "availability": "Average availability",
-      "daysWithout": "Days without incident",
-      "daysSuffix": "days",
-      "responseTime": "Response time",
-      "none": "—"
-    },
-    "services": {
-      "none": "No projects available.",
-      "live": "Operational",
-      "maintenance": "Maintenance",
-      "degraded": "Degraded",
-      "down": "Down",
       "archived": "Archived",
       "experimental": "Experimental"
     }
