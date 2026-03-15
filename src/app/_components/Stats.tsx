@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from 'react'
 import { getProjects } from '@/utils/projects'
+import { useI18n } from '@/lib/I18nProvider'
 
-export default function Stats({ translations }: { translations?: Record<string,string> }) {
+export default function Stats() {
   const [projectsCount, setProjectsCount] = useState<number | null>(null)
   const [totalRepos, setTotalRepos] = useState<number | null>(null)
   const [totalStars, setTotalStars] = useState<number | null>(null)
@@ -50,7 +51,7 @@ export default function Stats({ translations }: { translations?: Record<string,s
     }
   }, [])
 
-  const t = (key: string) => translations?.[key] ?? key;
+  const { t } = useI18n();
 
   return (
     <section className="px-6 lg:px-20 py-12">

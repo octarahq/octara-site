@@ -15,7 +15,8 @@ async function readJson(filePath: string): Promise<Translations | null> {
 
 export async function loadTranslations(lang: string, pageRelativePath = "/"): Promise<Translations> {
   const root = process.cwd();
-  const normalizedPage = pageRelativePath === "/" ? "" : pageRelativePath.replace(/^\/+/, "");
+  const pagePathSafe = typeof pageRelativePath === "string" ? pageRelativePath : "/";
+  const normalizedPage = pagePathSafe === "/" ? "" : pagePathSafe.replace(/^\/+/, "");
   const pageLocalesPath = path.join(root, "src", "app", normalizedPage, "_utils", "locales", `${lang}.json`);
   const rootLocalesPath = path.join(root, "src", "app", "_utils", "locales", `${lang}.json`);
 

@@ -2,9 +2,10 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useI18n } from '@/lib/I18nProvider'
 
-export default function Positions({ translations }: { translations?: Record<string,string> }) {
-  const t = (key: string) => translations?.[key] ?? key;
+export default function Positions() {
+  const { t } = useI18n();
 
   const openingsText = (t("careers.positions.count") ?? "{count} opportunities").replace("{count}", "2");
 

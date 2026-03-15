@@ -1,9 +1,10 @@
 "use client";
 
 import { } from "react";
+import { useI18n } from '@/lib/I18nProvider'
 
-export default function Mission({ translations }: { translations?: Record<string,string> }) {
-  const t = (key: string) => translations?.[key] ?? key;
+export default function Mission() {
+  const { t } = useI18n();
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start py-10 border-b border-primary/10 max-w-[1200px] mx-auto">

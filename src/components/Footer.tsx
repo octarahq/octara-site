@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useI18n } from '@/lib/I18nProvider'
 
-export default function Footer({ translations }: { translations?: Record<string, string> }) {
-  const t = (key: string) => translations?.[key] ?? key;
+export default function Footer() {
+  const { t } = useI18n();
   const year = new Date().getFullYear();
   const [currentUrl, setCurrentUrl] = useState<string>("");
   const [copied, setCopied] = useState(false);

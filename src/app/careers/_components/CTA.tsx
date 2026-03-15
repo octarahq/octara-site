@@ -1,10 +1,10 @@
+"use client";
+
 import Link from 'next/link';
-import { getTranslations } from '@/lib/getTranslations';
+import { useI18n } from '@/lib/I18nProvider';
 
-export default async function CTA() {
-  const translations = await getTranslations("/careers");
-
-  const t = (key: string) => translations[key] ?? key;
+export default function CTA() {
+  const { t } = useI18n();
 
   return (
     <section className="w-full px-6 lg:px-40 pb-20 max-w-[1200px] mx-auto">

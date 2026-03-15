@@ -1,7 +1,9 @@
 import { } from "react";
+import { useI18n } from '@/lib/I18nProvider'
+import Link from "next/link";
 
-export default function TermsContent({ translations }: { translations?: Record<string,string> }) {
-  const t = (key: string) => translations?.[key] ?? key;
+export default function TermsContent() {
+  const { t } = useI18n();
 
   return (
     <main className="flex flex-1 justify-center py-10 px-6 lg:px-40">
@@ -119,9 +121,9 @@ export default function TermsContent({ translations }: { translations?: Record<s
               <h3 className="text-slate-900 dark:text-white text-lg font-bold">{t("terms.contact.title")}</h3>
               <p className="text-slate-500 dark:text-slate-400">{t("terms.contact.desc")}</p>
             </div>
-            <button className="px-6 py-3 bg-primary text-white font-bold rounded-lg hover:brightness-110 transition-all">
+            <Link href="/api/discord" className="px-6 py-3 bg-primary text-white font-bold rounded-lg hover:brightness-110 transition-all">
               {t("terms.contact.button")}
-            </button>
+            </Link>
           </div>
         </div>
       </div>

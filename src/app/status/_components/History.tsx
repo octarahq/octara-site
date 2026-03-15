@@ -21,7 +21,9 @@ function formatDate(date: Date) {
   return date.toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' })
 }
 
-export default function History({ status, translations = {} }: { status?: OctaraStatus | null; translations?: Record<string,string> }) {
+import { useI18n } from '@/lib/I18nProvider'
+
+export default function History({ status }: { status?: OctaraStatus | null }) {
   const [showPastMaintenance, setShowPastMaintenance] = useState(false)
 
   const maintenances = status?.maintenances ?? []
@@ -45,13 +47,15 @@ export default function History({ status, translations = {} }: { status?: Octara
       .sort((a, b) => new Date(b.scheduledStart).getTime() - new Date(a.scheduledStart).getTime())
   }, [maintenances, pastMaintenances])
 
+  const { t } = useI18n();
+
   const items = useMemo(() => {
     const out: HistoryItem[] = []
 
     const maintenanceStatusStyles: Record<Maintenance['status'], { label: string; className: string }> = {
-      scheduled: { label: translations['status.history.maintenance.scheduled'] ?? 'Planifié', className: 'bg-slate-100 text-slate-500' },
-      'in-progress': { label: translations['status.history.maintenance.inProgress'] ?? 'En cours', className: 'bg-indigo-100 text-indigo-700' },
-      completed: { label: translations['status.history.maintenance.completed'] ?? 'Terminé', className: 'bg-emerald-100 text-emerald-700' },
+      scheduled: { label: t('status.history.maintenance.scheduled'), className: 'bg-slate-100 text-slate-500' },
+      'in-progress': { label: t('status.history.maintenance.inProgress'), className: 'bg-indigo-100 text-indigo-700' },
+      completed: { label: t('status.history.maintenance.completed'), className: 'bg-emerald-100 text-emerald-700' },
     }
 
     for (const maintenance of activeMaintenances.slice(0, 2)) {
@@ -72,9 +76,9 @@ export default function History({ status, translations = {} }: { status?: Octara
 
   const pastItems = useMemo(() => {
     const maintenanceStatusStyles: Record<Maintenance['status'], { label: string; className: string }> = {
-      scheduled: { label: translations['status.history.maintenance.scheduled'] ?? 'Planifié', className: 'bg-slate-100 text-slate-500' },
-      'in-progress': { label: translations['status.history.maintenance.inProgress'] ?? 'En cours', className: 'bg-indigo-100 text-indigo-700' },
-      completed: { label: translations['status.history.maintenance.completed'] ?? 'Terminé', className: 'bg-emerald-100 text-emerald-700' },
+      scheduled: { label: t('status.history.maintenance.scheduled'), className: 'bg-slate-100 text-slate-500' },
+      'in-progress': { label: t('status.history.maintenance.inProgress'), className: 'bg-indigo-100 text-indigo-700' },
+      completed: { label: t('status.history.maintenance.completed'), className: 'bg-emerald-100 text-emerald-700' },
     }
 
     return pastMaintenances.map((maintenance) => {
@@ -90,11 +94,10 @@ export default function History({ status, translations = {} }: { status?: Octara
         isPastMaintenance: true,
       }
     })
-  }, [pastMaintenances, translations])
+  }, [pastMaintenances, t])
 
   const hasItems = items.length > 0
   const hasPastItems = pastItems.length > 0
-  const t = (k: string) => translations?.[k] ?? k;
   return (
     <section className="mb-12">
       <div className="flex items-center justify-between mb-6">

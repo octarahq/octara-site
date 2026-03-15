@@ -1,9 +1,11 @@
+
 "use client";
 
 import Link from "next/link";
+import { useI18n } from "@/lib/I18nProvider";
 
-export default function Header({ translations = {} }: { translations?: Record<string,string> }) {
-  const t = (k: string) => translations?.[k] ?? k;
+export default function Header() {
+  const { t } = useI18n();
 
   return (
     <header className="flex items-center justify-between whitespace-nowrap border-b border-slate-200 dark:border-slate-800 px-6 py-4 lg:px-20">

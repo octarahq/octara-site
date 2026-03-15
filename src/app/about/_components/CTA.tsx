@@ -1,9 +1,10 @@
 "use client";
 
 import Link from 'next/link'
+import { useI18n } from '@/lib/I18nProvider'
 
-export default function CTA({ translations }: { translations?: Record<string,string> }) {
-  const t = (key: string) => translations?.[key] ?? key;
+export default function CTA() {
+  const { t } = useI18n();
 
   return (
     <section className="flex flex-col md:flex-row gap-12 items-center bg-slate-900 rounded-3xl overflow-hidden p-8 md:p-16 mb-24">

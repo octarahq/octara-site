@@ -1,25 +1,26 @@
+"use client";
+
 import Header from "@/components/Header";
 import Hero from "./_components/Hero";
 import Stats from "./_components/Stats";
 import Projects from "./_components/Projects";
 import Footer from "@/components/Footer";
-import { getTranslations, getPageLang } from '@/lib/getTranslations';
+import { I18nProvider } from '@/lib/I18nProvider';
 
-export default async function Home() {
-  const lang = await getPageLang();
-  const translations = await getTranslations('/');
-
+export default function Home() {
   return (
-    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden">
-      <div className="layout-container flex h-full grow flex-col">
-        <Header translations={translations} />
-        <main className="flex flex-col flex-1">
-          <Hero translations={translations} />
-          <Stats translations={translations} />
-          <Projects translations={translations} />
-          <Footer translations={translations} />
-        </main>
+    <I18nProvider pagePath="/">
+      <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+        <div className="layout-container flex h-full grow flex-col">
+          <Header />
+          <main className="flex flex-col flex-1">
+            <Hero />
+            <Stats />
+            <Projects />
+            <Footer />
+          </main>
+        </div>
       </div>
-    </div>
+    </I18nProvider>
   );
 }

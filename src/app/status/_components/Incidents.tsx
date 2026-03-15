@@ -1,9 +1,10 @@
 "use client";
 
 import type { OctaraStatus, Incident } from '@/utils/incident'
+import { useI18n } from '@/lib/I18nProvider'
 
-export default function Incidents({ status, translations = {} }: { status?: OctaraStatus | null; translations?: Record<string,string> }) {
-  const t = (k: string) => translations?.[k] ?? k;
+export default function Incidents({ status }: { status?: OctaraStatus | null }) {
+  const { t } = useI18n();
 
   const statusStyles: Record<Incident['updates'][number]['status'], { label: string; className: string }> = {
     investigating: { label: t('status.incidents.label.investigating'), className: 'bg-amber-100 text-amber-700' },

@@ -1,7 +1,6 @@
 import "./globals.css";
 import { headers } from "next/headers";
-import { detectLocale, loadTranslations } from "@/lib/i18n";
-import { I18nProvider } from "@/lib/I18nProvider";
+import { detectLocale } from "@/lib/i18n";
 
 export async function generateMetadata() {
   const acceptLanguage = (headers() as any)["accept-language"] ?? "";
@@ -21,7 +20,6 @@ export async function generateMetadata() {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const acceptLanguage = (headers() as any)["accept-language"] ?? "";
   const lang = detectLocale(acceptLanguage);
-  const translations = await loadTranslations(lang, "/");
 
   return (
     <html lang={lang} className="dark">
@@ -53,7 +51,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <style>{`body { font-family: 'Inter', sans-serif; }`}</style>
       </head>
       <body className="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased font-display">
-        <I18nProvider lang={lang} translations={translations} pagePath="/">{children}</I18nProvider>
+        {children}
       </body>
     </html>
   );

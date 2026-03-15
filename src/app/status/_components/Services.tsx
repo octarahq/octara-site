@@ -1,6 +1,7 @@
 "use client";
 
 import type { ProjectStatus } from '@/utils/projects';
+import { useI18n } from '@/lib/I18nProvider';
 
 type SnapshotProject = {
     id: string;
@@ -10,8 +11,8 @@ type SnapshotProject = {
     records: unknown[];
   }
 
-export default function Services({ projects, translations = {} }: { projects?: SnapshotProject[]; translations?: Record<string,string> }) {
-  const t = (k: string) => translations?.[k] ?? k;
+export default function Services({ projects }: { projects?: SnapshotProject[] }) {
+  const { t } = useI18n();
 
   const meta: Record<string, { icon: string; color: string; label: string }> = {
     active: { icon: 'check_circle', color: '#10b981', label: t('status.services.live') },

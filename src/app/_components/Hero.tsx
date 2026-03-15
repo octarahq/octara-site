@@ -1,7 +1,8 @@
 import Link from "next/link";
+import { useI18n } from '@/lib/I18nProvider'
 
-export default function Hero({ translations }: { translations?: Record<string, string> }) {
-  const t = (key: string) => translations?.[key] ?? key;
+export default function Hero() {
+  const { t } = useI18n();
 
   return (
     <section className="px-6 lg:px-20 py-12 lg:py-24">
