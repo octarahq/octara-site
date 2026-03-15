@@ -26,10 +26,12 @@ export function I18nProvider({
   children,
   lang,
   translations = {},
+  pagePath = "/",
 }: {
   children: React.ReactNode;
   lang: string;
   translations?: Translations;
+  pagePath?: string;
 }) {
   const [isReady, setIsReady] = useState(false);
 
@@ -40,7 +42,6 @@ export function I18nProvider({
           translation: translations,
         },
       };
-
       i18next.init({
         lng: lang,
         fallbackLng: "en",
@@ -59,6 +60,33 @@ export function I18nProvider({
       });
     }
     setIsReady(true);
+
+    // If the browser prefers a different language than the server-provided one,
+    // try to fetch translations for the client-preferred language and apply them.
+    try {
+      if (typeof window !== "undefined" && navigator.language) {
+        const clientLang = navigator.language.split("-")[0].toLowerCase();
+        if (clientLang && clientLang !== lang && pagePath) {
+          // fetch translations for the client language for this page
+          setIsReady(false);
+          fetch(`/api/translations?lang=${encodeURIComponent(clientLang)}&page=${encodeURIComponent(pagePath)}`)
+            .then((r) => r.json())
+            .then((clientTranslations) => {
+              const resources: Record<string, Record<string, any>> = {
+                [clientLang]: { translation: clientTranslations || {} },
+              };
+              Object.keys(clientTranslations || {}).forEach((key) => {
+                i18next.addResource(clientLang, "translation", key, clientTranslations[key]);
+              });
+              i18next.changeLanguage(clientLang);
+            })
+            .catch(() => {})
+            .finally(() => setIsReady(true));
+        }
+      }
+    } catch (e) {
+      // ignore
+    }
   }, [lang, translations]);
 
   const t = (key: string, defaultValue?: string): string => {

@@ -78,7 +78,7 @@ export default async function Page() {
   const dotColor = hasDown ? "#ef4444" : "#10b981";
 
   return (
-    <I18nProvider lang={lang} translations={translations}>
+    <I18nProvider lang={lang} translations={translations} pagePath="/status">
     <Header translations={translations} />
       <div
         className="w-full bg-gradient-to-r to-primary/10 border-b px-6 md:px-20 lg:px-40 py-12"

@@ -13,7 +13,7 @@ export default async function Page() {
   const translations = await getTranslations('/about');
 
   return (
-    <I18nProvider lang={lang} translations={translations}>
+    <I18nProvider lang={lang} translations={translations} pagePath="/about">
     <Header translations={translations} />
       <main className="flex-1">
         <div className="max-w-6xl mx-auto px-6">

@@ -12,7 +12,7 @@ export default async function CareersPage() {
   const translations = await getTranslations("/careers");
 
   return (
-    <I18nProvider lang={lang} translations={translations}>
+    <I18nProvider lang={lang} translations={translations} pagePath="/careers">
       <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden">
         <div className="layout-container flex h-full grow flex-col">
             <Header translations={translations} />

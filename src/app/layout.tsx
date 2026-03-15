@@ -53,7 +53,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <style>{`body { font-family: 'Inter', sans-serif; }`}</style>
       </head>
       <body className="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased font-display">
-        <I18nProvider lang={lang} translations={translations}>{children}</I18nProvider>
+        <I18nProvider lang={lang} translations={translations} pagePath="/">{children}</I18nProvider>
       </body>
     </html>
   );
