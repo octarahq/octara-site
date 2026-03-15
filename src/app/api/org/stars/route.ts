@@ -1,9 +1,6 @@
 import { NextResponse } from 'next/server'
 
 export const GET = async () => {
-  const token = process.env.GITHUB_TOKEN || process.env.OCTARA_GITHUB_TOKEN
-  const headers: Record<string, string> = { Accept: 'application/vnd.github.v3+json' }
-  if (token) headers.Authorization = `token ${token}`
 
   let page = 1
   let total = 0
@@ -11,7 +8,6 @@ export const GET = async () => {
   try {
     while (true) {
       const res = await fetch(`https://api.github.com/orgs/octarahq/repos?per_page=100&page=${page}`, {
-        headers,
         next: { revalidate: 300 },
       })
 
