@@ -1,10 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useI18n } from "@/lib/I18nProvider";
 
-export default function History() {
-  const { t } = useI18n();
+export default function History({ translations }: { translations?: Record<string,string> }) {
+  const t = (key: string) => translations?.[key] ?? key;
 
   return (
     <section className="grid md:grid-cols-3 gap-16 items-center mb-24">

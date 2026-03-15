@@ -1,9 +1,7 @@
-"use client";
+import { } from "react";
 
-import { useI18n } from "@/lib/useLocale";
-
-export default function PrivacyContent() {
-  const { t } = useI18n();
+export default function PrivacyContent({ translations }: { translations?: Record<string,string> }) {
+  const t = (key: string) => translations?.[key] ?? key;
 
   return (
     <main className="flex flex-1 justify-center py-10 px-6 lg:px-40">

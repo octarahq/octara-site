@@ -3,17 +3,21 @@ import Hero from "./_components/Hero";
 import Stats from "./_components/Stats";
 import Projects from "./_components/Projects";
 import Footer from "@/components/Footer";
+import { getTranslations, getPageLang } from '@/lib/getTranslations';
 
-export default function Home() {
+export default async function Home() {
+  const lang = await getPageLang();
+  const translations = await getTranslations('/');
+
   return (
     <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden">
       <div className="layout-container flex h-full grow flex-col">
-        <Header />
+        <Header translations={translations} />
         <main className="flex flex-col flex-1">
-          <Hero />
-          <Stats />
-          <Projects />
-          <Footer />
+          <Hero translations={translations} />
+          <Stats translations={translations} />
+          <Projects translations={translations} />
+          <Footer translations={translations} />
         </main>
       </div>
     </div>

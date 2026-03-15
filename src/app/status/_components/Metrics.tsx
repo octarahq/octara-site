@@ -1,9 +1,5 @@
-"use client";
-
-import { useI18n } from "@/lib/I18nProvider";
-
-export default function Metrics({ projects, metrics }: { projects?: any[]; metrics?: any }) {
-  const { t } = useI18n();
+export default function Metrics({ projects, metrics, translations = {} }: { projects?: any[]; metrics?: any; translations?: Record<string, string> }) {
+  const t = (k: string) => (translations && translations[k]) || k;
 
   const computeAvailability = () => {
     if (metrics && typeof metrics.availability === "number") return metrics.availability

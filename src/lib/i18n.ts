@@ -31,13 +31,16 @@ export async function loadTranslations(lang: string, pageRelativePath = "/"): Pr
 export type Locale = 'en' | 'fr';
 
 export function detectLocale(acceptLanguage?: string): Locale {
-  if (acceptLanguage) {
-    const preferred = acceptLanguage.split(",")[0].trim().toLowerCase();
-    return preferred.startsWith("fr") ? "fr" : "en";
+  const headerValue = (acceptLanguage || "").toLowerCase().trim();
+  if (headerValue) {
+    const parts = headerValue.split(",")[0].split(";");
+    const preferred = parts[0].trim();
+    if (preferred.startsWith("fr")) return "fr";
+    if (preferred.startsWith("en")) return "en";
   }
 
   if (typeof navigator !== "undefined" && navigator.language) {
-    const lang = navigator.language.split("-")[0];
+    const lang = navigator.language.split("-")[0].toLowerCase();
     return lang === "fr" ? "fr" : "en";
   }
 

@@ -1,9 +1,7 @@
 "use client";
 
-import { useI18n } from "@/lib/I18nProvider";
-
-export default function Mission() {
-  const { t } = useI18n();
+export default function Mission({ translations }: { translations?: Record<string,string> }) {
+  const t = (key: string) => translations?.[key] ?? key;
 
   return (
     <section className="mb-24">

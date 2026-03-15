@@ -26,5 +26,9 @@
   "careers.positions.role2.description": "Aidez-nous à construire l'infrastructure cœur d'Octara. Que vous soyez développeur·se, designer ou rédacteur·rice technique, nous avons des projets qui ont besoin de vos compétences.",
   "careers.positions.role2.needs": "Besoins en cours :",
   "careers.positions.role2.need1": "Frontend & Backend",
-  "careers.positions.role2.need2": "UI/UX Design"
+  "careers.positions.role2.need2": "UI/UX Design",
+
+  "careers.cta.title": "Vous ne savez pas par où commencer ?",
+  "careers.cta.description": "Rejoignez notre Discord pour trouver la mission qui vous correspond.",
+  "careers.cta.button": "Rejoindre Discord"
 }

@@ -7,8 +7,7 @@ import Metrics from "./_components/Metrics";
 import Services from "./_components/Services";
 import { ProjectStatus } from "@/utils/projects";
 import { getStatus, OctaraStatus } from "@/utils/incident";
-import { headers } from "next/headers";
-import { detectLocale, loadTranslations } from "@/lib/i18n";
+import { getTranslations, getPageLang } from "@/lib/getTranslations";
 import { I18nProvider } from "@/lib/I18nProvider";
 
 export default async function Page() {
@@ -41,9 +40,8 @@ export default async function Page() {
     status = await getStatus();
   } catch (err) {}
 
-  const acceptLanguage = (headers() as any)["accept-language"] ?? "";
-  const lang = detectLocale(acceptLanguage);
-  const translations = await loadTranslations(lang, "/status");
+  const lang = await getPageLang();
+  const translations = await getTranslations("/status");
 
   const lastUpdated = status?.lastUpdated ? new Date(status.lastUpdated) : null;
   const lastUpdatedText = lastUpdated
@@ -81,7 +79,7 @@ export default async function Page() {
 
   return (
     <I18nProvider lang={lang} translations={translations}>
-      <Header />
+    <Header translations={translations} />
       <div
         className="w-full bg-gradient-to-r to-primary/10 border-b px-6 md:px-20 lg:px-40 py-12"
         style={{
@@ -116,14 +114,14 @@ export default async function Page() {
       </div>
 
       <main className="flex-1 px-6 md:px-20 lg:px-40 py-10 max-w-[1200px] mx-auto w-full">
-        <Hero projects={projects} />
-        <Incidents status={status} />
-        <History status={status} />
-        <Metrics projects={projects} metrics={metrics} />
-        <Services projects={projects} />
+        <Hero projects={projects} translations={translations} />
+        <Incidents status={status} translations={translations} />
+        <History status={status} translations={translations} />
+        <Metrics projects={projects} metrics={metrics} translations={translations} />
+        <Services projects={projects} translations={translations} />
       </main>
 
-      <Footer />
+      <Footer translations={translations} />
     </I18nProvider>
   );
 }

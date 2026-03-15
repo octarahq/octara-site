@@ -1,10 +1,7 @@
-"use client";
-
-import { useI18n } from "@/lib/useLocale";
 import Link from "next/link";
 
-export default function Hero() {
-  const { t } = useI18n();
+export default function Hero({ translations }: { translations?: Record<string, string> }) {
+  const t = (key: string) => translations?.[key] ?? key;
 
   return (
     <section className="px-6 lg:px-20 py-12 lg:py-24">

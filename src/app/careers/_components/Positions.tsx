@@ -2,12 +2,11 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useI18n } from '@/lib/I18nProvider';
 
-export default function Positions() {
-  const { t } = useI18n();
+export default function Positions({ translations }: { translations?: Record<string,string> }) {
+  const t = (key: string) => translations?.[key] ?? key;
 
-  const openingsText = t("careers.positions.count").replace("{count}", "2");
+  const openingsText = (t("careers.positions.count") ?? "{count} opportunities").replace("{count}", "2");
 
   return (
     <section className="w-full px-6 lg:px-40 pb-24 max-w-[1200px] mx-auto">

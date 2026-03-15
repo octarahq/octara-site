@@ -2,9 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import { getProjects, ProjectsData, Project } from "../../utils/projects";
-import { useI18n } from "@/lib/useLocale";
 
-export default function Projects() {
+export default function Projects({ translations = {} }: { translations?: Record<string, string> }) {
   const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
@@ -18,7 +17,7 @@ export default function Projects() {
     };
   }, []);
 
-  const { t } = useI18n();
+  const t = (k: string) => translations?.[k] ?? k;
 
   return (
     <section className="px-6 lg:px-20 py-20 bg-slate-50 dark:bg-slate-900/30">

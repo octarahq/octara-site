@@ -1,10 +1,9 @@
 "use client";
 
 import React from "react";
-import { useI18n } from "@/lib/I18nProvider";
 
-export default function Hero() {
-  const { t } = useI18n();
+export default function Hero({ translations = {} }: { translations?: Record<string, string> }) {
+  const t = (k: string) => translations?.[k] ?? k;
 
   const titleLines = t("careers.hero.title").split("\\n");
 

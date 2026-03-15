@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react'
 import type { OctaraStatus, Incident, Maintenance } from '@/utils/incident'
-import { useI18n } from '@/lib/I18nProvider'
+
 
 type HistoryItem = {
   id: string
@@ -15,24 +15,13 @@ type HistoryItem = {
   isPastMaintenance?: boolean
 }
 
-const incidentStatusStyles: Record<Incident['updates'][number]['status'], { label: string; className: string }> = {
-  investigating: { label: 'En investigation', className: 'bg-amber-100 text-amber-700' },
-  identified: { label: 'Identifié', className: 'bg-orange-100 text-orange-700' },
-  monitoring: { label: 'En surveillance', className: 'bg-blue-100 text-blue-700' },
-  resolved: { label: 'Résolu', className: 'bg-emerald-100 text-emerald-700' },
-}
 
-const maintenanceStatusStyles: Record<Maintenance['status'], { label: string; className: string }> = {
-  scheduled: { label: 'Planifié', className: 'bg-slate-100 text-slate-500' },
-  'in-progress': { label: 'En cours', className: 'bg-indigo-100 text-indigo-700' },
-  completed: { label: 'Terminé', className: 'bg-emerald-100 text-emerald-700' },
-}
 
 function formatDate(date: Date) {
   return date.toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' })
 }
 
-export default function History({ status }: { status?: OctaraStatus | null }) {
+export default function History({ status, translations = {} }: { status?: OctaraStatus | null; translations?: Record<string,string> }) {
   const [showPastMaintenance, setShowPastMaintenance] = useState(false)
 
   const maintenances = status?.maintenances ?? []
@@ -59,6 +48,12 @@ export default function History({ status }: { status?: OctaraStatus | null }) {
   const items = useMemo(() => {
     const out: HistoryItem[] = []
 
+    const maintenanceStatusStyles: Record<Maintenance['status'], { label: string; className: string }> = {
+      scheduled: { label: translations['status.history.maintenance.scheduled'] ?? 'Planifié', className: 'bg-slate-100 text-slate-500' },
+      'in-progress': { label: translations['status.history.maintenance.inProgress'] ?? 'En cours', className: 'bg-indigo-100 text-indigo-700' },
+      completed: { label: translations['status.history.maintenance.completed'] ?? 'Terminé', className: 'bg-emerald-100 text-emerald-700' },
+    }
+
     for (const maintenance of activeMaintenances.slice(0, 2)) {
       const statusStyle = maintenanceStatusStyles[maintenance.status]
       out.push({
@@ -76,6 +71,12 @@ export default function History({ status }: { status?: OctaraStatus | null }) {
   }, [activeMaintenances])
 
   const pastItems = useMemo(() => {
+    const maintenanceStatusStyles: Record<Maintenance['status'], { label: string; className: string }> = {
+      scheduled: { label: translations['status.history.maintenance.scheduled'] ?? 'Planifié', className: 'bg-slate-100 text-slate-500' },
+      'in-progress': { label: translations['status.history.maintenance.inProgress'] ?? 'En cours', className: 'bg-indigo-100 text-indigo-700' },
+      completed: { label: translations['status.history.maintenance.completed'] ?? 'Terminé', className: 'bg-emerald-100 text-emerald-700' },
+    }
+
     return pastMaintenances.map((maintenance) => {
       const statusStyle = maintenanceStatusStyles.completed
       return {
@@ -89,13 +90,11 @@ export default function History({ status }: { status?: OctaraStatus | null }) {
         isPastMaintenance: true,
       }
     })
-  }, [pastMaintenances])
+  }, [pastMaintenances, translations])
 
   const hasItems = items.length > 0
   const hasPastItems = pastItems.length > 0
-
-  const { t } = useI18n();
-
+  const t = (k: string) => translations?.[k] ?? k;
   return (
     <section className="mb-12">
       <div className="flex items-center justify-between mb-6">
@@ -129,7 +128,7 @@ export default function History({ status }: { status?: OctaraStatus | null }) {
               </p>
             </div>
           ))
-        ) : (
+          ) : (
           <div className="col-span-full rounded-2xl border border-slate-200 dark:border-primary/10 bg-slate-50/50 dark:bg-primary/5 p-10 text-center">
             <p className="text-slate-500 dark:text-slate-400 font-medium">{t("status.history.noScheduled")}</p>
           </div>

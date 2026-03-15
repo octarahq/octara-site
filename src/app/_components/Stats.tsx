@@ -2,9 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import { getProjects } from '@/utils/projects'
-import { useI18n } from '@/lib/useLocale'
 
-export default function Stats() {
+export default function Stats({ translations }: { translations?: Record<string,string> }) {
   const [projectsCount, setProjectsCount] = useState<number | null>(null)
   const [totalRepos, setTotalRepos] = useState<number | null>(null)
   const [totalStars, setTotalStars] = useState<number | null>(null)
@@ -51,7 +50,7 @@ export default function Stats() {
     }
   }, [])
 
-  const { t } = useI18n();
+  const t = (key: string) => translations?.[key] ?? key;
 
   return (
     <section className="px-6 lg:px-20 py-12">
