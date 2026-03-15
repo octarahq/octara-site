@@ -1,0 +1,79 @@
+{
+  "projects": [
+    {
+      "id": "lmc-maps",
+      "name": "LMC Maps",
+      "mainUrl": "https://maps.lmcgroup.xyz",
+      "statusUrls": {
+        "Site": {
+          "url": "/",
+          "status": "active"
+        }
+      },
+      "records": [],
+      "status": "active"
+    },
+    {
+      "id": "onyx",
+      "name": "Onyx",
+      "mainUrl": "https://onyx.lmcgroup.xyz",
+      "statusUrls": {
+        "API": {
+          "url": "/api/status/ping",
+          "status": "active"
+        },
+        "Bot": {
+          "url": "/api/status/bot",
+          "status": "active"
+        },
+        "Site": {
+          "url": "/",
+          "status": "active"
+        }
+      },
+      "records": [],
+      "status": "active"
+    },
+    {
+      "id": "trainflow",
+      "name": "Trainflow",
+      "mainUrl": "https://trainflow.lmcgroup.xyz",
+      "statusUrls": {
+        "Site": {
+          "url": "/",
+          "status": "active"
+        },
+        "Tiles": {
+          "url": "/api",
+          "status": "active"
+        }
+      },
+      "records": [],
+      "status": "active"
+    },
+    {
+      "id": "lmc-search",
+      "name": "LMC Search",
+      "mainUrl": "https://search.lmcgroup.xyz",
+      "statusUrls": {
+        "Site": {
+          "url": "/",
+          "status": "active"
+        },
+        "API": {
+          "url": "/api/ping",
+          "status": "down"
+        }
+      },
+      "records": [],
+      "status": "down"
+    }
+  ],
+  "metrics": {
+    "availability": 87.5,
+    "avgResponseMs": 53,
+    "daysWithoutIncident": 0,
+    "lastIncidentAt": "2026-03-15T01:33:28.472Z",
+    "updatedAt": "2026-03-15T01:33:28.472Z"
+  }
+}

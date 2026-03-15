@@ -1,0 +1,30 @@
+{
+  "careers.hero.title": "Join \nOctara",
+  "careers.hero.description": "We are building the future of open source technology. Octara is a community-driven initiative powered by passion and collective innovation.",
+
+  "careers.mission.title": "Shape the future of technology",
+  "careers.mission.description": "Octara is currently a self-funded, community-centered project. We are looking for people who believe in free access to technology and want to bring their skills to a growing ecosystem.",
+  "careers.mission.important": "Important information:",
+  "careers.mission.volunteer": "All positions currently listed are voluntary and unpaid. We are building the foundation together with a long-term vision of sustainability for everyone.",
+  "careers.mission.future": "If Octara ever becomes a true economic entity, everyone who contributed to Octara's development—regardless of role—will be offered a reward, such as access to additional services provided for free compared to others.",
+
+  "careers.mission.why.title": "Why join us?",
+  "careers.mission.why.list1": "Contribute to high-impact open source tools.",
+  "careers.mission.why.list2": "Strengthen your portfolio with real projects.",
+
+  "careers.positions.title": "Open positions",
+  "careers.positions.count": "{count} active opportunities",
+  "careers.positions.role1.title": "Community Manager",
+  "careers.positions.role1.status": "Volunteer",
+  "careers.positions.role1.description": "Lead our digital presence and foster engagement across our platforms. You will be Octara's voice, connecting developers and users.",
+  "careers.positions.role1.responsibilities.title": "Key responsibilities:",
+  "careers.positions.role1.responsibilities.item1": "Content publishing",
+  "careers.positions.apply": "Apply",
+
+  "careers.positions.role2.title": "Open contributor roles",
+  "careers.positions.role2.status": "Volunteer",
+  "careers.positions.role2.description": "Help us build Octara’s core infrastructure. Whether you’re a developer, designer, or technical writer, we have projects that need your skills.",
+  "careers.positions.role2.needs": "Current needs:",
+  "careers.positions.role2.need1": "Frontend & Backend",
+  "careers.positions.role2.need2": "UI/UX Design"
+}

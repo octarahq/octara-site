@@ -1,0 +1,40 @@
+{
+  "privacy.title": "Politique de confidentialité",
+  "privacy.updated": "Dernière mise à jour : 2026-03-15",
+  "privacy.introTitle": "Introduction",
+  "privacy.intro": "LMC Group (\"nous\", \"notre\") s'engage à protéger la vie privée des visiteurs et des utilisateurs de nos sites web, applications et services dans le monde entier. Cette politique de confidentialité explique quelles informations nous collectons, comment nous les utilisons, quand nous les partageons et les droits dont vous disposez.",
+
+  "privacy.section1.title": "1. Informations que nous collectons",
+  "privacy.section1.body": "Nous pouvons collecter : (a) des informations que vous fournissez directement (par exemple, formulaire de contact ou données de compte) ; (b) des informations d'utilisation (analyses, journaux et données d'interaction) ; et (c) des données techniques (appareil, navigateur, adresse IP et cookies). Nous minimisons la collecte de données et ne conservons que ce qui est nécessaire pour fournir et améliorer nos services.",
+
+  "privacy.section2.title": "2. Comment nous utilisons les informations",
+  "privacy.section2.body": "Nous utilisons les données pour fournir et maintenir les services, répondre aux demandes, améliorer les fonctionnalités, sécuriser nos systèmes et communiquer des mises à jour importantes. Lorsque requis, nous nous appuyons sur des intérêts légitimes, l'exécution du contrat ou le consentement comme bases légales du traitement.",
+
+  "privacy.section3.title": "3. Partage et divulgation",
+  "privacy.section3.body": "Nous pouvons partager des informations avec des prestataires de services qui agissent en notre nom, avec des affiliés, ou lorsque la loi l'exige. Nous ne vendons pas les données personnelles à des tiers. Nous prenons des mesures contractuelles et techniques pour protéger les données partagées avec les sous-traitants.",
+
+  "privacy.section4.title": "4. Cookies et technologies similaires",
+  "privacy.section4.body": "Nous utilisons des cookies et technologies similaires pour la fonctionnalité, l'analyse et l'amélioration de l'expérience utilisateur. Vous pouvez contrôler vos préférences en matière de cookies via votre navigateur et, lorsque disponible, via des contrôles sur le site.",
+
+  "privacy.section5.title": "5. Transferts internationaux",
+  "privacy.section5.body": "LMC Group opère à l'échelle mondiale. Les données personnelles peuvent être transférées et traitées dans des pays aux lois sur la protection des données différentes. Lors des transferts internationaux, nous utilisons des garanties appropriées telles que des contrats ou d'autres mécanismes autorisés par la loi.",
+
+  "privacy.section6.title": "6. Conservation et sécurité des données",
+  "privacy.section6.body": "Nous ne conservons les données personnelles que le temps nécessaire aux fins décrites. Nous utilisons des mesures techniques et organisationnelles raisonnables pour protéger les données personnelles, mais aucun système n'est complètement sécurisé — faites preuve de prudence lorsque vous partagez des informations sensibles.",
+
+  "privacy.section7.title": "7. Vos droits",
+  "privacy.section7.body": "Sous réserve du droit local, vous pouvez avoir le droit d'accéder, de corriger, de supprimer ou de limiter le traitement de vos données personnelles, ou de vous opposer au traitement. Pour exercer ces droits, contactez-nous via les coordonnées ci-dessous.",
+
+  "privacy.section8.title": "8. Enfants",
+  "privacy.section8.body": "Nos services ne sont pas destinés aux enfants de moins de 16 ans. Nous ne collectons pas sciemment de données personnelles d'enfants. Si vous pensez que nous avons collecté des données d'un enfant, veuillez nous contacter pour demander leur suppression.",
+
+  "privacy.section9.title": "9. Modifications de cette politique",
+  "privacy.section9.body": "Nous pouvons mettre à jour cette politique de temps à autre. Nous publierons la version révisée avec une date d'entrée en vigueur mise à jour. La poursuite de l'utilisation de nos services après les modifications constitue une acceptation de la politique mise à jour.",
+
+  "privacy.section10.title": "10. Contact",
+  "privacy.section10.body": "Pour des questions ou pour exercer vos droits, contactez-nous sur notre serveur Discord.",
+
+  "privacy.contact.title": "Des questions sur cette politique ?",
+  "privacy.contact.desc": "Notre équipe est là pour vous aider à répondre à vos questions sur la vie privée.",
+  "privacy.contact.button": "Contacter le Support"
+}

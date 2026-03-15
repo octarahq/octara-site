@@ -1,0 +1,36 @@
+{
+  "nav.status": "Status",
+  "nav.about": "About",
+  "nav.careers": "Careers",
+
+  "hero.title.prefix": "Discover",
+  "hero.title.brand": "Octara",
+  "hero.description": "Octara is an organization dedicated to building impactful tools and fostering a collaborative, passionate community for everyone.",
+  "hero.join_discord": "Join Discord",
+  "hero.view_github": "View GitHub",
+
+  "stats.projects": "Projects",
+  "stats.stars": "GitHub Stars",
+  "stats.repos": "Repositories",
+
+  "projects.title": "Our projects",
+  "projects.description": "All the projects we have built",
+  "projects.none": "No projects found.",
+  "projects.github": "GitHub",
+
+  "footer.copy": "© {year} Octara. Open source under",
+  "footer.license": "CC BY-NC-SA 4.0",
+  "footer.copyLink": "Copy link",
+  "footer.copied": "Copied",
+  "footer.tagline": "Open source tools and community for everyone.",
+  "footer.product": "Product",
+  "footer.linkStatus": "Status",
+  "footer.linkAbout": "About",
+  "footer.linkCareers": "Careers",
+  "footer.company": "Company",
+  "footer.linkCompany": "About Octara",
+  "footer.legal": "Legal",
+  "footer.linkTerms": "Terms",
+  "footer.linkPrivacy": "Privacy"
+}
+

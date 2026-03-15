@@ -1,0 +1,35 @@
+{
+  "nav.status": "Statut",
+  "nav.about": "Qui sommes nous ?",
+  "nav.careers": "Carrières",
+
+  "hero.title.prefix": "Découvrez",
+  "hero.title.brand": "Octara",
+  "hero.description": "Octara est une organisation dédiée à créer des outils impactants et à favoriser une communauté collaborative et passionnée pour tous.",
+  "hero.join_discord": "Rejoindre Discord",
+  "hero.view_github": "Voir GitHub",
+
+  "stats.projects": "Projets",
+  "stats.stars": "Étoiles GitHub",
+  "stats.repos": "Répertoires",
+
+  "projects.title": "Nos projets",
+  "projects.description": "Voici tous les projets que nous avons réalisés",
+  "projects.none": "Aucun projet trouvé.",
+  "projects.github": "GitHub",
+
+  "footer.copy": "© {year} Octara. Open source sous",
+  "footer.license": "CC BY-NC-SA 4.0",
+  "footer.copyLink": "Copier le lien",
+  "footer.copied": "Copié",
+  "footer.tagline": "Outils open source et communauté pour tous.",
+  "footer.product": "Produit",
+  "footer.linkStatus": "Statut",
+  "footer.linkAbout": "À propos",
+  "footer.linkCareers": "Carrières",
+  "footer.company": "Entreprise",
+  "footer.linkCompany": "À propos d'Octara",
+  "footer.legal": "Légal",
+  "footer.linkTerms": "Conditions",
+  "footer.linkPrivacy": "Confidentialité"
+}

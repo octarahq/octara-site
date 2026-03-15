@@ -1,0 +1,26 @@
+{
+  "about.hero.title": "Innovate for a sustainable future.",
+  "about.hero.description": "Octara was born from a simple vision: to transform technology and make it accessible to everyone.",
+
+  "about.history.title": "Our story",
+  "about.history.paragraph1": "Founded in 2023 under the name LMC Group, Octara started as a help community for IT assistance. Our initial goal was to support new developers in their projects.",
+  "about.history.paragraph2": "Over the years, we grew by creating LMC Bot which expanded our community, and then diversified by branching into other domains.",
+
+  "about.mission.title": "Our mission",
+  "about.mission.description": "Make computing accessible to all, without barriers, while respecting privacy.",
+
+  "about.values.title": "Our values",
+  "about.values.integrity.title": "Integrity",
+  "about.values.integrity.description": "We act with transparency and honesty in every project we deliver.",
+  "about.values.innovation.title": "Innovation",
+  "about.values.innovation.description": "We constantly explore new frontiers.",
+  "about.values.opensource.title": "Open Source",
+  "about.values.opensource.description": "We strive to promote and contribute to the development of open source software.",
+  "about.values.impact.title": "Impact",
+  "about.values.impact.description": "Every project should contribute positively to society.",
+
+  "about.cta.title": "Ready to shape the future with us?",
+  "about.cta.description": "We are always looking for passionate talent to join our journey and push boundaries.",
+  "about.cta.openings": "See open positions",
+  "about.cta.contact": "Contact us"
+}

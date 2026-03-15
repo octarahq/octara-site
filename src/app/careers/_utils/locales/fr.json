@@ -1,0 +1,30 @@
+{
+  "careers.hero.title": "Rejoignez \nOctara",
+  "careers.hero.description": "Nous construisons l'avenir de la technologie open source. Octara est une initiative communautaire portée par la passion et l'innovation collective.",
+
+  "careers.mission.title": "Façonnez l'avenir de la technologie",
+  "careers.mission.description": "Octara est actuellement un projet autofinancé centré sur la communauté. Nous recherchons des personnes qui croient en l'accès libre à la technologie et qui souhaitent apporter leurs compétences à un écosystème en pleine croissance.",
+  "careers.mission.important": "Information importante :",
+  "careers.mission.volunteer": "Toutes les positions actuellement listées sont volontaires et non rémunérées. Nous construisons la base ensemble en visant un avenir durable pour toutes et tous.",
+  "careers.mission.future": "Si un jour Octara devient une véritable entité économique, toutes les personnes ayant contribué au développement d'Octara, quel que soit leur poste, se verront offrir une récompense à la clé — par exemple l'accès à des services supplémentaires fournis gratuitement par rapport aux autres.",
+
+  "careers.mission.why.title": "Pourquoi nous rejoindre ?",
+  "careers.mission.why.list1": "Contribuez à des outils open source à fort impact.",
+  "careers.mission.why.list2": "Renforcez votre portfolio avec des projets réels.",
+
+  "careers.positions.title": "Postes ouverts",
+  "careers.positions.count": "{count} opportunités actives",
+  "careers.positions.role1.title": "Community Manager",
+  "careers.positions.role1.status": "Volontaire",
+  "careers.positions.role1.description": "Dirigez notre présence numérique et favorisez l'engagement sur nos plateformes. Vous serez la voix d'Octara, faisant le lien entre développeur·euse·s et utilisateur·rice·s.",
+  "careers.positions.role1.responsibilities.title": "Responsabilités clés :",
+  "careers.positions.role1.responsibilities.item1": "Publication de contenu",
+  "careers.positions.apply": "Postuler",
+
+  "careers.positions.role2.title": "Contributeur·rice·s ouverts",
+  "careers.positions.role2.status": "Volontaire",
+  "careers.positions.role2.description": "Aidez-nous à construire l'infrastructure cœur d'Octara. Que vous soyez développeur·se, designer ou rédacteur·rice technique, nous avons des projets qui ont besoin de vos compétences.",
+  "careers.positions.role2.needs": "Besoins en cours :",
+  "careers.positions.role2.need1": "Frontend & Backend",
+  "careers.positions.role2.need2": "UI/UX Design"
+}

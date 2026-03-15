@@ -1,0 +1,33 @@
+{
+  "terms.title": "Conditions d'Utilisation",
+  "terms.updated": "Dernière mise à jour : 2026-03-15",
+  "terms.intro": "Ces Conditions d'utilisation (\"Conditions\") s'appliquent à votre accès et à votre utilisation des services, sites web et applications fournis par LMC Group (\"nous\", \"notre\"). En utilisant nos services, vous acceptez ces Conditions. Si vous n'êtes pas d'accord, n'utilisez pas nos services.",
+
+  "terms.section1.title": "1. Acceptation des Conditions",
+  "terms.section1.body": "En accédant aux services d'Octara, vous acceptez d'être lié par les présentes conditions d'utilisation. Ces conditions constituent un accord légal entre vous et Octara concernant votre utilisation de nos plateformes, applications et services connexes. Si vous n'acceptez pas ces termes dans leur intégralité, veuillez cesser immédiatement d'utiliser nos services.",
+
+  "terms.section2.title": "2. Conduite de l'Utilisateur",
+  "terms.section2.body": "En tant qu'utilisateur, vous vous engagez à utiliser nos services de manière responsable et légale. Il est strictement interdit d'utiliser les services à des fins illégales, d'interférer avec le bon fonctionnement des serveurs d'Octara, de collecter des données personnelles d'autres utilisateurs sans consentement ou de publier du contenu malveillant, diffamatoire ou portant atteinte aux droits d'autrui.",
+
+  "terms.section3.title": "3. Propriété Intellectuelle",
+  "terms.section3.body": "Tout le contenu présent sur Octara, incluant sans s'y limiter les textes, graphiques, logos, icônes, images et logiciels, est la propriété exclusive d'Octara ou de ses concédants de licence. Toute reproduction, modification ou distribution non autorisée est strictement interdite et peut faire l'objet de poursuites judiciaires.",
+
+  "terms.section4.title": "4. Contenu Utilisateur",
+  "terms.section4.body": "Si vous soumettez du contenu à nos services, vous accordez à Octara une licence mondiale, gratuite et transférable pour utiliser, reproduire et afficher ce contenu dans la mesure nécessaire pour fournir le service. Vous êtes responsable du contenu que vous publiez.",
+
+  "terms.section5.title": "5. Limitation de Responsabilité",
+  "terms.section5.body": "Octara s'efforce de fournir un service de haute qualité, mais ne peut garantir une disponibilité ininterrompue. Dans la mesure permise par la loi, Octara ne sera pas responsable des dommages indirects, accessoires ou consécutifs résultant de l'utilisation ou de l'incapacité d'utiliser nos services.",
+
+  "terms.section8.title": "6. Droit Applicable",
+  "terms.section8.body": "Les présentes conditions sont régies et interprétées conformément aux lois de la République Française. Tout litige relatif à leur interprétation ou leur exécution relève de la compétence exclusive des tribunaux de Paris, sauf disposition légale impérative contraire.",
+
+  "terms.section9.title": "7. Modifications",
+  "terms.section9.body": "Nous pouvons modifier ces Conditions de temps à autre. Nous publierons les modifications avec une date d'entrée en vigueur mise à jour. La poursuite de l'utilisation des services après les modifications constitue une acceptation des Conditions mises à jour.",
+
+  "terms.section10.title": "8. Contact",
+  "terms.section10.body": "Pour toute question concernant ces Conditions, contactez-nous sur notre serveur Discord.",
+
+  "terms.contact.title": "Des questions sur ces termes ?",
+  "terms.contact.desc": "Notre équipe juridique est là pour vous aider à comprendre vos droits.",
+  "terms.contact.button": "Contacter le Support"
+}

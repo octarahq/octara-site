@@ -1,0 +1,39 @@
+{
+  "status.page.title": "All systems operational",
+  "status.page.title.down": "1 system down",
+  "status.page.title.downMany": "{count} systems down",
+  "status.page.lastUpdated": "Last updated: {when} UTC",
+
+  "status.incidents.title": "Active incidents",
+  "status.incidents.none": "No active incident is reported right now.",
+  "status.incidents.label.investigating": "Investigation",
+  "status.incidents.label.identified": "Identified",
+  "status.incidents.label.monitoring": "Monitoring",
+  "status.incidents.label.resolved": "Resolved",
+  "status.incidents.lastUpdated": "Last update: {when} UTC",
+  "status.incidents.noUpdates": "No update available.",
+
+  "status.history.title": "Maintenance history",
+  "status.history.show": "View history",
+  "status.history.hide": "Collapse history",
+  "status.history.noScheduled": "No scheduled maintenance is available at the moment.",
+  "status.history.noPast": "No past maintenance found.",
+
+  "status.history.status.scheduled": "Scheduled",
+  "status.history.status.in-progress": "In progress",
+  "status.history.status.completed": "Completed",
+
+  "status.metrics.availability": "Average availability",
+  "status.metrics.daysWithout": "Days without incident",
+  "status.metrics.daysSuffix": "days",
+  "status.metrics.responseTime": "Response time",
+  "status.metrics.none": "—",
+
+  "status.services.none": "No projects available.",
+  "status.services.live": "Operational",
+  "status.services.maintenance": "Maintenance",
+  "status.services.degraded": "Degraded",
+  "status.services.down": "Down",
+  "status.services.archived": "Archived",
+  "status.services.experimental": "Experimental"
+}
