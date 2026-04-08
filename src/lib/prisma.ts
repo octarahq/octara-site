@@ -16,13 +16,10 @@ function createPrismaClient() {
     console.log("[Prisma] Connecting to:", masked);
   }
 
+  // OrionHost and some providers don't always support SSL on custom ports
   const pool = new pg.Pool({
     connectionString,
-    ssl:
-      connectionString?.includes("localhost") ||
-      connectionString?.includes("127.0.0.1")
-        ? false
-        : { rejectUnauthorized: false },
+    ssl: false, // Disable SSL by default as seen in logs
   });
   const adapter = new PrismaPg(pool);
 

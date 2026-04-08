@@ -165,26 +165,25 @@ export default function ConfigAppClientView({ app }: { app: AppDetail }) {
     }
   };
 
-  const handleTestAuth = (e: React.FormEvent) => {
-    e.preventDefault();
+  const getTestAuthUrl = () => {
     const stateData = {
       client_id: app.client_id,
-      nonce: Math.random().toString(36).substring(7),
+      nonce: "test_" + Math.random().toString(36).substring(7),
     };
     const state = btoa(JSON.stringify(stateData));
 
-    let authUrl = "https://octara.xyz/api/oauth/authorize";
     const finalRedirectUri = testRedirectUri.startsWith("/")
       ? "https://octara.xyz" + testRedirectUri
       : testRedirectUri;
 
-    authUrl += "?client_id=" + app.client_id;
-    authUrl += "&redirect_uri=" + finalRedirectUri;
-    authUrl += "&response_type=" + "code";
-    authUrl += "&scope=" + testScopes.join(" ");
-    authUrl += "&state=" + state;
+    const url = new URL("/api/oauth/authorize", "https://octara.xyz");
+    url.searchParams.set("client_id", app.client_id);
+    url.searchParams.set("redirect_uri", finalRedirectUri);
+    url.searchParams.set("response_type", "code");
+    url.searchParams.set("scope", testScopes.join(" "));
+    url.searchParams.set("state", state);
 
-    window.location.href = authUrl;
+    return url.toString();
   };
 
   const removeUri = (uri: string) => {
@@ -375,7 +374,7 @@ export default function ConfigAppClientView({ app }: { app: AppDetail }) {
               </h3>
             </div>
 
-            <form onSubmit={handleTestAuth} className="space-y-6">
+            <div className="space-y-6">
               <label className="block text-[10px] uppercase tracking-widest font-bold text-on-surface-variant ml-1">
                 Scopes
               </label>
@@ -407,14 +406,14 @@ export default function ConfigAppClientView({ app }: { app: AppDetail }) {
                 >
                   Annuler
                 </button>
-                <button
-                  type="submit"
-                  className="flex-1 py-4 bg-primary text-white font-black rounded-2xl shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                <Link
+                  href={getTestAuthUrl()}
+                  className="flex-1 py-4 bg-primary text-white font-black rounded-2xl shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center"
                 >
                   Continuer
-                </button>
+                </Link>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       )}
