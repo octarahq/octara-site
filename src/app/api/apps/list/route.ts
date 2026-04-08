@@ -26,9 +26,18 @@ export async function GET() {
       },
     });
 
+    interface AppListItem {
+      id: string;
+      client_id: string;
+      name: string;
+      is_first_party: boolean;
+      createdAt: Date;
+      redirect_uris: { uri: string }[];
+    }
+
     return NextResponse.json({
       success: true,
-      apps: apps.map((app) => ({
+      apps: apps.map((app: AppListItem) => ({
         id: app.id,
         client_id: app.client_id,
         name: app.name,
