@@ -1,0 +1,141 @@
+"use client";
+
+import { useState, Suspense } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
+import Link from "next/link";
+import { useAuth } from "@/lib/AuthContext";
+
+function LoginContent() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const { refreshAuth } = useAuth();
+  const returnTo = searchParams.get("return_to") || "/account";
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        
+        await refreshAuth();
+        
+        await new Promise((r) => setTimeout(r, 200));
+        router.push(returnTo);
+        router.refresh();
+      } else {
+        setError(data.error || "Identifiants invalides");
+      }
+    } catch (err) {
+      setError("Erreur de connexion");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="w-full max-w-sm relative z-10 animate-in fade-in zoom-in-95 duration-500">
+      <div className="flex flex-col items-center mb-10 text-center">
+        <Link
+          href="/"
+          className="size-16 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl flex items-center justify-center mb-6 hover:scale-110 transition-transform"
+        >
+          <img src="/favicon.svg" alt="Octara" className="size-8" />
+        </Link>
+        <h1 className="text-4xl font-black tracking-tight text-white mb-3 leading-tight">
+          Bon retour !
+        </h1>
+        <p className="text-slate-400 text-sm font-medium leading-relaxed px-4">
+          Connectez-vous à votre compte central pour gérer toutes vos
+          applications.
+        </p>
+      </div>
+
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-6 bg-white/5 backdrop-blur-3xl border border-white/10 p-8 rounded-[2.5rem] shadow-2xl"
+      >
+        {error && (
+          <div className="p-4 bg-red-500/10 text-red-400 text-xs font-bold rounded-xl border border-red-500/20 animate-in fade-in">
+            ⚠ {error}
+          </div>
+        )}
+
+        <div className="space-y-4">
+          <div>
+            <label className="block text-[10px] font-black uppercase tracking-widest text-slate-500 mb-2 ml-1">
+              Email
+            </label>
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-5 py-4 rounded-2xl bg-white/5 border border-white/10 outline-none focus:ring-2 focus:ring-primary/50 text-white text-sm font-medium placeholder:text-slate-600 transition-all font-body"
+              placeholder="votre@email.com"
+            />
+          </div>
+
+          <div>
+            <label className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2 ml-1">
+              Mot de passe
+            </label>
+            <input
+              type="password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full px-5 py-4 rounded-2xl bg-white/5 border border-white/10 outline-none focus:ring-2 focus:ring-primary/50 text-white text-sm font-medium placeholder:text-slate-600 transition-all font-body"
+              placeholder="••••••••"
+            />
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full py-4 bg-primary text-slate-950 rounded-2xl font-black text-sm shadow-xl shadow-primary/20 hover:scale-[1.03] active:scale-[0.97] transition-all disabled:opacity-50"
+        >
+          {loading ? "Identification..." : "Se connecter"}
+        </button>
+      </form>
+
+      <div className="mt-10 text-center text-xs font-medium text-slate-500">
+        Pas encore de compte ?{" "}
+        <Link
+          href="/register"
+          className="text-white font-black hover:underline underline-offset-4"
+        >
+          Inscrivez-vous ici
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <main className="min-h-screen relative flex items-center justify-center p-6 bg-[#020617] font-display overflow-hidden">
+      
+      <div className="absolute top-[-10%] right-[-10%] size-[50%] bg-blue-600/20 rounded-full blur-[120px]" />
+      <div className="absolute bottom-[-10%] left-[-10%] size-[50%] bg-primary/10 rounded-full blur-[120px] animate-pulse" />
+
+      <Suspense fallback={<div className="text-white">Chargement...</div>}>
+        <LoginContent />
+      </Suspense>
+    </main>
+  );
+}

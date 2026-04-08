@@ -41,3 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 server/status-snapshot.json
+
+/src/generated/prisma
+
+dev.db

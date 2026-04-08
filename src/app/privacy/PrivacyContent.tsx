@@ -1,7 +1,6 @@
 "use client";
 
-import { } from "react";
-import { useI18n } from '@/lib/I18nProvider'
+import { useI18n } from "@/lib/I18nProvider";
 import Link from "next/link";
 
 export default function PrivacyContent() {
@@ -29,7 +28,9 @@ export default function PrivacyContent() {
                 </h2>
               </div>
               <div className="pl-5 border-l border-slate-200 dark:border-slate-800">
-                <p className="text-base leading-relaxed">{t("privacy.intro")}</p>
+                <p className="text-base leading-relaxed">
+                  {t("privacy.intro")}
+                </p>
               </div>
             </section>
 
@@ -41,7 +42,9 @@ export default function PrivacyContent() {
                 </h2>
               </div>
               <div className="pl-5 border-l border-slate-200 dark:border-slate-800">
-                <p className="text-base leading-relaxed">{t("privacy.section1.body")}</p>
+                <p className="text-base leading-relaxed">
+                  {t("privacy.section1.body")}
+                </p>
               </div>
             </section>
 
@@ -53,7 +56,9 @@ export default function PrivacyContent() {
                 </h2>
               </div>
               <div className="pl-5 border-l border-slate-200 dark:border-slate-800">
-                <p className="text-base leading-relaxed">{t("privacy.section2.body")}</p>
+                <p className="text-base leading-relaxed">
+                  {t("privacy.section2.body")}
+                </p>
               </div>
             </section>
 
@@ -65,7 +70,9 @@ export default function PrivacyContent() {
                 </h2>
               </div>
               <div className="pl-5 border-l border-slate-200 dark:border-slate-800">
-                <p className="text-base leading-relaxed">{t("privacy.section3.body")}</p>
+                <p className="text-base leading-relaxed">
+                  {t("privacy.section3.body")}
+                </p>
               </div>
             </section>
 
@@ -77,7 +84,9 @@ export default function PrivacyContent() {
                 </h2>
               </div>
               <div className="pl-5 border-l border-slate-200 dark:border-slate-800">
-                <p className="text-base leading-relaxed">{t("privacy.section4.body")}</p>
+                <p className="text-base leading-relaxed">
+                  {t("privacy.section4.body")}
+                </p>
               </div>
             </section>
 
@@ -89,7 +98,9 @@ export default function PrivacyContent() {
                 </h2>
               </div>
               <div className="pl-5 border-l border-slate-200 dark:border-slate-800">
-                <p className="text-base leading-relaxed">{t("privacy.section5.body")}</p>
+                <p className="text-base leading-relaxed">
+                  {t("privacy.section5.body")}
+                </p>
               </div>
             </section>
 
@@ -101,7 +112,9 @@ export default function PrivacyContent() {
                 </h2>
               </div>
               <div className="pl-5 border-l border-slate-200 dark:border-slate-800">
-                <p className="text-base leading-relaxed">{t("privacy.section6.body")}</p>
+                <p className="text-base leading-relaxed">
+                  {t("privacy.section6.body")}
+                </p>
               </div>
             </section>
 
@@ -113,7 +126,9 @@ export default function PrivacyContent() {
                 </h2>
               </div>
               <div className="pl-5 border-l border-slate-200 dark:border-slate-800">
-                <p className="text-base leading-relaxed">{t("privacy.section7.body")}</p>
+                <p className="text-base leading-relaxed">
+                  {t("privacy.section7.body")}
+                </p>
               </div>
             </section>
 
@@ -125,7 +140,9 @@ export default function PrivacyContent() {
                 </h2>
               </div>
               <div className="pl-5 border-l border-slate-200 dark:border-slate-800">
-                <p className="text-base leading-relaxed">{t("privacy.section8.body")}</p>
+                <p className="text-base leading-relaxed">
+                  {t("privacy.section8.body")}
+                </p>
               </div>
             </section>
 
@@ -137,7 +154,9 @@ export default function PrivacyContent() {
                 </h2>
               </div>
               <div className="pl-5 border-l border-slate-200 dark:border-slate-800">
-                <p className="text-base leading-relaxed">{t("privacy.section9.body")}</p>
+                <p className="text-base leading-relaxed">
+                  {t("privacy.section9.body")}
+                </p>
               </div>
             </section>
 
@@ -149,17 +168,26 @@ export default function PrivacyContent() {
                 </h2>
               </div>
               <div className="pl-5 border-l border-slate-200 dark:border-slate-800">
-                <p className="text-base leading-relaxed">{t("privacy.section10.body")}</p>
+                <p className="text-base leading-relaxed">
+                  {t("privacy.section10.body")}
+                </p>
               </div>
             </section>
           </div>
 
           <div className="mt-16 p-8 rounded-xl bg-primary/5 border border-primary/20 flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex flex-col gap-2">
-              <h3 className="text-slate-900 dark:text-white text-lg font-bold">{t("privacy.contact.title")}</h3>
-              <p className="text-slate-500 dark:text-slate-400">{t("privacy.contact.desc")}</p>
+              <h3 className="text-slate-900 dark:text-white text-lg font-bold">
+                {t("privacy.contact.title")}
+              </h3>
+              <p className="text-slate-500 dark:text-slate-400">
+                {t("privacy.contact.desc")}
+              </p>
             </div>
-            <Link href="/api/discord" className="px-6 py-3 bg-primary text-white font-bold rounded-lg hover:brightness-110 transition-all">
+            <Link
+              href="/api/discord"
+              className="px-6 py-3 bg-primary text-white font-bold rounded-lg hover:brightness-110 transition-all"
+            >
               {t("privacy.contact.button")}
             </Link>
           </div>

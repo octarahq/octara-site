@@ -1,4 +1,12 @@
+const dotenv = require("dotenv");
+dotenv.config();
+
 const INTERVAL_MS = 60_000;
+
+// When true, the webhook is sent every tick for any project in down status.
+// When false, the webhook is sent only when a project transitions from up -> down.
+const FORCE_WEBHOOK_ON_EVERY_TICK = true;
+
 const BASE_DOMAIN = "octara.xyz";
 
 function normalizeMainUrl(siteRaw) {
@@ -19,13 +27,31 @@ function normalizeMainUrl(siteRaw) {
 }
 
 async function fetchProjects() {
+  const PROJECTS_URL =
+    "https://raw.githubusercontent.com/octarahq/.github/main/assets/projects.json";
+
   try {
-    const utils = require("../src/utils/projects");
-    if (utils && typeof utils.getProjects === "function") {
-      const data = await utils.getProjects();
-      return data || [];
+    const res = await fetch(PROJECTS_URL, { next: { revalidate: 60 } });
+    if (!res.ok) return [];
+
+    const text = await res.text();
+    try {
+      return JSON.parse(text);
+    } catch (e) {
+      // The source may use unquoted object keys; try to normalize before parsing.
+      const normalized = text.replace(
+        /([\{,\n\r\s]+)([A-Za-z0-9_\-]+)\s*:/g,
+        '$1"$2":',
+      );
+      try {
+        return JSON.parse(normalized);
+      } catch (e2) {
+        return [];
+      }
     }
-  } catch (e) {}
+  } catch (e) {
+    return [];
+  }
 }
 
 try {
@@ -43,6 +69,136 @@ try {
           if (p && p.id) existingById.set(p.id, p);
 
         const newSnapshot = [];
+
+        const webhookUrlRaw = process.env.DISCORD_STATUS_WEBHOOK_URL;
+        const webhookUrl = webhookUrlRaw
+          ? webhookUrlRaw.trim().replace(/^"|"$/g, "")
+          : null;
+
+        console.log(
+          "[status timer bootstrap] force webhook:",
+          FORCE_WEBHOOK_ON_EVERY_TICK,
+          "webhook url configured:",
+          !!webhookUrl,
+        );
+
+        const sendStatusWebhook = async (payload) => {
+          console.log("[status timer bootstrap] sending webhook");
+          console.log(JSON.stringify(payload));
+          console.log("[status timer bootstrap] webhook url", {
+            webhookUrl: !!webhookUrl,
+          });
+          if (!webhookUrl) return;
+          try {
+            let bodyObj;
+            if (typeof payload === "string") {
+              bodyObj = { content: payload };
+            } else if (Array.isArray(payload)) {
+              // Discord webhook expects an object; attach components to top-level
+              // include components V2 flag (32768) as requested and set content null
+              bodyObj = { content: null, components: payload, flags: 32768 };
+            } else {
+              bodyObj = payload;
+            }
+            const res = await fetch(webhookUrl, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(bodyObj),
+            });
+            if (!res.ok) {
+              console.log(await res.text());
+            }
+          } catch (err) {
+            console.error("[status timer bootstrap] webhook send failed", err);
+          }
+        };
+
+        const buildDiscordPayloadForProject = (project) => {
+          const name = project.name || project.id || "Unknown";
+          const ts = Math.floor(Date.now() / 1000);
+          const statusMap = {
+            active: { emoji: ":white_check_mark:", text: "Operational" },
+            maintenance: { emoji: ":warning:", text: "Under Maintenance" },
+            down: { emoji: ":x:", text: "Outage" },
+            degraded: { emoji: ":warning:", text: "Degraded" },
+            experimental: { emoji: ":grey_question:", text: "Experimental" },
+            archived: { emoji: ":black_large_square:", text: "Archived" },
+          };
+
+          const statusLines = Object.entries(project.statusUrls || {}).map(
+            ([k, v]) => {
+              const s = (v && v.status) || "active";
+              const map = statusMap[s] || statusMap.active;
+              return `- ${map.emoji} ${k}  -  ${map.text}`;
+            },
+          );
+
+          const mainUrl =
+            project.mainUrl ||
+            (project.siteUrl
+              ? normalizeMainUrl(project.siteUrl)
+              : "https://octara.xyz");
+
+          // build favicon/media url (use absolute if provided, else derive from mainUrl)
+          let faviconUrl = "";
+          if (project.favicon) {
+            const rawFav = String(project.favicon || "").trim();
+            if (/^https?:\/\//i.test(rawFav)) faviconUrl = rawFav;
+            else if (rawFav.startsWith("/"))
+              faviconUrl = (mainUrl || "https://octara.xyz") + rawFav;
+            else faviconUrl = (mainUrl || "https://octara.xyz") + "/" + rawFav;
+          }
+
+          const components = [
+            {
+              type: 9,
+              // accessory: {
+              //   type: 11,
+              //   media: { url: faviconUrl },
+              //   description: null,
+              //   spoiler: false,
+              // },
+              components: [{ type: 10, content: "# Octara Status" }],
+            },
+            {
+              type: 10,
+              content: `:warning: Major outage affecting ${name}\nSome features may be unavailable.\n\nLast updated: <t:${ts}:R>`,
+            },
+            { type: 14, divider: true, spacing: 1 },
+            { type: 10, content: `## ${name} Services Status` },
+            { type: 10, content: statusLines.join("\n") },
+            {
+              type: 1,
+              components: [
+                {
+                  type: 2,
+                  style: 5,
+                  label: "View Octara Status",
+                  // emoji: null,
+                  disabled: false,
+                  url: "https://octara.xyz",
+                },
+                {
+                  type: 2,
+                  style: 5,
+                  label: `${name} Website`,
+                  // emoji: null,
+                  disabled: false,
+                  url: mainUrl,
+                },
+              ],
+            },
+          ];
+
+          return [
+            {
+              type: 17,
+              accent_color: 1048576,
+              spoiler: false,
+              components,
+            },
+          ];
+        };
 
         const probeUrl = async (url) => {
           try {
@@ -65,10 +221,16 @@ try {
         let upCount = 0;
         let responseTimesAll = [];
 
+        const forcedDown = [];
+        let firstProjectName = null;
+        let firstProjectObj = null;
+        const projectMap = new Map();
+
         for (const group of groups || []) {
           for (const project of group.projects || []) {
             const id = project.id || project.name || "";
             const name = project.name || id || "";
+            if (!firstProjectName) firstProjectName = name;
             const statusUrls = project.statusUrls || {};
             const mainUrl = normalizeMainUrl(project.siteUrl || "");
             const prev = existingById.get(id);
@@ -118,6 +280,35 @@ try {
               ? originalStatus
               : probeStatus;
 
+            const wasDown = prev && prev.status === "down";
+            console.log(
+              `[status timer bootstrap] project ${name} status: ${finalStatus} (was: ${prev ? prev.status : "n/a"})`,
+            );
+            if (!firstProjectObj) {
+              firstProjectObj = {
+                id,
+                name,
+                mainUrl,
+                statusUrls: transformed,
+                status: finalStatus,
+              };
+            }
+
+            // store project snapshot for later payload building
+            projectMap.set(name, {
+              id,
+              name,
+              mainUrl,
+              statusUrls: transformed,
+              status: finalStatus,
+            });
+
+            if (FORCE_WEBHOOK_ON_EVERY_TICK) {
+              if (finalStatus === "down") forcedDown.push(name);
+            } else if (!wasDown && finalStatus === "down") {
+              // void sendStatusWebhook(`Project ${name} down`);
+            }
+
             newSnapshot.push({
               id,
               name,
@@ -133,6 +324,34 @@ try {
               upCount += endpointResults.filter((s) => s === "active").length;
             }
             responseTimesAll = responseTimesAll.concat(responseTimes);
+          }
+        }
+        console.log(
+          `[status timer bootstrap] tick completed. Total endpoints: ${totalEndpoints}, Up endpoints: ${upCount}, Average response time: ${responseTimesAll.length > 0 ? (responseTimesAll.reduce((a, b) => a + b, 0) / responseTimesAll.length).toFixed(2) : "n/a"} ms`,
+        );
+
+        if (FORCE_WEBHOOK_ON_EVERY_TICK) {
+          if (forcedDown.length > 0) {
+            const distinct = [...new Set(forcedDown)];
+            const chosen = distinct[0];
+            const proj = projectMap.get(chosen) || firstProjectObj;
+            if (proj) {
+              const payload = buildDiscordPayloadForProject(proj);
+              console.log(
+                `[status timer bootstrap] forced webhook payload for ${proj.name}`,
+              );
+              // void sendStatusWebhook(payload);
+            }
+          } else if (firstProjectObj) {
+            const payload = buildDiscordPayloadForProject(firstProjectObj);
+            console.log(
+              `[status timer bootstrap] forced webhook fallback payload for ${firstProjectObj.name}`,
+            );
+            // void sendStatusWebhook(payload);
+          } else {
+            console.log(
+              "[status timer bootstrap] forced webhook enabled, but no project name available",
+            );
           }
         }
 

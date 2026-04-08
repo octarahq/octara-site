@@ -1,0 +1,100 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id            String         @id @default(uuid())
+  email         String         @unique
+  name          String?
+  password_hash String
+  avatarData    String?
+  passwordUpdatedAt DateTime   @default(now())
+  authCodes     AuthCode[]
+  accessTokens  AccessToken[]
+  clients       Client[]
+  consents      UserConsent[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
+
+model UserConsent {
+  id        String   @id @default(uuid())
+  userId    String
+  clientId  String
+  scopes    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  client    Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, clientId])
+}
+
+model Client {
+  id             String               @id @default(uuid())
+  client_id      String               @unique
+  client_secret  String
+  name           String
+  description    String?
+  logoData       String?
+  is_first_party Boolean              @default(false)
+  ownerId        String
+  owner          User                 @relation(fields: [ownerId], references: [id])
+  redirect_uris  ClientRedirectUri[]
+  authCodes      AuthCode[]
+  accessTokens   AccessToken[]
+  consents       UserConsent[]
+  createdAt      DateTime             @default(now())
+  updatedAt      DateTime             @updatedAt
+}
+
+model ClientRedirectUri {
+  id        String   @id @default(uuid())
+  uri       String
+  clientId  String
+  client    Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+}
+
+model AuthCode {
+  id          String          @id @default(uuid())
+  code        String          @unique
+  expires_at  DateTime
+  userId      String
+  user        User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  clientId    String
+  client      Client          @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  redirectUri String
+  used        Boolean         @default(false)
+  scopes      AuthCodeScope[]
+  createdAt   DateTime        @default(now())
+}
+
+model AuthCodeScope {
+  id         String   @id @default(uuid())
+  scope      String
+  authCodeId String
+  authCode   AuthCode @relation(fields: [authCodeId], references: [id], onDelete: Cascade)
+}
+
+model AccessToken {
+  id         String             @id @default(uuid())
+  token      String             @unique
+  expires_at DateTime
+  userId     String
+  user       User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  clientId   String
+  client     Client             @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  scopes     AccessTokenScope[]
+  createdAt  DateTime           @default(now())
+}
+
+model AccessTokenScope {
+  id            String      @id @default(uuid())
+  scope         String
+  accessTokenId String
+  accessToken   AccessToken @relation(fields: [accessTokenId], references: [id], onDelete: Cascade)
+}

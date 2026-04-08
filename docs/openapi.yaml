@@ -1,0 +1,167 @@
+openapi: 3.1.0
+info:
+  title: Octara API
+  description: API documentation for Octara services, including OAuth2 authentication and resource management.
+  version: 1.0.0
+  contact:
+    name: Octara Team
+    url: https://octara.xyz
+
+servers:
+  - url: https://tools.octara.xyz/api
+    description: Production environment
+
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://tools.octara.xyz/oauth/authorize
+          tokenUrl: https://tools.octara.xyz/api/oauth/token
+          scopes:
+            read:profile: Access core profile information (display name, id)
+            read:email: Access user email address
+
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+          nullable: true
+        avatar:
+          type: string
+          nullable: true
+          description: Base64 avatar data or URI
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        description:
+          type: string
+
+paths:
+  /v1/me:
+    get:
+      tags: [Resource]
+      summary: Get Current User
+      description: Returns information about the authenticated user based on the granted scopes. Requires an OAuth2 access token.
+      security:
+        - OAuth2: [read:profile, read:email]
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  user:
+                    $ref: "#/components/schemas/User"
+                  scopes:
+                    type: array
+                    items:
+                      type: string
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /oauth/token:
+    post:
+      tags: [Auth]
+      summary: Exchange Authorization Code for Token
+      description: Use the code obtained from the authorization flow to get an access token.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [grant_type, code, client_id, client_secret]
+              properties:
+                grant_type:
+                  type: string
+                  enum: [authorization_code]
+                code:
+                  type: string
+                client_id:
+                  type: string
+                client_secret:
+                  type: string
+                redirect_uri:
+                  type: string
+      responses:
+        "200":
+          description: Token response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                  token_type:
+                    type: string
+                    example: Bearer
+                  expires_in:
+                    type: integer
+                  refresh_token:
+                    type: string
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /apps/logo/{id}:
+    get:
+      tags: [Assets]
+      summary: Get Application Logo
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Logo image (PNG/SVG)
+          content:
+            image/*:
+              schema:
+                type: string
+                format: binary
+
+  /user/avatar/{userId}:
+    get:
+      tags: [Assets]
+      summary: Get User Avatar
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Avatar image
+          content:
+            image/*:
+              schema:
+                type: string
+                format: binary

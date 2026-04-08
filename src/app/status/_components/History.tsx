@@ -3,7 +3,6 @@
 import { useMemo, useState } from 'react'
 import type { OctaraStatus, Incident, Maintenance } from '@/utils/incident'
 
-
 type HistoryItem = {
   id: string
   title: string
@@ -14,8 +13,6 @@ type HistoryItem = {
   description?: string
   isPastMaintenance?: boolean
 }
-
-
 
 function formatDate(date: Date) {
   return date.toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' })

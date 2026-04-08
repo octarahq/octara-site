@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useI18n } from '@/lib/I18nProvider'
+import { useI18n } from "@/lib/I18nProvider";
 
 export default function Footer() {
   const { t } = useI18n();
@@ -22,7 +22,7 @@ export default function Footer() {
       await navigator.clipboard.writeText(currentUrl);
       setCopied(true);
       setTimeout(() => setCopied(false), 1500);
-    } catch {}
+    } catch (e) {}
   };
 
   return (
@@ -31,8 +31,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="col-span-1 md:col-span-1 space-y-6">
             <div className="flex items-center gap-2 text-primary">
-              <span className="material-symbols-outlined text-2xl font-bold">explore</span>
-              <h2 className="text-slate-900 dark:text-slate-100 text-lg font-black tracking-tight">Octara</h2>
+              <span className="material-symbols-outlined text-2xl font-bold">
+                explore
+              </span>
+              <h2 className="text-slate-900 dark:text-slate-100 text-lg font-black tracking-tight">
+                Octara
+              </h2>
             </div>
             <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
               {t("footer.tagline")}
@@ -40,7 +44,9 @@ export default function Footer() {
           </div>
 
           <div className="space-y-4">
-            <h4 className="text-slate-900 dark:text-white font-bold">{t("footer.product")}</h4>
+            <h4 className="text-slate-900 dark:text-white font-bold">
+              {t("footer.product")}
+            </h4>
             <nav className="flex flex-col gap-2">
               <Link
                 className="text-slate-600 dark:text-slate-400 text-sm hover:text-primary transition-colors"
@@ -58,7 +64,9 @@ export default function Footer() {
           </div>
 
           <div className="space-y-4">
-            <h4 className="text-slate-900 dark:text-white font-bold">{t("footer.company")}</h4>
+            <h4 className="text-slate-900 dark:text-white font-bold">
+              {t("footer.company")}
+            </h4>
             <nav className="flex flex-col gap-2">
               <Link
                 className="text-slate-600 dark:text-slate-400 text-sm hover:text-primary transition-colors"
@@ -70,7 +78,9 @@ export default function Footer() {
           </div>
 
           <div className="space-y-4">
-            <h4 className="text-slate-900 dark:text-white font-bold">{t("footer.legal")}</h4>
+            <h4 className="text-slate-900 dark:text-white font-bold">
+              {t("footer.legal")}
+            </h4>
             <nav className="flex flex-col gap-2">
               <Link
                 className="text-slate-600 dark:text-slate-400 text-sm hover:text-primary transition-colors"
@@ -90,7 +100,12 @@ export default function Footer() {
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 border-t border-slate-200 dark:border-slate-800 pt-8">
           <p className="text-slate-500 dark:text-slate-500 text-sm">
-            {t("footer.copy", { year: String(year) })} <Link href="https://creativecommons.org/licenses/by-nc-sa/4.0/" className="text-primary" target="_blank">
+            {t("footer.copy", { year: String(year) })}{" "}
+            <Link
+              href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+              className="text-primary"
+              target="_blank"
+            >
               {t("footer.license")}
             </Link>
             .

@@ -13,12 +13,32 @@ async function readJson(filePath: string): Promise<Translations | null> {
   }
 }
 
-export async function loadTranslations(lang: string, pageRelativePath = "/"): Promise<Translations> {
+export async function loadTranslations(
+  lang: string,
+  pageRelativePath = "/",
+): Promise<Translations> {
   const root = process.cwd();
-  const pagePathSafe = typeof pageRelativePath === "string" ? pageRelativePath : "/";
-  const normalizedPage = pagePathSafe === "/" ? "" : pagePathSafe.replace(/^\/+/, "");
-  const pageLocalesPath = path.join(root, "src", "app", normalizedPage, "_utils", "locales", `${lang}.json`);
-  const rootLocalesPath = path.join(root, "src", "app", "_utils", "locales", `${lang}.json`);
+  const pagePathSafe =
+    typeof pageRelativePath === "string" ? pageRelativePath : "/";
+  const normalizedPage =
+    pagePathSafe === "/" ? "" : pagePathSafe.replace(/^\/+/, "");
+  const pageLocalesPath = path.join(
+    root,
+    "src",
+    "app",
+    normalizedPage,
+    "_utils",
+    "locales",
+    `${lang}.json`,
+  );
+  const rootLocalesPath = path.join(
+    root,
+    "src",
+    "app",
+    "_utils",
+    "locales",
+    `${lang}.json`,
+  );
 
   const rootTranslations = (await readJson(rootLocalesPath)) ?? {};
   const pageTranslations = (await readJson(pageLocalesPath)) ?? {};
@@ -29,7 +49,7 @@ export async function loadTranslations(lang: string, pageRelativePath = "/"): Pr
   };
 }
 
-export type Locale = 'en' | 'fr';
+export type Locale = "en" | "fr";
 
 export function detectLocale(acceptLanguage?: string): Locale {
   const headerValue = (acceptLanguage || "").toLowerCase().trim();
@@ -45,10 +65,13 @@ export function detectLocale(acceptLanguage?: string): Locale {
     return lang === "fr" ? "fr" : "en";
   }
 
-  return "en";
+  return "fr";
 }
 
-export async function initializeI18n(lang: Locale, translations: Translations): Promise<typeof i18next> {
+export async function initializeI18n(
+  lang: Locale,
+  translations: Translations,
+): Promise<typeof i18next> {
   const resources: Record<string, Record<string, any>> = {
     [lang]: {
       translation: translations,
