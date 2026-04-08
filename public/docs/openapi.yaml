@@ -1,14 +1,14 @@
 openapi: 3.1.0
 info:
   title: Octara API
-  description: API documentation for Octara services, including OAuth2 authentication and resource management.
+  description: https://octara.xyz/docs/oauth-guide.md
   version: 1.0.0
   contact:
     name: Octara Team
     url: https://octara.xyz
 
 servers:
-  - url: https://tools.octara.xyz/api
+  - url: https://octara.xyz/api
     description: Production environment
 
 components:
@@ -17,8 +17,8 @@ components:
       type: oauth2
       flows:
         authorizationCode:
-          authorizationUrl: https://tools.octara.xyz/oauth/authorize
-          tokenUrl: https://tools.octara.xyz/api/oauth/token
+          authorizationUrl: https://octara.xyz/oauth/authorize
+          tokenUrl: https://octara.xyz/api/oauth/token
           scopes:
             read:profile: Access core profile information (display name, id)
             read:email: Access user email address
