@@ -27,12 +27,22 @@ export default async function DeveloperPortalPage() {
     },
   });
 
-  const serializedApps = apps.map((app) => ({
+  interface AppWithCount {
+    id: string;
+    client_id: string;
+    name: string;
+    is_first_party: boolean;
+    createdAt: Date;
+    redirect_uris: { uri: string }[];
+    _count: { consents: number };
+  }
+
+  const serializedApps = apps.map((app: AppWithCount) => ({
     id: app.id,
     client_id: app.client_id,
     name: app.name,
     is_first_party: app.is_first_party,
-    redirect_uris: app.redirect_uris.map((r) => r.uri),
+    redirect_uris: app.redirect_uris.map((r: { uri: string }) => r.uri),
     createdAt: app.createdAt.toISOString(),
     userCount: app._count.consents,
   }));
