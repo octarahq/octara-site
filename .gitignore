@@ -45,3 +45,5 @@ server/status-snapshot.json
 /src/generated/prisma
 
 dev.db
+# Orion CLI
+.orion/
