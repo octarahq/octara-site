@@ -8,6 +8,7 @@ import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import sharp from "sharp";
 import { userUpdateSchema } from "@/lib/validations";
+import type { Prisma } from "@prisma/client";
 
 export async function POST(request: Request) {
   try {
@@ -46,7 +47,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const updateData: any = {};
+    const updateData: Prisma.UserUpdateInput = {};
     if (name !== undefined) updateData.name = name;
     if (email !== undefined) updateData.email = email;
 
@@ -102,9 +103,14 @@ export async function POST(request: Request) {
         name: updatedUser.name,
       },
     });
-  } catch (error: any) {
+  } catch (error) {
     console.error("Update User Error:", error);
-    if (error.code === "P2002") {
+    if (
+      error &&
+      typeof error === "object" &&
+      "code" in error &&
+      error.code === "P2002"
+    ) {
       return NextResponse.json(
         { error: "Cet email est déjà utilisé" },
         { status: 400 },

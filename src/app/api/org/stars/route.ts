@@ -18,7 +18,8 @@ export const GET = async () => {
       if (!Array.isArray(data) || data.length === 0) break;
 
       total += data.reduce(
-        (s: number, r: any) => s + (r.stargazers_count || 0),
+        (s: number, r: { stargazers_count?: number }) =>
+          s + (r.stargazers_count || 0),
         0,
       );
 

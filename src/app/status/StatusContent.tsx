@@ -7,14 +7,15 @@ import History from "./_components/History";
 import Metrics from "./_components/Metrics";
 import Services from "./_components/Services";
 import { useI18n } from "@/lib/I18nProvider";
+import { SnapshotProject, MetricData, OctaraStatus } from "./types";
 
 const INCIDENT_URL =
   "https://raw.githubusercontent.com/octarahq/.github/main/assets/incidents.json";
 
 export default function StatusContent() {
-  const [projects, setProjects] = useState<any[]>([]);
-  const [metrics, setMetrics] = useState<any | null>(null);
-  const [status, setStatus] = useState<any | null>(null);
+  const [projects, setProjects] = useState<SnapshotProject[]>([]);
+  const [metrics, setMetrics] = useState<MetricData | null>(null);
+  const [status, setStatus] = useState<OctaraStatus | null>(null);
   const [snapshotUpdated, setSnapshotUpdated] = useState<string | null>(null);
 
   useEffect(() => {
@@ -39,7 +40,7 @@ export default function StatusContent() {
         if (!res.ok) return;
         const json = await res.json();
         if (!mounted) return;
-        setStatus(json);
+        setStatus(json as OctaraStatus);
       } catch (e) {}
     }
 
@@ -65,7 +66,7 @@ export default function StatusContent() {
 
   const projectSeverities = projects.map((project) => {
     const statuses = Object.values(project.statusUrls || {}).map(
-      (s: any) => (s as any)?.status,
+      (s) => s.status,
     );
     if (project?.status === "maintenance") return "maintenance";
     if (statuses.includes("down")) return "down";

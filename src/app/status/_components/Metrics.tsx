@@ -1,11 +1,12 @@
 import { useI18n } from "@/lib/I18nProvider";
+import { SnapshotProject, MetricData } from "../types";
 
 export default function Metrics({
   projects,
   metrics,
 }: {
-  projects?: any[];
-  metrics?: any;
+  projects?: SnapshotProject[];
+  metrics?: MetricData | null;
 }) {
   const { t } = useI18n();
 

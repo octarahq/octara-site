@@ -6,7 +6,8 @@ import { I18nProvider } from "@/lib/I18nProvider";
 import { AuthProvider } from "@/lib/AuthContext";
 
 export async function generateMetadata() {
-  const acceptLanguage = (headers() as any)["accept-language"] ?? "";
+  const headerList = await headers();
+  const acceptLanguage = headerList.get("accept-language") ?? "";
   const preferredLang = acceptLanguage.split(",")[0].trim().toLowerCase();
   const isFrench = preferredLang.startsWith("fr");
 
@@ -27,7 +28,8 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const acceptLanguage = (headers() as any)["accept-language"] ?? "";
+  const headerList = await headers();
+  const acceptLanguage = headerList.get("accept-language") ?? "";
   const lang = detectLocale(acceptLanguage);
   const messages = await getMessages();
 

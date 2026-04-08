@@ -20,7 +20,18 @@ export async function GET(request: Request) {
       return insufficientScopesResponse(["read:profile", "read:email"]);
     }
 
-    const responseData: any = {
+    interface UserResponse {
+      success: boolean;
+      user: {
+        id: string;
+        name?: string | null;
+        created_at?: Date;
+        email?: string;
+      };
+      scopes: string[];
+    }
+
+    const responseData: UserResponse = {
       success: true,
       user: {
         id: user.id,

@@ -4,14 +4,29 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 
+interface TokenInfo {
+  access_token: string;
+  token_type: string;
+  expires_in: number;
+  refresh_token?: string;
+  scope?: string;
+}
+
+interface UserInfo {
+  id: string;
+  email: string;
+  name?: string;
+  [key: string]: unknown;
+}
+
 function PlaygroundContent() {
   const searchParams = useSearchParams();
   const [clientId, setClientId] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [code, setCode] = useState("");
   const [step, setStep] = useState(1);
-  const [tokenInfo, setTokenInfo] = useState<any>(null);
-  const [userInfo, setUserInfo] = useState<any>(null);
+  const [tokenInfo, setTokenInfo] = useState<TokenInfo | null>(null);
+  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -68,8 +83,8 @@ function PlaygroundContent() {
       setStep(2);
 
       await handleFetchUserInfo(data.access_token);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Une erreur est survenue");
     } finally {
       setIsLoading(false);
     }
@@ -86,8 +101,9 @@ function PlaygroundContent() {
       const data = await res.json();
       setUserInfo(data);
       setStep(3);
-    } catch (err: any) {
-      setError("Failed to fetch user info: " + err.message);
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Erreur de récupération";
+      setError("Failed to fetch user info: " + msg);
     } finally {
       setIsLoading(false);
     }

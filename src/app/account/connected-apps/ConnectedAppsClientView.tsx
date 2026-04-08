@@ -2,7 +2,7 @@
 
 import LinkNext from "next/link";
 import AccountSidebar from "../_components/AccountSidebar";
-import AppsList from "../_components/AppsList";
+import AppsList, { ConnectedApp } from "../_components/AppsList";
 
 interface InitialUser {
   id: string;
@@ -15,7 +15,7 @@ export default function ConnectedAppsClientView({
   initialConsents,
 }: {
   initialUser: InitialUser;
-  initialConsents: any[];
+  initialConsents: ConnectedApp[];
 }) {
   return (
     <div className="min-h-screen bg-surface text-on-surface selection:bg-primary selection:text-on-primary font-body">

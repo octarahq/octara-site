@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-interface ConnectedApp {
+export interface ConnectedApp {
   id: string;
   clientId: string;
   scopes: string;
@@ -16,7 +16,7 @@ interface ConnectedApp {
   };
 }
 
-interface AppsListProps {
+export interface AppsListProps {
   initialApps: ConnectedApp[];
 }
 

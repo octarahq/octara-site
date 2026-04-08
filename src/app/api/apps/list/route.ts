@@ -28,12 +28,12 @@ export async function GET() {
 
     return NextResponse.json({
       success: true,
-      apps: apps.map((app: any) => ({
+      apps: apps.map((app) => ({
         id: app.id,
         client_id: app.client_id,
         name: app.name,
         is_first_party: app.is_first_party,
-        redirect_uris: app.redirect_uris.map((r: any) => r.uri),
+        redirect_uris: app.redirect_uris.map((r: { uri: string }) => r.uri),
         created_at: app.createdAt,
       })),
     });

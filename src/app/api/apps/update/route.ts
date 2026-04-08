@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import type { Prisma } from "@prisma/client";
 import { verifyMasterSessionToken } from "@/lib/auth";
 import { cookies } from "next/headers";
 import sharp from "sharp";
@@ -42,7 +43,7 @@ export async function PUT(request: Request) {
       );
     }
 
-    const updateData: any = {};
+    const updateData: Prisma.ClientUpdateInput = {};
     if (name) updateData.name = name;
     if (description !== undefined) updateData.description = description;
 
@@ -107,7 +108,7 @@ export async function PUT(request: Request) {
         name: app.name,
         description: app.description,
         is_first_party: app.is_first_party,
-        redirect_uris: app.redirect_uris.map((r: any) => r.uri),
+        redirect_uris: app.redirect_uris.map((r: { uri: string }) => r.uri),
       },
     });
   } catch (error) {

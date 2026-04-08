@@ -40,7 +40,10 @@ export async function POST(request: Request) {
     });
 
     if (
-      !authCode || authCode.clientId !== client.id || authCode.used || authCode.expires_at < new Date()
+      !authCode ||
+      authCode.clientId !== client.id ||
+      authCode.used ||
+      authCode.expires_at < new Date()
     ) {
       return NextResponse.json(
         { error: "Invalid or expired code" },
@@ -75,7 +78,9 @@ export async function POST(request: Request) {
         userId: authCode.userId,
         expires_at,
         scopes: {
-          create: authCode.scopes.map((s: any) => ({ scope: s.scope })),
+          create: authCode.scopes.map((s: { scope: string }) => ({
+            scope: s.scope,
+          })),
         },
       },
     });

@@ -6,12 +6,13 @@ export async function GET() {
     console.log("[DEBUG API] ATTEMPTING FETCH");
     const users = await prisma.user.findMany({ take: 1 });
     return NextResponse.json({ success: true, count: users.length });
-  } catch (e: any) {
+  } catch (e) {
     console.error("[DEBUG API] CRASH:", e);
+    const err = e as Error;
     return NextResponse.json(
       {
-        error: e.message,
-        stack: e.stack,
+        error: err.message || "Unknown error",
+        stack: err.stack,
         hint: "Check terminal for more logs",
       },
       { status: 500 },
