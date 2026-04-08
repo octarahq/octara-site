@@ -40,7 +40,8 @@ export async function GET(request: Request) {
     }
 
     const isPlayground =
-      redirect_uri === "/playground/callback" || redirect_uri.endsWith("/playground/callback");
+      redirect_uri === "/playground/callback" ||
+      redirect_uri.endsWith("/playground/callback");
     const isUriValid =
       isPlayground || client.redirect_uris.some((u) => u.uri === redirect_uri);
     if (!isUriValid) {
@@ -54,14 +55,14 @@ export async function GET(request: Request) {
     const token = cookieStore.get("master_session_token");
 
     if (!token) {
-      const loginUrl = new URL("/login", request.url);
+      const loginUrl = new URL("/login", "https://octara.xyz");
       loginUrl.searchParams.set("return_to", request.url);
       return NextResponse.redirect(loginUrl);
     }
 
     const payload = await verifyMasterSessionToken(token.value);
     if (!payload) {
-      const loginUrl = new URL("/login", request.url);
+      const loginUrl = new URL("/login", "https://octara.xyz");
       loginUrl.searchParams.set("return_to", request.url);
       return NextResponse.redirect(loginUrl);
     }
@@ -83,14 +84,14 @@ export async function GET(request: Request) {
       });
 
       const targetUrl = redirect_uri.startsWith("/")
-        ? new URL(redirect_uri, request.url)
+        ? new URL(redirect_uri, "https://octara.xyz")
         : new URL(redirect_uri);
       targetUrl.searchParams.set("code", code);
       if (state) targetUrl.searchParams.set("state", state);
 
       return NextResponse.redirect(targetUrl);
     } else {
-      const consentUrl = new URL("/oauth/consent", request.url);
+      const consentUrl = new URL("/oauth/consent", "https://octara.xyz");
       consentUrl.searchParams.set("client_id", client_id);
       consentUrl.searchParams.set("scope", scope);
       consentUrl.searchParams.set("state", state);

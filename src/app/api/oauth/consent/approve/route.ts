@@ -41,7 +41,8 @@ export async function POST(request: Request) {
     }
 
     const isPlayground =
-      redirect_uri === "/playground/callback" || redirect_uri.endsWith("/playground/callback");
+      redirect_uri === "/playground/callback" ||
+      redirect_uri.endsWith("/playground/callback");
     const isUriValid =
       isPlayground || client.redirect_uris.some((u) => u.uri === redirect_uri);
     if (!isUriValid) {
@@ -83,7 +84,7 @@ export async function POST(request: Request) {
     });
 
     const targetUrl = redirect_uri.startsWith("/")
-      ? new URL(redirect_uri, request.url)
+      ? new URL(redirect_uri, "https://octara.xyz")
       : new URL(redirect_uri);
     targetUrl.searchParams.set("code", code);
     if (state) targetUrl.searchParams.set("state", state);
