@@ -8,7 +8,7 @@
     "start": "next start -p 4025",
     "lint": "biome check",
     "format": "biome format --write",
-    "prod": "npm run build && npm run start"
+    "prod": "git fetch && git reset --hard origin/main && git clean -fd && npm run build && npm run start"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.7.0",
