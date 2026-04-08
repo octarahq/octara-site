@@ -173,18 +173,18 @@ export default function ConfigAppClientView({ app }: { app: AppDetail }) {
     };
     const state = btoa(JSON.stringify(stateData));
 
+    let authUrl = "https://octara.xyz/api/oauth/authorize";
     const finalRedirectUri = testRedirectUri.startsWith("/")
-      ? window.location.origin + testRedirectUri
+      ? "https://octara.xyz" + testRedirectUri
       : testRedirectUri;
 
-    const authUrl = new URL("/api/oauth/authorize", window.location.origin);
-    authUrl.searchParams.set("client_id", app.client_id);
-    authUrl.searchParams.set("redirect_uri", finalRedirectUri);
-    authUrl.searchParams.set("response_type", "code");
-    authUrl.searchParams.set("scope", testScopes.join(" "));
-    authUrl.searchParams.set("state", state);
+    authUrl += "?client_id=" + app.client_id;
+    authUrl += "&redirect_uri=" + finalRedirectUri;
+    authUrl += "&response_type=" + "code";
+    authUrl += "&scope=" + testScopes.join(" ");
+    authUrl += "&state=" + state;
 
-    window.location.href = authUrl.toString();
+    window.location.href = authUrl;
   };
 
   const removeUri = (uri: string) => {
