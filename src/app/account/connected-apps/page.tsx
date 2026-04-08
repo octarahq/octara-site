@@ -47,7 +47,22 @@ export default async function ConnectedAppsPage() {
     name: user.name ?? null,
   };
 
-  const serializedConsents = consents.map((c) => ({
+  interface UserConsentWithClient {
+    id: string;
+    userId: string;
+    clientId: string;
+    scopes: string;
+    createdAt: Date;
+    updatedAt: Date;
+    client: {
+      id: string;
+      name: string;
+      client_id: string;
+      is_first_party: boolean;
+    };
+  }
+
+  const serializedConsents = consents.map((c: UserConsentWithClient) => ({
     ...c,
     createdAt: c.createdAt.toISOString(),
     updatedAt: c.updatedAt.toISOString(),
