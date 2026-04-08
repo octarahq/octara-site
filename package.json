@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -p 4025",
+    "start": "npx prisma generate && next start -p 4025",
     "lint": "biome check",
     "format": "biome format --write",
     "prod": "npm run build && npm run start"
