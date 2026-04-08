@@ -10,10 +10,20 @@ function createPrismaClient() {
   const connectionString = process.env.DATABASE_URL;
 
   if (!connectionString) {
-    console.error("DATABASE_URL is not set in environment variables");
+    console.error("[Prisma] DATABASE_URL is not set!");
+  } else {
+    const masked = connectionString.replace(/:([^:@]+)@/, ":****@");
+    console.log("[Prisma] Connecting to:", masked);
   }
 
-  const pool = new pg.Pool({ connectionString });
+  const pool = new pg.Pool({
+    connectionString,
+    ssl:
+      connectionString?.includes("localhost") ||
+      connectionString?.includes("127.0.0.1")
+        ? false
+        : { rejectUnauthorized: false },
+  });
   const adapter = new PrismaPg(pool);
 
   return new PrismaClient({
