@@ -27,6 +27,7 @@ export async function GET(request: Request) {
         name?: string | null;
         created_at?: Date;
         email?: string;
+        avatarURL?: string;
       };
       scopes: string[];
     }
@@ -42,6 +43,10 @@ export async function GET(request: Request) {
     if (hasProfile) {
       responseData.user.name = user.name;
       responseData.user.created_at = user.createdAt;
+
+      const url = new URL(request.url);
+      const avatarURL = `${url.protocol}//${url.host}/api/v1/me/avatar`;
+      responseData.user.avatarURL = avatarURL;
     }
 
     if (hasEmail) {

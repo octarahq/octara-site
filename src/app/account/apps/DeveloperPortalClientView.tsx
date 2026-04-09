@@ -102,7 +102,8 @@ export default function DeveloperPortalClientView({
 
   const filteredApps = apps.filter(
     (app) =>
-      app.name.toLowerCase().includes(searchQuery.toLowerCase()) || app.client_id.toLowerCase().includes(searchQuery.toLowerCase()),
+      app.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      app.client_id.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
   return (
@@ -309,7 +310,7 @@ export default function DeveloperPortalClientView({
             </div>
             <div className="w-8 h-8 rounded-full border border-outline group-hover:border-primary transition-all overflow-hidden flex items-center justify-center bg-slate-900 shadow-lg shadow-black/40">
               <img
-                src={`/api/user/avatar/${user?.id}`}
+                src="/api/v1/me/avatar"
                 alt="Avatar"
                 className="size-full object-cover grayscale group-hover:grayscale-0 transition-all"
               />
@@ -320,7 +321,6 @@ export default function DeveloperPortalClientView({
 
       <main className="pl-72 pt-28 pb-20 px-12">
         <div className="max-w-6xl mx-auto">
-          
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-16 animate-in slide-in-from-bottom-4 duration-700">
             <div>
               <h1 className="font-display text-5xl font-black tracking-tighter text-on-surface mb-3">

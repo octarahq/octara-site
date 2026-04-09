@@ -58,7 +58,7 @@ export default function ConnectedAppsClientView({
             </div>
             <div className="w-10 h-10 rounded-full border border-primary/20 group-hover:border-primary transition-all overflow-hidden flex items-center justify-center bg-slate-900 shadow-lg">
               <img
-                src={`/api/user/avatar/${initialUser?.id}`}
+                src="/api/v1/me/avatar"
                 alt="Avatar"
                 className="size-full object-cover"
               />

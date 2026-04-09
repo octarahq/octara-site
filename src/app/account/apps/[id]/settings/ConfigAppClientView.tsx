@@ -446,7 +446,7 @@ export default function ConfigAppClientView({ app }: { app: AppDetail }) {
             </div>
             <div className="w-8 h-8 rounded-full border border-outline group-hover:border-primary transition-all overflow-hidden flex items-center justify-center bg-slate-900 shadow-lg shadow-black/40">
               <img
-                src={`/api/user/avatar/${authUser?.id}`}
+                src="/api/v1/me/avatar"
                 alt="Avatar"
                 className="size-full object-cover grayscale group-hover:grayscale-0 transition-all"
               />

@@ -36,10 +36,10 @@ components:
         name:
           type: string
           nullable: true
-        avatar:
+        avatarURL:
           type: string
-          nullable: true
-          description: Base64 avatar data or URI
+          format: uri
+          description: URL to the user's avatar image
 
     Error:
       type: object
@@ -73,6 +73,28 @@ paths:
                     type: array
                     items:
                       type: string
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/me/avatar:
+    get:
+      tags: [Resource]
+      summary: Get Current User Avatar
+      description: Returns the avatar image of the authenticated user.
+      security:
+        - OAuth2: [read:profile]
+      responses:
+        "200":
+          description: Avatar image
+          content:
+            image/*:
+              schema:
+                type: string
+                format: binary
         "401":
           description: Unauthorized
           content:
@@ -141,25 +163,6 @@ paths:
       responses:
         "200":
           description: Logo image (PNG/SVG)
-          content:
-            image/*:
-              schema:
-                type: string
-                format: binary
-
-  /user/avatar/{userId}:
-    get:
-      tags: [Assets]
-      summary: Get User Avatar
-      parameters:
-        - name: userId
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: Avatar image
           content:
             image/*:
               schema:

@@ -1,27 +1,45 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { verifyAccessToken } from "@/lib/oauth-resources";
 
-export async function GET(
-  request: Request,
-  { params }: { params: Promise<{ userId: string }> },
-) {
-  const { userId } = await params;
+import { cookies } from "next/headers";
+import { verifyMasterSessionToken } from "@/lib/auth";
 
+export async function GET(request: Request) {
   try {
-    const user = await prisma.user.findUnique({
+    let userId: string | null = null;
+
+    const auth = await verifyAccessToken(request);
+    if (!("error" in auth)) {
+      userId = auth.user.id;
+    } else {
+      const cookieStore = await cookies();
+      const token = cookieStore.get("master_session_token");
+      if (token) {
+        const payload = await verifyMasterSessionToken(token.value);
+        if (payload) {
+          userId = payload.userId;
+        }
+      }
+    }
+
+    if (!userId) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const dbUser = await prisma.user.findUnique({
       where: { id: userId },
       select: { avatarData: true, email: true },
     });
 
-    if (!user) {
+    if (!dbUser) {
       return new Response("Not Found", { status: 404 });
     }
 
-    if (user.avatarData) {
-
-      const [header, base64] = user.avatarData.includes(",")
-        ? user.avatarData.split(",")
-        : ["data:image/png;base64", user.avatarData];
+    if (dbUser.avatarData) {
+      const [header, base64] = dbUser.avatarData.includes(",")
+        ? dbUser.avatarData.split(",")
+        : ["data:image/png;base64", dbUser.avatarData];
 
       const mime = header.split(";")[0].split(":")[1];
       const buffer = Buffer.from(base64, "base64");
@@ -31,7 +49,7 @@ export async function GET(
       });
     }
 
-    const initial = user.email.slice(0, 1).toUpperCase();
+    const initial = (dbUser.email || "U").slice(0, 1).toUpperCase();
 
     const svg = `
     <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
