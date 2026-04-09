@@ -31,6 +31,7 @@ export async function GET(request: Request) {
         safeSearch: settings?.safeSearch ?? false,
         language: settings?.language ?? "en",
         resultsPerPage: settings?.resultsPerPage ?? 10,
+        historyEnabled: settings?.historyEnabled ?? true,
       },
     });
   } catch (error) {
@@ -58,13 +59,15 @@ export async function PATCH(request: Request) {
     }
 
     const body = await request.json();
-    const { safeSearch, language, resultsPerPage } = body;
+    const { safeSearch, language, resultsPerPage, historyEnabled } = body;
 
     const data: any = {};
     if (typeof safeSearch === "boolean") data.safeSearch = safeSearch;
     if (typeof language === "string") data.language = language;
     if (typeof resultsPerPage === "number")
       data.resultsPerPage = resultsPerPage;
+    if (typeof historyEnabled === "boolean")
+      data.historyEnabled = historyEnabled;
 
     const settings = await prisma.searchSettings.upsert({
       where: { userId: user.id },
