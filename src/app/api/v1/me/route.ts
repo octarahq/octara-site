@@ -45,7 +45,7 @@ export async function GET(request: Request) {
       responseData.user.created_at = user.createdAt;
 
       const url = new URL(request.url);
-      const avatarURL = `${url.protocol}//${url.host}/api/v1/me/avatar`;
+      const avatarURL = `${url.protocol}//${url.host}/api/users/${user.id}/avatar`;
       responseData.user.avatarURL = avatarURL;
     }
 

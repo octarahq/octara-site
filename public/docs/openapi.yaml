@@ -102,6 +102,28 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
+  /users/{userId}/avatar:
+    get:
+      tags: [Assets]
+      summary: Get User Avatar
+      description: Returns the avatar image of a user by their ID.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Avatar image
+          content:
+            image/*:
+              schema:
+                type: string
+                format: binary
+        "404":
+          description: Not Found
+
   /oauth/token:
     post:
       tags: [Auth]
