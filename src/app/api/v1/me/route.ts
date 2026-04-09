@@ -44,8 +44,7 @@ export async function GET(request: Request) {
       responseData.user.name = user.name;
       responseData.user.created_at = user.createdAt;
 
-      const url = new URL(request.url);
-      const avatarURL = `${url.protocol}//${url.host}/api/users/${user.id}/avatar`;
+      const avatarURL = `https://octara.xyz/api/users/${user.id}/avatar`;
       responseData.user.avatarURL = avatarURL;
     }
 
