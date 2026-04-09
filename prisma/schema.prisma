@@ -7,18 +7,42 @@ datasource db {
 }
 
 model User {
-  id            String         @id @default(uuid())
-  email         String         @unique
-  name          String?
-  password_hash String
-  avatarData    String?
-  passwordUpdatedAt DateTime   @default(now())
-  authCodes     AuthCode[]
-  accessTokens  AccessToken[]
-  clients       Client[]
-  consents      UserConsent[]
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
+  id                String           @id @default(uuid())
+  email             String           @unique
+  name              String?
+  password_hash     String
+  avatarData        String?
+  passwordUpdatedAt DateTime         @default(now())
+  authCodes         AuthCode[]
+  clients           Client[]
+  consents          UserConsent[]
+  accessTokens      AccessToken[]
+  refreshTokens     RefreshToken[]
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+  searchSettings    SearchSettings?
+  verifiedDomains   VerifiedDomain[]
+}
+
+model SearchSettings {
+  id             String   @id @default(uuid())
+  userId         String   @unique
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  safeSearch     Boolean  @default(false)
+  language       String   @default("en")
+  resultsPerPage Int      @default(10)
+  historyEnabled Boolean  @default(true)
+  historyQueries String[]
+}
+
+model VerifiedDomain {
+  id              String   @id @default(uuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  domain          String
+  status          String   @default("PENDING") // PENDING, VERIFIED, FAILED
+  verificationTxt String
+  createdAt       DateTime @default(now())
 }
 
 model UserConsent {
@@ -35,28 +59,29 @@ model UserConsent {
 }
 
 model Client {
-  id             String               @id @default(uuid())
-  client_id      String               @unique
+  id             String              @id @default(uuid())
+  client_id      String              @unique
   client_secret  String
   name           String
   description    String?
   logoData       String?
-  is_first_party Boolean              @default(false)
+  is_first_party Boolean             @default(false)
   ownerId        String
-  owner          User                 @relation(fields: [ownerId], references: [id])
+  owner          User                @relation(fields: [ownerId], references: [id])
   redirect_uris  ClientRedirectUri[]
   authCodes      AuthCode[]
-  accessTokens   AccessToken[]
+  accessTokens  AccessToken[]
+  refreshTokens RefreshToken[]
   consents       UserConsent[]
-  createdAt      DateTime             @default(now())
-  updatedAt      DateTime             @updatedAt
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
 }
 
 model ClientRedirectUri {
-  id        String   @id @default(uuid())
-  uri       String
-  clientId  String
-  client    Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  id       String @id @default(uuid())
+  uri      String
+  clientId String
+  client   Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
 }
 
 model AuthCode {
@@ -97,4 +122,22 @@ model AccessTokenScope {
   scope         String
   accessTokenId String
   accessToken   AccessToken @relation(fields: [accessTokenId], references: [id], onDelete: Cascade)
+}
+model RefreshToken {
+  id         String              @id @default(uuid())
+  token      String              @unique
+  expires_at DateTime
+  userId     String
+  user       User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  clientId   String
+  client     Client              @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  scopes     RefreshTokenScope[]
+  createdAt  DateTime            @default(now())
+}
+
+model RefreshTokenScope {
+  id             String       @id @default(uuid())
+  scope          String
+  refreshTokenId String
+  refreshToken   RefreshToken @relation(fields: [refreshTokenId], references: [id], onDelete: Cascade)
 }

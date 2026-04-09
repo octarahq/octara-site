@@ -379,7 +379,11 @@ export default function ConfigAppClientView({ app }: { app: AppDetail }) {
                 Scopes
               </label>
               <MultiSelect
-                options={AVAILABLE_SCOPES}
+                options={AVAILABLE_SCOPES.map((s) => ({
+                  ...s,
+                  label: s.id,
+                  description: s.label,
+                }))}
                 selected={testScopes}
                 onChange={setTestScopes}
                 placeholder="Choisissez les scopes..."

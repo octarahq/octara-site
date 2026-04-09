@@ -14,6 +14,7 @@ export async function verifyAccessToken(request: Request) {
     include: {
       user: true,
       scopes: true,
+      client: true,
     },
   });
 
@@ -25,12 +26,22 @@ export async function verifyAccessToken(request: Request) {
     accessToken,
     user: accessToken.user,
     scopes: accessToken.scopes.map((s) => s.scope),
+    isFirstParty: accessToken.client.is_first_party,
   };
 }
 
 export function insufficientScopesResponse(scopes: string[]) {
   return NextResponse.json(
     { error: `Insufficient scope (${scopes.join(" or ")} required)` },
+    { status: 403 },
+  );
+}
+
+export function firstPartyOnlyResponse() {
+  return NextResponse.json(
+    {
+      error: "This operation is restricted to Octara first-party applications",
+    },
     { status: 403 },
   );
 }
