@@ -24,7 +24,7 @@ export async function createMasterSessionToken(
   return new SignJWT({ userId, email })
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
-    .setExpirationTime("24h") 
+    .setExpirationTime("100y")
     .sign(JWT_SECRET);
 }
 
