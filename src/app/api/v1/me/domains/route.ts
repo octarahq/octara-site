@@ -30,10 +30,11 @@ export async function GET(request: Request) {
         domain: d.domain,
         status: d.status,
         createdAt: d.createdAt,
+        verificationTxt: d.verificationTxt,
       })),
     });
   } catch (error) {
-    console.error("GET /api/v1/search/domains Error:", error);
+    console.error("GET /api/v1/me/domains Error:", error);
     return NextResponse.json(
       { error: "Internal Server Error" },
       { status: 500 },
@@ -82,7 +83,7 @@ export async function POST(request: Request) {
       domain: newDomain,
     });
   } catch (error) {
-    console.error("POST /api/v1/search/domains Error:", error);
+    console.error("POST /api/v1/me/domains Error:", error);
     return NextResponse.json(
       { error: "Internal Server Error" },
       { status: 500 },
@@ -124,7 +125,7 @@ export async function DELETE(request: Request) {
       message: "Domain removed",
     });
   } catch (error) {
-    console.error("DELETE /api/v1/search/domains Error:", error);
+    console.error("DELETE /api/v1/me/domains Error:", error);
     return NextResponse.json(
       { error: "Internal Server Error" },
       { status: 500 },

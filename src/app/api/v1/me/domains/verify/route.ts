@@ -80,7 +80,7 @@ export async function POST(request: Request) {
       );
     }
   } catch (error) {
-    console.error("POST /api/v1/search/domains/verify Error:", error);
+    console.error("POST /api/v1/me/domains/verify Error:", error);
     return NextResponse.json(
       { error: "Internal Server Error" },
       { status: 500 },
