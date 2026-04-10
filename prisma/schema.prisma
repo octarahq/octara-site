@@ -25,14 +25,16 @@ model User {
 }
 
 model SearchSettings {
-  id             String   @id @default(uuid())
-  userId         String   @unique
-  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  safeSearch     Boolean  @default(false)
-  language       String   @default("en")
-  resultsPerPage Int      @default(10)
-  historyEnabled Boolean  @default(true)
-  historyQueries String[]
+  id                String   @id @default(uuid())
+  userId            String   @unique
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  safeSearch        String   @default("moderate")
+  language          String   @default("auto")
+  resultsPerPage    Int      @default(10)
+  historyEnabled    Boolean  @default(true)
+  openInNewTab      Boolean  @default(false)
+  searchSuggestions Boolean  @default(true)
+  historyQueries    String[]
 }
 
 model VerifiedDomain {
