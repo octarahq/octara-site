@@ -1,0 +1,15 @@
+{
+    "title": "Bon retour !",
+    "description": "Connectez-vous à votre compte central pour gérer toutes vos applications.",
+    "email_label": "Email",
+    "email_placeholder": "votre@email.com",
+    "password_label": "Mot de passe",
+    "password_placeholder": "••••••••",
+    "submit": "Se connecter",
+    "submitting": "Identification...",
+    "no_account": "Pas encore de compte ?",
+    "register_link": "Inscrivez-vous ici",
+    "error_invalid": "Identifiants invalides",
+    "error_conn": "Erreur de connexion",
+    "loading": "Chargement..."
+}

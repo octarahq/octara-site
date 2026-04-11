@@ -1,0 +1,19 @@
+{
+    "title": "Rejoindre Octara",
+    "description": "Créez votre identité unique pour accéder à tous nos services sécurisés.",
+    "name_label": "Nom complet",
+    "name_placeholder": "Jean Dupont",
+    "email_label": "Email professionnel",
+    "email_placeholder": "votre@email.com",
+    "password_label": "Mot de passe",
+    "password_placeholder": "Min. 8 caractères",
+    "confirm_password_label": "Confirmez le mot de passe",
+    "confirm_password_placeholder": "••••••••",
+    "submit": "Commencer l'aventure",
+    "submitting": "Création...",
+    "has_account": "Vous avez déjà un compte ?",
+    "login_link": "Connectez-vous ici",
+    "error_invalid": "Erreur lors de l'inscription",
+    "error_conn": "Erreur serveur",
+    "success": "Compte créé avec succès !"
+}

@@ -1,0 +1,19 @@
+{
+    "title": "Join Octara",
+    "description": "Create your unique identity to access all our secure services.",
+    "name_label": "Full name",
+    "name_placeholder": "John Doe",
+    "email_label": "Business email",
+    "email_placeholder": "your@email.com",
+    "password_label": "Password",
+    "password_placeholder": "Min. 8 characters",
+    "confirm_password_label": "Confirm password",
+    "confirm_password_placeholder": "••••••••",
+    "submit": "Start the adventure",
+    "submitting": "Creating...",
+    "has_account": "Already have an account?",
+    "login_link": "Login here",
+    "error_invalid": "Error during registration",
+    "error_conn": "Server error",
+    "success": "Account created successfully!"
+}

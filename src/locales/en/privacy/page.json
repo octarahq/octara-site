@@ -1,0 +1,51 @@
+{
+    "title": "Privacy Policy",
+    "updated": "Effective date: 2026-03-15",
+    "introTitle": "Introduction",
+    "intro": "LMC Group (\"we\", \"us\", or \"our\") is committed to protecting the privacy of visitors and users of our websites, applications, and services worldwide. This Privacy Policy explains what information we collect, how we use it, when we share it, and the rights available to you.",
+    "section1": {
+        "title": "1. Information we collect",
+        "body": "We may collect: (a) information you provide directly (for example, contact form or account details); (b) usage information (analytics, logs, and interaction data); and (c) technical data (device, browser, IP address, and cookies). We minimize data collection and only keep what is necessary to provide and improve our services."
+    },
+    "section2": {
+        "title": "2. How we use information",
+        "body": "We use data to provide and maintain services, respond to requests, improve features, secure our systems, and communicate important updates. Where required, we rely on legitimate interests, contract performance, or consent as legal bases for processing."
+    },
+    "section3": {
+        "title": "3. Sharing and disclosure",
+        "body": "We may share information with service providers who perform services on our behalf, with affiliates, or when required by law. We do not sell personal data to third parties. We take contractual and technical measures to protect data shared with processors."
+    },
+    "section4": {
+        "title": "4. Cookies and similar technologies",
+        "body": "We use cookies and similar technologies for functionality, analytics, and to improve user experience. You can control cookie preferences through your browser and, where provided, site controls."
+    },
+    "section5": {
+        "title": "5. International transfers",
+        "body": "LMC Group operates globally. Personal data may be transferred and processed in countries with different data protection laws. When transferring data internationally, we use appropriate safeguards such as contracts or other mechanisms permitted by law."
+    },
+    "section6": {
+        "title": "6. Data retention and security",
+        "body": "We retain personal data only as long as necessary for the purposes described. We use reasonable technical and organizational measures to protect personal data, but no system is completely secure — exercise care when sharing sensitive information."
+    },
+    "section7": {
+        "title": "7. Your rights",
+        "body": "Subject to local law, you may have the right to access, correct, delete, or restrict processing of your personal data, or to object to processing. To exercise rights, contact us using the details below."
+    },
+    "section8": {
+        "title": "8. Children",
+        "body": "Our services are not directed at children under 16. We do not knowingly collect personal data from children. If you believe we have collected data from a child, please contact us to request deletion."
+    },
+    "section9": {
+        "title": "9. Changes to this policy",
+        "body": "We may update this policy from time to time. We will post the revised policy with an updated effective date. Continued use of our services after changes constitutes acceptance of the updated policy."
+    },
+    "section10": {
+        "title": "10. Contact",
+        "body": "For questions or to exercise your rights, contact us in our discord server."
+    },
+    "contact": {
+        "title": "Questions about this policy?",
+        "desc": "Our team is here to assist you with privacy questions.",
+        "button": "Contact Support"
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "hero": {
+        "title": {
+            "prefix": "Discover",
+            "brand": "Octara"
+        },
+        "description": "Octara is an organization dedicated to building impactful tools and fostering a collaborative, passionate community for everyone.",
+        "join_discord": "Join Discord",
+        "view_github": "View GitHub"
+    },
+    "stats": {
+        "projects": "Projects",
+        "stars": "GitHub Stars",
+        "repos": "Repositories"
+    },
+    "projects": {
+        "title": "Our projects",
+        "description": "All the projects we have built",
+        "none": "No projects found.",
+        "github": "GitHub"
+    }
+}

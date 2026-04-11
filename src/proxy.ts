@@ -34,6 +34,7 @@ export default async function middleware(request: NextRequest) {
 
   const response = NextResponse.next();
   response.headers.set("x-next-intl-locale", locale);
+  response.headers.set("x-pathname", url.pathname);
 
   return response;
 }

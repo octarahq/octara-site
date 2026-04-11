@@ -1,0 +1,40 @@
+{
+    "hero": {
+        "title": "Innover pour un futur durable.",
+        "description": "Octara est né d'une vision simple : transformer la technologie et la rendre accessible à tous."
+    },
+    "history": {
+        "title": "Notre histoire",
+        "paragraph1": "Fondée en 2023 sous le nom de LMC Group, Octara a commencé comme une communauté d'entraide pour de l'aide informatique. Notre objectif initial était de pouvoir accompagner les nouveaux développeurs dans leurs projets.",
+        "paragraph2": "Au fil des années, nous avons grandi en créant LMC Bot qui a permis d'agrandir notre communauté, puis nous nous sommes diversifiés en nous développant dans d'autres domaines."
+    },
+    "mission": {
+        "title": "Notre mission",
+        "description": "Rendre l'informatique accessible à tous, sans barrières, en respectant la vie privée."
+    },
+    "values": {
+        "title": "Nos valeurs",
+        "integrity": {
+            "title": "Intégrité",
+            "description": "Nous agissons avec transparence et honnêteté dans chaque projet que nous réalisons."
+        },
+        "innovation": {
+            "title": "Innovation",
+            "description": "Nous explorons sans cesse de nouvelles frontières."
+        },
+        "opensource": {
+            "title": "Open Source",
+            "description": "Nous essayons de promouvoir et de contribuer au développement de logiciels open source."
+        },
+        "impact": {
+            "title": "Impact",
+            "description": "Chaque projet doit contribuer positivement à la société."
+        }
+    },
+    "cta": {
+        "title": "Prêt à façonner l'avenir avec nous ?",
+        "description": "Nous sommes toujours à la recherche de talents passionnés pour rejoindre notre aventure et repousser les limites.",
+        "openings": "Voir les postes ouverts",
+        "contact": "Nous contacter"
+    }
+}

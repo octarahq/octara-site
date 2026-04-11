@@ -1,0 +1,15 @@
+{
+    "title": "Welcome back!",
+    "description": "Log in to your central account to manage all your applications.",
+    "email_label": "Email",
+    "email_placeholder": "your@email.com",
+    "password_label": "Password",
+    "password_placeholder": "••••••••",
+    "submit": "Login",
+    "submitting": "Identifying...",
+    "no_account": "Don't have an account?",
+    "register_link": "Register here",
+    "error_invalid": "Invalid credentials",
+    "error_conn": "Connection error",
+    "loading": "Loading..."
+}

@@ -1,0 +1,52 @@
+{
+    "page": {
+        "title": {
+            "operational": "All systems operational",
+            "down": "1 system down",
+            "downMany": "{count} systems down",
+            "maintenance": "1 system in maintenance",
+            "maintenanceMany": "{count} systems in maintenance"
+        },
+        "lastUpdated": "Last updated: {when} UTC"
+    },
+    "incidents": {
+        "title": "Incidents",
+        "none": "No incidents reported",
+        "label": {
+            "investigating": "Investigating",
+            "identified": "Identified",
+            "monitoring": "Monitoring",
+            "resolved": "Resolved"
+        },
+        "lastUpdated": "Updated: {date}",
+        "noUpdates": "No updates available"
+    },
+    "history": {
+        "title": "History",
+        "show": "Show full history",
+        "hide": "Hide history",
+        "noScheduled": "No scheduled maintenance",
+        "noPast": "No past incidents in the last 90 days",
+        "maintenance": {
+            "scheduled": "Scheduled",
+            "inProgress": "In Progress",
+            "completed": "Completed"
+        }
+    },
+    "metrics": {
+        "availability": "Availability",
+        "daysWithout": "{days} days without incident",
+        "daysSuffix": "d",
+        "responseTime": "Average response time",
+        "none": "No data"
+    },
+    "services": {
+        "none": "No services found",
+        "live": "Operational",
+        "maintenance": "Maintenance",
+        "degraded": "Degraded performance",
+        "down": "Service disruption",
+        "archived": "Archived",
+        "experimental": "Experimental"
+    }
+}

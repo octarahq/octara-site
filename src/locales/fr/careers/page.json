@@ -1,0 +1,45 @@
+{
+    "hero": {
+        "title": "Rejoignez \nOctara",
+        "description": "Nous construisons l'avenir de la technologie open source. Octara est une initiative communautaire portée par la passion et l'innovation collective."
+    },
+    "mission": {
+        "title": "Façonnez l'avenir de la technologie",
+        "description": "Octara est actuellement un projet autofinancé centré sur la communauté. Nous recherchons des personnes qui croient en l'accès libre à la technologie et qui souhaitent apporter leurs compétences à un écosystème en pleine croissance.",
+        "important": "Information importante :",
+        "volunteer": "Toutes les positions actuellement listées sont volontaires et non rémunérées. Nous construisons la base ensemble en visant un avenir durable pour toutes et tous.",
+        "future": "Si un jour Octara devient une véritable entité économique, toutes les personnes ayant contribué au développement d'Octara, quel que soit leur poste, se verront offrir une récompense à la clé — par exemple l'accès à des services supplémentaires fournis gratuitement par rapport aux autres.",
+        "why": {
+            "title": "Pourquoi nous rejoindre ?",
+            "list1": "Contribuez à des outils open source à fort impact.",
+            "list2": "Renforcez votre portfolio avec des projets réels."
+        }
+    },
+    "positions": {
+        "title": "Postes ouverts",
+        "count": "{count} opportunités actives",
+        "role1": {
+            "title": "Community Manager",
+            "status": "Volontaire",
+            "description": "Dirigez notre présence numérique et favorisez l'engagement sur nos plateformes. Vous serez la voix d'Octara, faisant le lien entre développeur·euse·s et utilisateur·rice·s.",
+            "responsibilities": {
+                "title": "Responsabilités clés :",
+                "item1": "Publication de contenu"
+            }
+        },
+        "apply": "Postuler",
+        "role2": {
+            "title": "Contributeur·rice·s ouverts",
+            "status": "Volontaire",
+            "description": "Aidez-nous à construire l'infrastructure cœur d'Octara. Que vous soyez développeur·se, designer ou rédacteur·rice technique, nous avons des projets que nos compétences.",
+            "needs": "Besoins en cours :",
+            "need1": "Frontend & Backend",
+            "need2": "UI/UX Design"
+        }
+    },
+    "cta": {
+        "title": "Vous ne savez pas par où commencer ?",
+        "description": "Rejoignez notre Discord pour trouver la mission qui vous correspond.",
+        "button": "Rejoindre Discord"
+    }
+}
