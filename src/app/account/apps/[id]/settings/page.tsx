@@ -14,12 +14,12 @@ export default async function AppSettingsPage({
   const token = cookieStore.get("master_session_token")?.value;
 
   if (!token) {
-    redirect("/auth/login");
+    redirect("/login");
   }
 
   const payload = await verifyMasterSessionToken(token);
   if (!payload) {
-    redirect("/auth/login");
+    redirect("/login");
   }
 
   const app = await prisma.client.findUnique({

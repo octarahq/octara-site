@@ -115,7 +115,11 @@ function LoginContent() {
       <div className="mt-10 text-center text-xs font-medium text-slate-500">
         {t("login.no_account")}{" "}
         <Link
-          href="/register"
+          href={
+            searchParams.has("return_to")
+              ? `/register?return_to=${encodeURIComponent(searchParams.get("return_to")!)}`
+              : "/register"
+          }
           className="text-white font-black hover:underline underline-offset-4"
         >
           {t("login.register_link")}

@@ -172,11 +172,15 @@ export default function ConfigAppClientView({ app }: { app: AppDetail }) {
     };
     const state = btoa(JSON.stringify(stateData));
 
+    const origin =
+      typeof window !== "undefined"
+        ? window.location.origin
+        : "https://octara.xyz";
     const finalRedirectUri = testRedirectUri.startsWith("/")
-      ? "https://octara.xyz" + testRedirectUri
+      ? origin + testRedirectUri
       : testRedirectUri;
 
-    const url = new URL("/api/oauth/authorize", "https://octara.xyz");
+    const url = new URL("/api/oauth/authorize", origin);
     url.searchParams.set("client_id", app.client_id);
     url.searchParams.set("redirect_uri", finalRedirectUri);
     url.searchParams.set("response_type", "code");

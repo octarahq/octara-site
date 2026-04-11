@@ -1,15 +1,17 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, Suspense } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/lib/AuthContext";
 import { useI18n } from "@/lib/I18nProvider";
 
-export default function RegisterPage() {
+function RegisterContent() {
   const { t } = useI18n();
+  const searchParams = useSearchParams();
   const router = useRouter();
   const { refreshAuth } = useAuth();
+  const returnTo = searchParams.get("return_to") || "/account";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -30,7 +32,8 @@ export default function RegisterPage() {
 
       if (data.success) {
         await refreshAuth();
-        router.push("/account");
+        await new Promise((r) => setTimeout(r, 200));
+        router.push(returnTo);
         router.refresh();
       } else {
         setError(data.error || t("register.error_invalid"));
@@ -115,7 +118,11 @@ export default function RegisterPage() {
         <div className="mt-8 text-center text-xs font-medium text-slate-500">
           {t("register.has_account")}{" "}
           <Link
-            href="/login"
+            href={
+              searchParams.has("return_to")
+                ? `/login?return_to=${encodeURIComponent(searchParams.get("return_to")!)}`
+                : "/login"
+            }
             className="text-white font-black hover:underline underline-offset-4"
           >
             {t("register.login_link")}
@@ -123,5 +130,13 @@ export default function RegisterPage() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function RegisterPage() {
+  return (
+    <Suspense fallback={<div className="text-white">Loading...</div>}>
+      <RegisterContent />
+    </Suspense>
   );
 }

@@ -71,15 +71,17 @@ export async function GET(request: Request) {
     const token = cookieStore.get("master_session_token");
 
     if (!token) {
+      const { pathname, search } = new URL(request.url);
       const loginUrl = new URL("/login", "https://octara.xyz");
-      loginUrl.searchParams.set("return_to", request.url);
+      loginUrl.searchParams.set("return_to", pathname + search);
       return NextResponse.redirect(loginUrl);
     }
 
     const payload = await verifyMasterSessionToken(token.value);
     if (!payload) {
+      const { pathname, search } = new URL(request.url);
       const loginUrl = new URL("/login", "https://octara.xyz");
-      loginUrl.searchParams.set("return_to", request.url);
+      loginUrl.searchParams.set("return_to", pathname + search);
       return NextResponse.redirect(loginUrl);
     }
 
