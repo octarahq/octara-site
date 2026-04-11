@@ -33,7 +33,13 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: "Client not found" }, { status: 404 });
     }
 
-    return NextResponse.json({ success: true, app: client });
+    return NextResponse.json({
+      success: true,
+      app: {
+        ...client,
+        avatarURL: `/api/apps/logo/${client.id}`,
+      },
+    });
   } catch (error) {
     console.error("App Info Error:", error);
     return NextResponse.json(

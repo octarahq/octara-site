@@ -7,6 +7,8 @@ import { getScopeLabel } from "@/lib/constants/scopes";
 interface AppInfo {
   name: string;
   description: string | null;
+  avatarURL?: string;
+  is_first_party?: boolean;
 }
 
 function ConsentContent() {
@@ -68,8 +70,23 @@ function ConsentContent() {
     <div className="container mx-auto p-8 max-w-xl flex flex-col items-center">
       <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-10 rounded-[2.5rem] shadow-2xl flex flex-col items-center w-full">
         <div className="size-20 bg-primary/10 rounded-3xl flex items-center justify-center mb-6">
-          <img src="/favicon.svg" className="size-10" alt="Logo" />
+          <img
+            src={app?.avatarURL || "/favicon.svg"}
+            className="size-10"
+            alt="Logo"
+          />
         </div>
+
+        {app?.is_first_party && (
+          <div className="mb-3 flex items-center justify-center gap-2 px-4 py-2 bg-primary/5 border border-primary/10 rounded-xl">
+            <span className="material-symbols-outlined text-sm text-primary">
+              verified
+            </span>
+            <span className="text-[10px] font-black uppercase tracking-widest text-primary">
+              Application officielle de Octara
+            </span>
+          </div>
+        )}
 
         <h1 className="text-2xl font-black mb-2 text-center leading-tight">
           Autoriser {app?.name || "Application"} ?

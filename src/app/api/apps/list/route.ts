@@ -44,6 +44,7 @@ export async function GET() {
         is_first_party: app.is_first_party,
         redirect_uris: app.redirect_uris.map((r: { uri: string }) => r.uri),
         created_at: app.createdAt,
+        avatarURL: `/api/apps/logo/${app.id}`,
       })),
     });
   } catch (error) {
