@@ -3,6 +3,7 @@
 import LinkNext from "next/link";
 import AccountSidebar from "../_components/AccountSidebar";
 import AppsList, { ConnectedApp } from "../_components/AppsList";
+import { useI18n } from "@/lib/I18nProvider";
 
 interface InitialUser {
   id: string;
@@ -17,6 +18,8 @@ export default function ConnectedAppsClientView({
   initialUser: InitialUser;
   initialConsents: ConnectedApp[];
 }) {
+  const { t } = useI18n();
+
   return (
     <div className="min-h-screen bg-surface text-on-surface selection:bg-primary selection:text-on-primary font-body">
       <AccountSidebar />
@@ -36,13 +39,13 @@ export default function ConnectedAppsClientView({
             href="/account"
             className="text-on-surface-variant text-[12px] font-headline font-bold"
           >
-            Mon Compte
+            {t("account.header.identity")}
           </LinkNext>
           <span className="material-symbols-outlined text-[10px] text-outline-variant font-black">
             chevron_right
           </span>
           <span className="text-primary font-headline font-bold">
-            Applications Connectées
+            {t("account.connected-apps.breadcrumb.portal")}
           </span>
         </div>
 
@@ -71,11 +74,10 @@ export default function ConnectedAppsClientView({
         <div className="max-w-6xl mx-auto">
           <div className="mb-12">
             <h2 className="text-5xl font-extrabold font-headline tracking-tighter mb-4 text-on-surface">
-              Applications connectées a votre compte
+              {t("account.connected-apps.title")}
             </h2>
             <p className="text-on-surface-variant max-w-2xl text-lg leading-relaxed">
-              Gérez les accès que vous avez accordés aux applications tierces et
-              aux services Octara.
+              {t("account.connected-apps.description")}
             </p>
           </div>
 

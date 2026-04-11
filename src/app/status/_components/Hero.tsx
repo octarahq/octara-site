@@ -1,13 +1,9 @@
+import { useI18n } from "@/lib/I18nProvider";
 import { SnapshotProject } from "../types";
 
-export default function Hero({
-  projects,
-  translations = {},
-}: {
-  projects?: SnapshotProject[];
-  translations?: Record<string, string>;
-}) {
-  const t = (k: string) => translations?.[k] ?? k;
+export default function Hero({ projects }: { projects?: SnapshotProject[] }) {
+  const { t } = useI18n();
+
   return (
     <section className="mb-12">
       <div className="flex flex-col gap-2">

@@ -8,6 +8,7 @@ interface User {
   name?: string | null;
   createdAt?: string;
   passwordUpdatedAt?: string;
+  avatarURL?: string;
 }
 
 interface AuthContextType {

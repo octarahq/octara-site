@@ -1,0 +1,21 @@
+{
+    "title": "Octara API Playground",
+    "description": "Test your API routes in real-time securely.",
+    "auth": {
+        "title": "Authentication",
+        "token_label": "Bearer Token",
+        "token_placeholder": "your_access_token"
+    },
+    "endpoint": {
+        "title": "Endpoint",
+        "body_label": "Body (JSON)",
+        "submit": "Send Request",
+        "loading": "Loading..."
+    },
+    "response": {
+        "title": "Response",
+        "waiting": "Waiting for your first request...",
+        "clear": "Clear",
+        "status_label": "Status"
+    }
+}

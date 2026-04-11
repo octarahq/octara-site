@@ -1,15 +1,15 @@
 {
-    "title": "Welcome back!",
-    "description": "Log in to your central account to manage all your applications.",
-    "email_label": "Email",
-    "email_placeholder": "your@email.com",
+    "loading": "Loading...",
+    "title": "Login",
+    "description": "Sign in to your Octara account to manage your services and settings.",
+    "error_invalid": "Invalid credentials.",
+    "error_conn": "Error connecting to server.",
+    "email_label": "Email Address",
+    "email_placeholder": "name@example.com",
     "password_label": "Password",
     "password_placeholder": "••••••••",
     "submit": "Login",
-    "submitting": "Identifying...",
+    "submitting": "Logging in...",
     "no_account": "Don't have an account?",
-    "register_link": "Register here",
-    "error_invalid": "Invalid credentials",
-    "error_conn": "Connection error",
-    "loading": "Loading..."
+    "register_link": "Sign up for free"
 }

@@ -1,0 +1,35 @@
+{
+    "breadcrumb": {
+        "portal": "Developer portal"
+    },
+    "title": "Registered Apps",
+    "description_count": "Manage your secure OAuth2 endpoints. You have {count} active applications in your vault.",
+    "search_placeholder": "App ID or Name...",
+    "create_button": "New Application",
+    "modify_app": "Modify App",
+    "stats": {
+        "users": "Active users",
+        "registered": "Client infrastructure registered on {date}."
+    },
+    "modal": {
+        "create_title": "Register an App",
+        "name_label": "Application name",
+        "name_placeholder": "e.g. Octara Dashboard",
+        "url_label": "Redirect URIs (comma separated)",
+        "url_help": "Separate URLs with commas.",
+        "submit": "Register App",
+        "creating": "Registering...",
+        "security_title": "Client Security",
+        "secret_warning_copy": "Copy this information now. The secret will never be accessible again once this page is closed.",
+        "done": "I've saved everything, close"
+    },
+    "delete_modal": {
+        "title": "Irreversible Deletion",
+        "action_required": "Action required",
+        "description": "You are about to delete the application {name}. All user access and tokens will be immediately revoked.",
+        "confirm_label": "Type {name} to confirm",
+        "cancel": "Cancel",
+        "submit": "Delete",
+        "deleting": "Deleting..."
+    }
+}

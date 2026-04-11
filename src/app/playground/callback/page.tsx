@@ -131,17 +131,8 @@ function PlaygroundContent() {
           </Link>
           <div className="w-[1px] h-4 bg-outline mx-2"></div>
           <h1 className="text-sm font-black font-display uppercase tracking-widest">
-            OAuth2{" "}
-            <span className="text-primary text-xs ml-1 bg-primary/10 px-2 py-0.5 rounded-full">
-              Playground
-            </span>
+            OAuth2 Playground
           </h1>
-        </div>
-        <div className="hidden md:flex items-center gap-1.5 px-4 py-1.5 bg-background-dark border border-outline rounded-full">
-          <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
-          <span className="text-[9px] uppercase font-black tracking-widest opacity-40">
-            Environnement de Test Interne
-          </span>
         </div>
       </nav>
 

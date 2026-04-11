@@ -1,7 +1,17 @@
 {
     "page": {
-        "title": "Tous les systèmes opérationnels",
+        "title": {
+            "operational": "Tous les systèmes opérationnels",
+            "down": "1 système hors service",
+            "downMany": "{count} systèmes hors service",
+            "maintenance": "1 système en maintenance",
+            "maintenanceMany": "{count} systèmes en maintenance"
+        },
         "lastUpdated": "Dernière mise à jour : {when} UTC"
+    },
+    "hero": {
+        "title": "Aperçu des Services",
+        "subtitle": "État en temps réel de nos infrastructures cœur."
     },
     "incidents": {
         "title": "Incidents actifs",
@@ -21,16 +31,16 @@
         "hide": "Réduire l'historique",
         "noScheduled": "Aucune maintenance planifiée n'est disponible pour le moment.",
         "noPast": "Aucune maintenance passée n'a été trouvée.",
-        "status": {
+        "maintenance": {
             "scheduled": "Planifié",
-            "in-progress": "En cours",
+            "inProgress": "En cours",
             "completed": "Terminé"
         }
     },
     "metrics": {
         "availability": "Disponibilité moyenne",
-        "daysWithout": "Jours sans incident",
-        "daysSuffix": "jours",
+        "daysWithout": "{days} jours sans incident",
+        "daysSuffix": "j",
         "responseTime": "Temps de réponse",
         "none": "—"
     },

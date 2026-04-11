@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useI18n } from "@/lib/I18nProvider";
 
 export default function PlaygroundPage() {
+  const { t } = useI18n();
   const [token, setToken] = useState("");
   const [url, setUrl] = useState("/api/v1/search/history");
   const [method, setMethod] = useState("GET");
@@ -65,11 +67,9 @@ export default function PlaygroundPage() {
         <header className="mb-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
           <div>
             <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-              Octara API Playground
+              {t("title")}
             </h1>
-            <p className="text-gray-400 mt-2">
-              Testez vos routes d'API en temps réel de manière sécurisée.
-            </p>
+            <p className="text-gray-400 mt-2">{t("description")}</p>
           </div>
           <div className="text-right">
             <span className="text-xs font-mono text-gray-500 uppercase tracking-widest border border-white/10 px-2 py-1 rounded">
@@ -79,23 +79,22 @@ export default function PlaygroundPage() {
         </header>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Left Column - Configuration */}
           <div className="lg:col-span-12 xl:col-span-5 space-y-6">
             <div className="bg-[#141414] border border-white/5 rounded-2xl p-6 shadow-xl relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 blur-3xl -z-1"></div>
               <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
                 <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
-                Authentification
+                {t("auth.title")}
               </h2>
               <div className="space-y-2">
                 <label className="text-xs uppercase text-gray-500 font-bold tracking-wider">
-                  Bearer Token
+                  {t("auth.token_label")}
                 </label>
                 <input
                   type="password"
                   value={token}
                   onChange={(e) => saveToken(e.target.value)}
-                  placeholder="votre_access_token"
+                  placeholder={t("auth.token_placeholder")}
                   className="w-full bg-[#0a0a0a] border border-white/10 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-blue-500 transition-colors font-mono"
                 />
               </div>
@@ -104,7 +103,7 @@ export default function PlaygroundPage() {
             <div className="bg-[#141414] border border-white/5 rounded-2xl p-6 shadow-xl">
               <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
                 <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
-                Endpoint
+                {t("endpoint.title")}
               </h2>
               <div className="flex gap-2">
                 <select
@@ -129,7 +128,7 @@ export default function PlaygroundPage() {
               {method !== "GET" && method !== "DELETE" && (
                 <div className="mt-6 space-y-2">
                   <label className="text-xs uppercase text-gray-500 font-bold tracking-wider">
-                    Body (JSON)
+                    {t("endpoint.body_label")}
                   </label>
                   <textarea
                     value={body}
@@ -150,14 +149,13 @@ export default function PlaygroundPage() {
                 }`}
               >
                 <span className="relative z-10">
-                  {loading ? "Chargement..." : "Envoyer la requête"}
+                  {loading ? t("endpoint.loading") : t("endpoint.submit")}
                 </span>
                 <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </button>
             </div>
           </div>
 
-          {/* Right Column - Response */}
           <div className="lg:col-span-12 xl:col-span-7">
             <div className="bg-[#141414] border border-white/5 rounded-2xl min-h-[400px] lg:h-[750px] flex flex-col shadow-xl overflow-hidden relative">
               <div className="flex items-center justify-between px-6 py-4 border-b border-white/5 bg-white/5">
@@ -170,13 +168,13 @@ export default function PlaygroundPage() {
                         : "text-gray-500 hover:text-gray-300"
                     }`}
                   >
-                    Réponse
+                    {t("response.title")}
                   </button>
                 </div>
                 {status && (
                   <div className="flex items-center gap-2">
                     <span className="text-xs text-gray-500 font-bold uppercase">
-                      Status:
+                      {t("response.status_label")}:
                     </span>
                     <span
                       className={`text-sm font-bold font-mono ${getStatusColor(status)}`}
@@ -209,7 +207,7 @@ export default function PlaygroundPage() {
                         />
                       </svg>
                     </div>
-                    En attente de votre première requête...
+                    {t("response.waiting")}
                   </div>
                 )}
               </div>
@@ -222,7 +220,7 @@ export default function PlaygroundPage() {
                   onClick={() => setResponse(null)}
                   className="text-[10px] text-gray-500 hover:text-gray-300 uppercase font-bold"
                 >
-                  Effacer
+                  {t("response.clear")}
                 </button>
               </div>
             </div>

@@ -42,6 +42,7 @@ export async function GET() {
         name: user?.name,
         createdAt: user?.createdAt,
         passwordUpdatedAt: user?.passwordUpdatedAt,
+        avatarURL: "/api/v1/me/avatar",
       },
     });
   } catch (error) {

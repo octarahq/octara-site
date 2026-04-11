@@ -21,5 +21,12 @@
         "legal": "Légal",
         "linkTerms": "Conditions",
         "linkPrivacy": "Confidentialité"
+    },
+    "sidebar": {
+        "account": "Mon Compte",
+        "connected_apps": "Apps Connectées",
+        "developer_portal": "Espace Développeur",
+        "status_label": "Statut",
+        "connected": "Connecté"
     }
 }

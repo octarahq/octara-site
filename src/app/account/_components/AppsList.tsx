@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useI18n } from "@/lib/I18nProvider";
 
 export interface ConnectedApp {
   id: string;
@@ -21,17 +22,13 @@ export interface AppsListProps {
 }
 
 export default function AppsList({ initialApps }: AppsListProps) {
+  const { t } = useI18n();
   const router = useRouter();
   const [apps, setApps] = useState<ConnectedApp[]>(initialApps);
   const [isRevoking, setIsRevoking] = useState<string | null>(null);
 
   const handleRevoke = async (clientId: string) => {
-    if (
-      !confirm(
-        "Voulez-vous vraiment révoquer l'accès pour cette application ? Elle ne pourra plus accéder à vos données tant que vous ne vous reconnecterez pas.",
-      )
-    )
-      return;
+    if (!confirm(t("account.connected-apps.list.app.revoke_confirm"))) return;
 
     setIsRevoking(clientId);
     try {
@@ -59,10 +56,10 @@ export default function AppsList({ initialApps }: AppsListProps) {
             apps_outage
           </span>
           <h3 className="text-xl font-bold mb-2 text-on-surface">
-            Aucune application connectée
+            {t("account.connected-apps.list.empty.title")}
           </h3>
           <p className="text-on-surface-variant text-sm">
-            Gérez les applications autorisées pour sécuriser votre identité.
+            {t("account.connected-apps.list.empty.description")}
           </p>
         </div>
       ) : (
@@ -88,7 +85,7 @@ export default function AppsList({ initialApps }: AppsListProps) {
                       </h3>
                       {app.client.is_first_party && (
                         <span className="bg-primary/10 text-primary text-[8px] font-black uppercase px-2 py-0.5 rounded-full border border-primary/10 tracking-widest leading-none">
-                          Officiel
+                          {t("account.connected-apps.list.app.official")}
                         </span>
                       )}
                     </div>
@@ -102,7 +99,7 @@ export default function AppsList({ initialApps }: AppsListProps) {
               <div className="space-y-6 flex-grow">
                 <div>
                   <label className="block text-[10px] uppercase font-black tracking-widest text-on-surface-variant mb-3 ml-1">
-                    Permissions accordées
+                    {t("account.connected-apps.list.app.permissions_label")}
                   </label>
                   <div className="flex flex-wrap gap-2">
                     {app.scopes.split(" ").map((scope, idx) => (
@@ -124,7 +121,7 @@ export default function AppsList({ initialApps }: AppsListProps) {
                 <div className="flex items-center justify-between">
                   <div className="flex flex-col">
                     <span className="text-[10px] text-on-surface-variant uppercase font-black tracking-widest opacity-60">
-                      Connectée le
+                      {t("account.connected-apps.list.app.connected_on_label")}
                     </span>
                     <span className="text-xs font-bold text-on-surface">
                       {new Date(app.createdAt).toLocaleDateString()}
@@ -136,13 +133,13 @@ export default function AppsList({ initialApps }: AppsListProps) {
                     className="px-5 py-2.5 rounded-xl border border-error/20 text-error text-[10px] font-black uppercase tracking-widest hover:bg-error hover:text-white transition-all active:scale-95 disabled:opacity-50 flex items-center gap-2"
                   >
                     {isRevoking === app.client.id ? (
-                      "Révocation..."
+                      t("account.connected-apps.list.app.revoking")
                     ) : (
                       <>
                         <span className="material-symbols-outlined text-xs">
                           logout
                         </span>
-                        Révoquer l'accès
+                        {t("account.connected-apps.list.app.revoke_button")}
                       </>
                     )}
                   </button>

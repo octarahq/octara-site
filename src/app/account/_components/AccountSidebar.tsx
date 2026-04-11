@@ -3,8 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useI18n } from "@/lib/I18nProvider";
 
 export default function AccountSidebar() {
+  const { t } = useI18n();
   const pathname = usePathname();
 
   return (
@@ -29,18 +31,22 @@ export default function AccountSidebar() {
       </div>
 
       <nav className="flex flex-col gap-1 p-6 flex-grow">
-        
         {[
-          { href: "/account", label: "Mon Compte", icon: "person", fill: true },
+          {
+            href: "/account",
+            label: t("sidebar.account"),
+            icon: "person",
+            fill: true,
+          },
           {
             href: "/account/connected-apps",
-            label: "Apps Connectées",
+            label: t("sidebar.connected_apps"),
             icon: "grid_view",
             fill: false,
           },
           {
             href: "/account/apps",
-            label: "Espace Développeur",
+            label: t("sidebar.developer_portal"),
             icon: "deployed_code",
             fill: false,
           },
@@ -72,18 +78,6 @@ export default function AccountSidebar() {
           );
         })}
       </nav>
-
-      <div className="p-8 border-t border-outline">
-        <div className="p-4 bg-white/5 rounded-2xl border border-white/5">
-          <p className="text-[10px] font-black uppercase tracking-widest opacity-20 mb-2">
-            Statut
-          </p>
-          <div className="flex items-center gap-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
-            <span className="text-xs font-bold opacity-60">Connecté</span>
-          </div>
-        </div>
-      </div>
     </aside>
   );
 }

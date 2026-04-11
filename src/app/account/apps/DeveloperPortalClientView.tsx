@@ -5,6 +5,7 @@ import { useAuth } from "@/lib/AuthContext";
 import AccountSidebar from "@/app/account/_components/AccountSidebar";
 import Link from "next/link";
 import Image from "next/image";
+import { useI18n } from "@/lib/I18nProvider";
 
 interface AppDetail {
   id: string;
@@ -20,6 +21,7 @@ export default function DeveloperPortalClientView({
 }: {
   initialApps: AppDetail[];
 }) {
+  const { t } = useI18n();
   const { user } = useAuth();
   const [apps, setApps] = useState<AppDetail[]>(initialApps);
 
@@ -120,7 +122,7 @@ export default function DeveloperPortalClientView({
             <div className="relative w-full max-w-lg bg-surface-container rounded-3xl border border-white/5 shadow-2xl p-8 animate-in zoom-in-95 duration-200">
               <div className="flex items-center justify-between mb-8">
                 <h3 className="text-2xl font-black font-display">
-                  Enregistrer une App
+                  {t("account.apps.modal.create_title")}
                 </h3>
                 <button
                   onClick={() => setShowModal(false)}
@@ -136,7 +138,7 @@ export default function DeveloperPortalClientView({
                 <div className="space-y-4">
                   <div>
                     <label className="block text-[10px] uppercase font-black tracking-widest text-on-surface/20 mb-2 ml-1">
-                      Nom de l'application
+                      {t("account.apps.modal.name_label")}
                     </label>
                     <input
                       type="text"
@@ -149,7 +151,7 @@ export default function DeveloperPortalClientView({
                   </div>
                   <div>
                     <label className="block text-[10px] uppercase font-black tracking-widest text-on-surface/20 mb-2 ml-1">
-                      URIs de redirection (séparées par des virgules)
+                      {t("account.apps.modal.url_label")}
                     </label>
                     <input
                       type="text"
@@ -166,7 +168,9 @@ export default function DeveloperPortalClientView({
                   disabled={isCreating}
                   className="w-full py-4 bg-primary text-white font-black rounded-2xl shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50"
                 >
-                  {isCreating ? "Enregistrement..." : "Enregistrer l'App"}
+                  {isCreating
+                    ? t("account.apps.modal.creating")
+                    : t("account.apps.modal.submit")}
                 </button>
               </form>
             </div>
@@ -179,12 +183,11 @@ export default function DeveloperPortalClientView({
                   </span>
                 </div>
                 <h3 className="text-xl font-black text-error font-display uppercase tracking-tighter">
-                  Sécurité du Client
+                  {t("account.apps.modal.security_title")}
                 </h3>
               </div>
               <p className="text-on-surface/40 text-sm mb-8 leading-relaxed">
-                Copies ces informations <b>maintenant</b>. Le secret ne sera
-                plus jamais accessible une fois cette page fermée.
+                {t("account.apps.modal.secret_warning_copy")}
               </p>
 
               <div className="space-y-6">
@@ -213,7 +216,7 @@ export default function DeveloperPortalClientView({
                 }}
                 className="w-full mt-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 text-on-surface font-black rounded-2xl transition-all"
               >
-                J'ai tout sauvegardé, fermer
+                {t("account.apps.modal.done")}
               </button>
             </div>
           )}
@@ -235,10 +238,10 @@ export default function DeveloperPortalClientView({
               </div>
               <div>
                 <h3 className="text-xl font-black font-display text-error">
-                  Suppression Irréversible
+                  {t("account.apps.delete_modal.title")}
                 </h3>
                 <p className="text-[10px] uppercase tracking-widest text-error/60 font-black">
-                  Action requise
+                  {t("account.apps.delete_modal.action_required")}
                 </p>
               </div>
             </div>
@@ -297,7 +300,7 @@ export default function DeveloperPortalClientView({
       <header className="fixed top-0 right-0 left-72 h-20 z-40 bg-background-dark/80 backdrop-blur-xl flex items-center justify-between px-12 border-b border-outline">
         <div className="flex items-center gap-2">
           <span className="text-on-surface text-[10px] font-black uppercase tracking-widest">
-            Espace Développeur
+            {t("account.apps.breadcrumb.portal")}
           </span>
         </div>
 
@@ -324,11 +327,10 @@ export default function DeveloperPortalClientView({
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-16 animate-in slide-in-from-bottom-4 duration-700">
             <div>
               <h1 className="font-display text-5xl font-black tracking-tighter text-on-surface mb-3">
-                Apps enregistrées
+                {t("account.apps.title")}
               </h1>
               <p className="text-on-surface/40 text-sm max-w-xl leading-relaxed">
-                Gérez vos endpoints sécurisés OAuth2. Vous avez {apps.length}{" "}
-                applications actives dans votre vault.
+                {t("account.apps.description_count", { count: apps.length })}
               </p>
             </div>
             <div className="flex items-center gap-4">
@@ -340,7 +342,7 @@ export default function DeveloperPortalClientView({
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="App ID ou Nom..."
+                  placeholder={t("account.apps.search_placeholder")}
                   className="w-64 bg-background-dark/50 border border-outline focus:border-primary px-10 py-3 rounded-2xl outline-none text-[10px] font-black uppercase tracking-widest text-on-surface placeholder:opacity-10 transition-all"
                 />
               </div>
@@ -372,14 +374,15 @@ export default function DeveloperPortalClientView({
                   {app.name}
                 </h3>
                 <p className="text-on-surface/60 text-xs mb-8 leading-relaxed font-semibold h-10 overflow-hidden text-ellipsis line-clamp-2">
-                  Infrastructure client enregistrée le{" "}
-                  {new Date(app.createdAt).toLocaleDateString()}.
+                  {t("account.apps.stats.registered", {
+                    date: new Date(app.createdAt).toLocaleDateString(),
+                  })}
                 </p>
 
                 <div className="space-y-3 relative z-10">
                   <div className="flex justify-between items-center bg-background-dark/30 border border-outline p-4 rounded-2xl">
                     <span className="text-[9px] text-on-surface/60 font-black uppercase tracking-widest">
-                      Utilisateurs actifs
+                      {t("account.apps.stats.users")}
                     </span>
                     <span className="font-display font-black text-xs text-on-surface/60">
                       {app.userCount}
@@ -403,7 +406,7 @@ export default function DeveloperPortalClientView({
                     href={`/account/apps/${app.id}/settings`}
                     className="h-10 px-6 flex items-center justify-center rounded-xl bg-white/5 hover:bg-primary text-on-surface/40 hover:text-white font-black text-[10px] uppercase tracking-widest transition-all duration-300 border border-white/5 hover:border-primary"
                   >
-                    <span>Modifier l'app</span>
+                    <span>{t("account.apps.modify_app")}</span>
                   </Link>
                 </div>
               </div>
@@ -422,7 +425,7 @@ export default function DeveloperPortalClientView({
                 </span>
               </div>
               <span className="font-display text-sm font-black text-on-surface/40 group-hover:text-on-surface transition-colors mb-2 uppercase tracking-widest">
-                Nouvelle Application
+                {t("account.apps.create_button")}
               </span>
             </button>
           </div>

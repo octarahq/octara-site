@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/AuthContext";
-import Link from "next/link";
+import { useI18n } from "@/lib/I18nProvider";
 
 interface User {
   id: string;
@@ -13,8 +13,11 @@ interface User {
   passwordUpdatedAt?: string;
 }
 
-function getTimeAgo(date: string | undefined): string {
-  if (!date) return "jamais";
+function getTimeAgo(
+  date: string | undefined,
+  t: (key: string, params?: any) => string,
+): string {
+  if (!date) return "---";
   const now = new Date();
   const past = new Date(date);
   const diffInMs = now.getTime() - past.getTime();
@@ -24,14 +27,17 @@ function getTimeAgo(date: string | undefined): string {
     const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60));
     if (diffInHours === 0) {
       const diffInMins = Math.floor(diffInMs / (1000 * 60));
-      return diffInMins <= 1 ? "à l'instant" : `il y a ${diffInMins} min`;
+      return diffInMins <= 1
+        ? t("account.time.now")
+        : t("account.time.minutes", { n: diffInMins });
     }
-    return `il y a ${diffInHours} h`;
+    return t("account.time.hours", { n: diffInHours });
   }
-  return `il y a ${diffInDays} j`;
+  return t("account.time.days", { n: diffInDays });
 }
 
 export default function AccountForms({ initialUser }: { initialUser: User }) {
+  const { t } = useI18n();
   const { refreshAuth } = useAuth();
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -73,17 +79,20 @@ export default function AccountForms({ initialUser }: { initialUser: User }) {
       const data = await res.json();
 
       if (data.success) {
-        setStatus({ type: "success", msg: "Profil mis à jour avec succès !" });
+        setStatus({
+          type: "success",
+          msg: t("account.profile.success"),
+        });
         await refreshAuth();
         setUser((prev) => ({ ...prev, name, email }));
       } else {
         setStatus({
           type: "error",
-          msg: data.error || "Une erreur est survenue",
+          msg: data.error || t("account.profile.error_conn"),
         });
       }
     } catch (err) {
-      setStatus({ type: "error", msg: "Erreur de connexion serveur" });
+      setStatus({ type: "error", msg: t("account.profile.error_conn") });
     } finally {
       setIsUpdating(false);
     }
@@ -96,7 +105,7 @@ export default function AccountForms({ initialUser }: { initialUser: User }) {
     if (newPassword !== confirmPassword) {
       setSecurityStatus({
         type: "error",
-        msg: "Les mots de passe ne correspondent pas",
+        msg: t("account.security.error_match"),
       });
       return;
     }
@@ -104,7 +113,7 @@ export default function AccountForms({ initialUser }: { initialUser: User }) {
     if (newPassword.length < 8) {
       setSecurityStatus({
         type: "error",
-        msg: "Le mot de passe doit faire au moins 8 caractères",
+        msg: t("account.security.error_length"),
       });
       return;
     }
@@ -121,7 +130,7 @@ export default function AccountForms({ initialUser }: { initialUser: User }) {
       if (data.success) {
         setSecurityStatus({
           type: "success",
-          msg: "Mot de passe modifié avec succès !",
+          msg: t("account.security.success"),
         });
         setCurrentPassword("");
         setNewPassword("");
@@ -135,11 +144,14 @@ export default function AccountForms({ initialUser }: { initialUser: User }) {
       } else {
         setSecurityStatus({
           type: "error",
-          msg: data.error || "Ancien mot de passe incorrect",
+          msg: data.error || t("account.security.error_old"),
         });
       }
     } catch (err) {
-      setSecurityStatus({ type: "error", msg: "Erreur serveur" });
+      setSecurityStatus({
+        type: "error",
+        msg: t("account.profile.error_conn"),
+      });
     } finally {
       setIsUpdating(false);
     }
@@ -190,8 +202,8 @@ export default function AccountForms({ initialUser }: { initialUser: User }) {
           ></div>
           <div className="relative w-full max-w-md bg-surface-container rounded-3xl border border-outline shadow-2xl p-8 animate-in zoom-in-95 duration-200">
             <div className="flex items-center justify-between mb-8">
-              <h3 className="text-2xl font-black font-display">
-                Protection Vault
+              <h3 className="text-2xl font-black font-display uppercase tracking-tighter">
+                {t("account.security.modal_title")}
               </h3>
               <button
                 onClick={() => setShowPasswordModal(false)}
@@ -206,7 +218,7 @@ export default function AccountForms({ initialUser }: { initialUser: User }) {
               <div className="space-y-4">
                 <div>
                   <label className="block text-[10px] uppercase font-black tracking-widest text-on-surface/20 mb-2 ml-1">
-                    Secret actuel
+                    {t("account.security.current_label")}
                   </label>
                   <input
                     type="password"
@@ -214,13 +226,13 @@ export default function AccountForms({ initialUser }: { initialUser: User }) {
                     value={currentPassword}
                     onChange={(e) => setCurrentPassword(e.target.value)}
                     className="w-full bg-background-dark/50 border border-outline rounded-xl px-5 py-4 focus:border-primary outline-none transition-all text-sm font-semibold"
-                    placeholder="••••••••"
+                    placeholder={t("account.security.current_placeholder")}
                   />
                 </div>
                 <div className="h-[1px] bg-outline/20 my-2"></div>
                 <div>
                   <label className="block text-[10px] uppercase font-black tracking-widest text-on-surface/20 mb-2 ml-1">
-                    Nouveau secret
+                    {t("account.security.new_label")}
                   </label>
                   <input
                     type="password"
@@ -229,12 +241,12 @@ export default function AccountForms({ initialUser }: { initialUser: User }) {
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
                     className="w-full bg-background-dark/50 border border-outline rounded-xl px-5 py-4 focus:border-primary outline-none transition-all text-sm font-semibold"
-                    placeholder="Min. 8 caractères"
+                    placeholder={t("account.security.new_placeholder")}
                   />
                 </div>
                 <div>
                   <label className="block text-[10px] uppercase font-black tracking-widest text-on-surface/20 mb-2 ml-1">
-                    Validation du secret
+                    {t("account.security.confirm_label")}
                   </label>
                   <input
                     type="password"
@@ -242,7 +254,7 @@ export default function AccountForms({ initialUser }: { initialUser: User }) {
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     className="w-full bg-background-dark/50 border border-outline rounded-xl px-5 py-4 focus:border-primary outline-none transition-all text-sm font-semibold"
-                    placeholder="Confirmation"
+                    placeholder={t("account.security.confirm_placeholder")}
                   />
                 </div>
               </div>
@@ -262,7 +274,9 @@ export default function AccountForms({ initialUser }: { initialUser: User }) {
                 disabled={isUpdating}
                 className="w-full py-4 bg-primary text-white font-black rounded-2xl shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50"
               >
-                {isUpdating ? "Traitement..." : "Modifier le secret"}
+                {isUpdating
+                  ? t("account.security.processing")
+                  : t("account.security.submit")}
               </button>
             </form>
           </div>
@@ -272,7 +286,7 @@ export default function AccountForms({ initialUser }: { initialUser: User }) {
       <header className="fixed top-0 right-0 left-72 h-20 z-40 bg-background-dark/80 backdrop-blur-xl flex items-center justify-between px-12 border-b border-outline">
         <div className="flex items-center gap-2">
           <span className="text-on-surface text-[10px] font-black uppercase tracking-widest">
-            Identité
+            {t("account.header.identity")}
           </span>
         </div>
         <div className="flex items-center gap-6">
@@ -297,11 +311,10 @@ export default function AccountForms({ initialUser }: { initialUser: User }) {
         <div className="max-w-6xl mx-auto">
           <div className="mb-16 animate-in slide-in-from-bottom-4 duration-700">
             <h2 className="text-5xl font-black font-display tracking-tighter mb-4 text-on-surface">
-              Paramètres du Compte
+              {t("account.title")}
             </h2>
             <p className="text-on-surface/40 max-w-xl text-sm leading-relaxed">
-              Gérez votre identité centrale sur l'écosystème Octara et vos
-              privilèges d'accès.
+              {t("account.description")}
             </p>
           </div>
 
@@ -334,14 +347,15 @@ export default function AccountForms({ initialUser }: { initialUser: User }) {
                   </div>
                   <div>
                     <h3 className="text-xl font-black text-on-surface mb-2 font-display">
-                      {user.name || "Utilisateur Anonyme"}
+                      {user.name || t("account.header.anonymous")}
                     </h3>
                     <div className="flex flex-col gap-1 items-start">
                       <span className="text-[10px] text-on-surface/20 font-black uppercase tracking-[0.2em] bg-background-dark/50 px-3 py-1 rounded-lg border border-outline">
-                        Inscrit depuis le{" "}
-                        {user.createdAt
-                          ? new Date(user.createdAt).toLocaleDateString()
-                          : "???"}
+                        {t("account.profile.registered_since", {
+                          date: user.createdAt
+                            ? new Date(user.createdAt).toLocaleDateString()
+                            : "???",
+                        })}
                       </span>
                     </div>
                     {status && (
@@ -358,7 +372,7 @@ export default function AccountForms({ initialUser }: { initialUser: User }) {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="space-y-3">
                       <label className="block text-[10px] uppercase tracking-widest font-black text-on-surface/20 ml-1">
-                        Nom complet
+                        {t("account.profile.name_label")}
                       </label>
                       <input
                         className="w-full bg-background-dark/50 border border-outline focus:border-primary transition-all px-5 py-4 rounded-xl text-sm font-semibold text-on-surface outline-none"
@@ -366,12 +380,12 @@ export default function AccountForms({ initialUser }: { initialUser: User }) {
                         maxLength={100}
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        placeholder="John Doe"
+                        placeholder={t("account.profile.name_placeholder")}
                       />
                     </div>
                     <div className="space-y-3">
                       <label className="block text-[10px] uppercase tracking-widest font-black text-on-surface/20 ml-1">
-                        Adresse e-mail
+                        {t("account.profile.email_label")}
                       </label>
                       <input
                         className="w-full bg-background-dark/50 border border-outline focus:border-primary transition-all px-5 py-4 rounded-xl text-sm font-semibold text-on-surface outline-none"
@@ -379,7 +393,7 @@ export default function AccountForms({ initialUser }: { initialUser: User }) {
                         maxLength={255}
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="john@example.com"
+                        placeholder={t("account.profile.email_placeholder")}
                       />
                     </div>
                   </div>
@@ -389,8 +403,8 @@ export default function AccountForms({ initialUser }: { initialUser: User }) {
                       className="bg-primary text-white px-10 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-primary/20 disabled:opacity-50"
                     >
                       {isUpdating
-                        ? "Synchronisation..."
-                        : "Mettre à jour l'identité"}
+                        ? t("account.profile.updating")
+                        : t("account.profile.update_button")}
                     </button>
                   </div>
                 </form>
@@ -406,12 +420,14 @@ export default function AccountForms({ initialUser }: { initialUser: User }) {
                     </span>
                   </div>
                   <h3 className="text-base font-black font-display uppercase tracking-widest">
-                    Identifiants
+                    {t("account.security.title")}
                   </h3>
                 </div>
                 <p className="text-[10px] text-on-surface/40 font-black uppercase mb-8 leading-relaxed">
-                  Mot de passe modifié {getTimeAgo(user.passwordUpdatedAt)}.
-                  Gardez vos identifiants en sécurité dans le vault.
+                  {t("account.security.password_modified", {
+                    timeAgo: getTimeAgo(user.passwordUpdatedAt, t),
+                  })}
+                  {t("account.security.vault_notice")}
                 </p>
                 <button
                   onClick={() => {
@@ -420,7 +436,7 @@ export default function AccountForms({ initialUser }: { initialUser: User }) {
                   }}
                   className="w-full bg-background-dark/50 border border-outline py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-primary hover:text-white hover:border-primary transition-all"
                 >
-                  Changer le mot de passe
+                  {t("account.security.change_button")}
                 </button>
               </div>
 
@@ -432,12 +448,12 @@ export default function AccountForms({ initialUser }: { initialUser: User }) {
                     </span>
                   </div>
                   <h3 className="text-base font-black font-display uppercase tracking-widest">
-                    Sécurité 2FA
+                    {t("account.2fa.title")}
                   </h3>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-black uppercase tracking-widest text-on-surface/20">
-                    Bientôt disponible
+                    {t("account.2fa.soon")}
                   </span>
                 </div>
               </div>
@@ -452,10 +468,10 @@ export default function AccountForms({ initialUser }: { initialUser: User }) {
                 </div>
                 <div>
                   <h3 className="text-base font-black font-display uppercase tracking-widest text-error">
-                    Zone de danger
+                    {t("account.danger.title")}
                   </h3>
                   <p className="text-[10px] text-error/40 font-black uppercase tracking-widest">
-                    Terminer la session et quitter le vault
+                    {t("account.danger.description")}
                   </p>
                 </div>
               </div>
@@ -467,7 +483,7 @@ export default function AccountForms({ initialUser }: { initialUser: User }) {
                 }}
                 className="px-10 py-4 bg-error text-white font-black text-xs uppercase tracking-widest rounded-2xl shadow-xl shadow-error/20 hover:scale-105 active:scale-95 transition-all"
               >
-                Déconnexion
+                {t("account.danger.logout")}
               </button>
             </section>
           </div>

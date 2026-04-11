@@ -9,24 +9,28 @@
         },
         "lastUpdated": "Last updated: {when} UTC"
     },
+    "hero": {
+        "title": "Service Overview",
+        "subtitle": "Real-time state of our core infrastructures."
+    },
     "incidents": {
-        "title": "Incidents",
-        "none": "No incidents reported",
+        "title": "Active Incidents",
+        "none": "No active incidents reported at this time.",
         "label": {
             "investigating": "Investigating",
             "identified": "Identified",
             "monitoring": "Monitoring",
             "resolved": "Resolved"
         },
-        "lastUpdated": "Updated: {date}",
-        "noUpdates": "No updates available"
+        "lastUpdated": "Last updated: {when} UTC",
+        "noUpdates": "No updates available."
     },
     "history": {
-        "title": "History",
+        "title": "Maintenance History",
         "show": "Show full history",
         "hide": "Hide history",
-        "noScheduled": "No scheduled maintenance",
-        "noPast": "No past incidents in the last 90 days",
+        "noScheduled": "No scheduled maintenance at this time.",
+        "noPast": "No past incidents in the last 90 days.",
         "maintenance": {
             "scheduled": "Scheduled",
             "inProgress": "In Progress",
@@ -34,14 +38,14 @@
         }
     },
     "metrics": {
-        "availability": "Availability",
+        "availability": "Average Availability",
         "daysWithout": "{days} days without incident",
         "daysSuffix": "d",
-        "responseTime": "Average response time",
-        "none": "No data"
+        "responseTime": "Response Time",
+        "none": "—"
     },
     "services": {
-        "none": "No services found",
+        "none": "No services found.",
         "live": "Operational",
         "maintenance": "Maintenance",
         "degraded": "Degraded performance",

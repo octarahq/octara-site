@@ -1,0 +1,35 @@
+{
+    "breadcrumb": {
+        "portal": "Espace Développeur"
+    },
+    "title": "Apps enregistrées",
+    "description_count": "Gérez vos endpoints sécurisés OAuth2. Vous avez {count} applications actives dans votre vault.",
+    "search_placeholder": "App ID ou Nom...",
+    "create_button": "Nouvelle Application",
+    "modify_app": "Modifier l'app",
+    "stats": {
+        "users": "Utilisateurs actifs",
+        "registered": "Infrastructure client enregistrée le {date}."
+    },
+    "modal": {
+        "create_title": "Enregistrer une App",
+        "name_label": "Nom de l'application",
+        "name_placeholder": "e.g. Octara Dashboard",
+        "url_label": "URIs de redirection (séparées par des virgules)",
+        "url_help": "Séparez les URLs par des virgules.",
+        "submit": "Enregistrer l'App",
+        "creating": "Enregistrement...",
+        "security_title": "Sécurité du Client",
+        "secret_warning_copy": "Copiez ces informations maintenant. Le secret ne sera plus jamais accessible une fois cette page fermée.",
+        "done": "J'ai tout sauvegardé, fermer"
+    },
+    "delete_modal": {
+        "title": "Suppression Irréversible",
+        "action_required": "Action requise",
+        "description": "Vous êtes sur le point de supprimer l'application {name}. Tous les accès utilisateurs et les jetons seront immédiatement révoqués.",
+        "confirm_label": "Tapez {name} pour confirmer",
+        "cancel": "Annuler",
+        "submit": "Supprimer",
+        "deleting": "Suppression..."
+    }
+}

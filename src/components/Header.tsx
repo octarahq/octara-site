@@ -2,23 +2,11 @@
 
 import Link from "next/link";
 import { useI18n } from "@/lib/I18nProvider";
-import { useState, useEffect } from "react";
+import { useAuth } from "@/lib/AuthContext";
 
 export default function Header() {
   const { t } = useI18n();
-  const [user, setUser] = useState<{ id: string; email: string } | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch("/api/auth/status")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.authenticated) {
-          setUser(data.user);
-        }
-      })
-      .finally(() => setLoading(false));
-  }, []);
+  const { user, authenticated, loading } = useAuth();
 
   return (
     <header className="flex items-center justify-between whitespace-nowrap border-b border-slate-200 dark:border-slate-800 px-6 py-4 lg:px-20 backdrop-blur-md sticky top-0 z-50 bg-white/80 dark:bg-slate-950/80">
@@ -55,12 +43,12 @@ export default function Header() {
 
         {!loading && (
           <div className="flex items-center gap-3">
-            {user ? (
+            {authenticated && user ? (
               <div className="flex items-center gap-5">
                 <Link href="/account">
                   <div className="size-10 rounded-full border-2 border-white dark:border-slate-800 shadow-xl overflow-hidden hover:scale-110 transition-transform ring-4 ring-primary/5">
                     <img
-                      src={`/api/user/avatar/${user.id}`}
+                      src={user.avatarURL || "/favicon.svg"}
                       alt="Profile"
                       className="size-full object-cover"
                     />

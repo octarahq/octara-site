@@ -32,7 +32,15 @@ export default async function middleware(request: NextRequest) {
   const acceptLanguage = request.headers.get("accept-language") || "en";
   const locale = acceptLanguage.startsWith("fr") ? "fr" : "en";
 
-  const response = NextResponse.next();
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-next-intl-locale", locale);
+  requestHeaders.set("x-pathname", url.pathname);
+
+  const response = NextResponse.next({
+    request: {
+      headers: requestHeaders,
+    },
+  });
   response.headers.set("x-next-intl-locale", locale);
   response.headers.set("x-pathname", url.pathname);
 

@@ -33,10 +33,10 @@ export default function RegisterPage() {
         router.push("/account");
         router.refresh();
       } else {
-        setError(data.error || t("error_invalid"));
+        setError(data.error || t("register.error_invalid"));
       }
     } catch (err) {
-      setError(t("error_conn"));
+      setError(t("register.error_conn"));
     } finally {
       setLoading(false);
     }
@@ -56,10 +56,10 @@ export default function RegisterPage() {
             <img src="/favicon.svg" alt="Octara" className="size-8" />
           </Link>
           <h1 className="text-4xl font-black tracking-tight text-white mb-3">
-            {t("title")}
+            {t("register.title")}
           </h1>
           <p className="text-slate-400 text-sm font-medium leading-relaxed px-4">
-            {t("description")}
+            {t("register.description")}
           </p>
         </div>
 
@@ -75,7 +75,7 @@ export default function RegisterPage() {
 
           <div>
             <label className="block text-[10px] font-black uppercase tracking-widest text-slate-500 mb-2 ml-1">
-              {t("email_label")}
+              {t("register.email_label")}
             </label>
             <input
               type="email"
@@ -83,13 +83,13 @@ export default function RegisterPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full px-5 py-4 rounded-2xl bg-white/5 border border-white/10 outline-none focus:ring-2 focus:ring-primary/50 text-white text-sm font-medium transition-all placeholder:text-slate-600 font-body"
-              placeholder={t("email_placeholder")}
+              placeholder={t("register.email_placeholder")}
             />
           </div>
 
           <div>
             <label className="block text-[10px] font-black uppercase tracking-widest text-slate-500 mb-2 ml-1">
-              {t("password_label")}
+              {t("register.password_label")}
             </label>
             <input
               type="password"
@@ -97,7 +97,7 @@ export default function RegisterPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-5 py-4 rounded-2xl bg-white/5 border border-white/10 outline-none focus:ring-2 focus:ring-primary/50 text-white text-sm font-medium transition-all placeholder:text-slate-600 font-body"
-              placeholder={t("password_placeholder")}
+              placeholder={t("register.password_placeholder")}
             />
           </div>
 
@@ -107,18 +107,18 @@ export default function RegisterPage() {
               disabled={loading}
               className="w-full py-4 bg-primary text-slate-950 rounded-2xl font-black text-sm shadow-xl shadow-primary/20 hover:scale-[1.03] active:scale-[0.97] transition-all disabled:opacity-50"
             >
-              {loading ? t("submitting") : t("submit")}
+              {loading ? t("register.submitting") : t("register.submit")}
             </button>
           </div>
         </form>
 
         <div className="mt-8 text-center text-xs font-medium text-slate-500">
-          {t("has_account")}{" "}
+          {t("register.has_account")}{" "}
           <Link
             href="/login"
             className="text-white font-black hover:underline underline-offset-4"
           >
-            {t("login_link")}
+            {t("register.login_link")}
           </Link>
         </div>
       </div>
