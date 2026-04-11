@@ -43,7 +43,8 @@ export default function MultiSelect({
   const filteredOptions = useMemo(() => {
     return options.filter(
       (opt) =>
-        opt.label.toLowerCase().includes(search.toLowerCase()) || opt.description?.toLowerCase().includes(search.toLowerCase()),
+        opt.label.toLowerCase().includes(search.toLowerCase()) ||
+        opt.description?.toLowerCase().includes(search.toLowerCase()),
     );
   }, [options, search]);
 

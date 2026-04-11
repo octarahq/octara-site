@@ -1,56 +1,56 @@
 {
-    "page": {
-        "title": {
-            "operational": "Tous les systèmes opérationnels",
-            "down": "1 système hors service",
-            "downMany": "{count} systèmes hors service",
-            "maintenance": "1 système en maintenance",
-            "maintenanceMany": "{count} systèmes en maintenance"
-        },
-        "lastUpdated": "Dernière mise à jour : {when} UTC"
+  "page": {
+    "title": {
+      "operational": "Tous les systèmes opérationnels",
+      "down": "1 système hors service",
+      "downMany": "{count} systèmes hors service",
+      "maintenance": "1 système en maintenance",
+      "maintenanceMany": "{count} systèmes en maintenance"
     },
-    "hero": {
-        "title": "Aperçu des Services",
-        "subtitle": "État en temps réel de nos infrastructures cœur."
+    "lastUpdated": "Dernière mise à jour : {when} UTC"
+  },
+  "hero": {
+    "title": "Aperçu des Services",
+    "subtitle": "État en temps réel de nos infrastructures cœur."
+  },
+  "incidents": {
+    "title": "Incidents actifs",
+    "none": "Aucun incident actif n'est signalé pour le moment.",
+    "label": {
+      "investigating": "Investigation",
+      "identified": "Identifié",
+      "monitoring": "En surveillance",
+      "resolved": "Résolu"
     },
-    "incidents": {
-        "title": "Incidents actifs",
-        "none": "Aucun incident actif n'est signalé pour le moment.",
-        "label": {
-            "investigating": "Investigation",
-            "identified": "Identifié",
-            "monitoring": "En surveillance",
-            "resolved": "Résolu"
-        },
-        "lastUpdated": "Dernière mise à jour : {when} UTC",
-        "noUpdates": "Pas de mise à jour disponible."
-    },
-    "history": {
-        "title": "Historique des maintenances",
-        "show": "Voir l'historique",
-        "hide": "Réduire l'historique",
-        "noScheduled": "Aucune maintenance planifiée n'est disponible pour le moment.",
-        "noPast": "Aucune maintenance passée n'a été trouvée.",
-        "maintenance": {
-            "scheduled": "Planifié",
-            "inProgress": "En cours",
-            "completed": "Terminé"
-        }
-    },
-    "metrics": {
-        "availability": "Disponibilité moyenne",
-        "daysWithout": "{days} jours sans incident",
-        "daysSuffix": "j",
-        "responseTime": "Temps de réponse",
-        "none": "—"
-    },
-    "services": {
-        "none": "Aucun projet disponible.",
-        "live": "Opérationnel",
-        "maintenance": "Maintenance",
-        "degraded": "Dégradé",
-        "down": "Hors service",
-        "archived": "Archivé",
-        "experimental": "Expérimental"
+    "lastUpdated": "Dernière mise à jour : {when} UTC",
+    "noUpdates": "Pas de mise à jour disponible."
+  },
+  "history": {
+    "title": "Historique des maintenances",
+    "show": "Voir l'historique",
+    "hide": "Réduire l'historique",
+    "noScheduled": "Aucune maintenance planifiée n'est disponible pour le moment.",
+    "noPast": "Aucune maintenance passée n'a été trouvée.",
+    "maintenance": {
+      "scheduled": "Planifié",
+      "inProgress": "En cours",
+      "completed": "Terminé"
     }
+  },
+  "metrics": {
+    "availability": "Disponibilité moyenne",
+    "daysWithout": "{days} jours sans incident",
+    "daysSuffix": "j",
+    "responseTime": "Temps de réponse",
+    "none": "—"
+  },
+  "services": {
+    "none": "Aucun projet disponible.",
+    "live": "Opérationnel",
+    "maintenance": "Maintenance",
+    "degraded": "Dégradé",
+    "down": "Hors service",
+    "archived": "Archivé",
+    "experimental": "Expérimental"
+  }
 }

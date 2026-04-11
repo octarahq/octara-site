@@ -20,4 +20,3 @@ export default async function TermsPage() {
     </I18nProvider>
   );
 }
-

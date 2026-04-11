@@ -1,56 +1,56 @@
 {
-    "page": {
-        "title": {
-            "operational": "All systems operational",
-            "down": "1 system down",
-            "downMany": "{count} systems down",
-            "maintenance": "1 system in maintenance",
-            "maintenanceMany": "{count} systems in maintenance"
-        },
-        "lastUpdated": "Last updated: {when} UTC"
+  "page": {
+    "title": {
+      "operational": "All systems operational",
+      "down": "1 system down",
+      "downMany": "{count} systems down",
+      "maintenance": "1 system in maintenance",
+      "maintenanceMany": "{count} systems in maintenance"
     },
-    "hero": {
-        "title": "Service Overview",
-        "subtitle": "Real-time state of our core infrastructures."
+    "lastUpdated": "Last updated: {when} UTC"
+  },
+  "hero": {
+    "title": "Service Overview",
+    "subtitle": "Real-time state of our core infrastructures."
+  },
+  "incidents": {
+    "title": "Active Incidents",
+    "none": "No active incidents reported at this time.",
+    "label": {
+      "investigating": "Investigating",
+      "identified": "Identified",
+      "monitoring": "Monitoring",
+      "resolved": "Resolved"
     },
-    "incidents": {
-        "title": "Active Incidents",
-        "none": "No active incidents reported at this time.",
-        "label": {
-            "investigating": "Investigating",
-            "identified": "Identified",
-            "monitoring": "Monitoring",
-            "resolved": "Resolved"
-        },
-        "lastUpdated": "Last updated: {when} UTC",
-        "noUpdates": "No updates available."
-    },
-    "history": {
-        "title": "Maintenance History",
-        "show": "Show full history",
-        "hide": "Hide history",
-        "noScheduled": "No scheduled maintenance at this time.",
-        "noPast": "No past incidents in the last 90 days.",
-        "maintenance": {
-            "scheduled": "Scheduled",
-            "inProgress": "In Progress",
-            "completed": "Completed"
-        }
-    },
-    "metrics": {
-        "availability": "Average Availability",
-        "daysWithout": "{days} days without incident",
-        "daysSuffix": "d",
-        "responseTime": "Response Time",
-        "none": "—"
-    },
-    "services": {
-        "none": "No services found.",
-        "live": "Operational",
-        "maintenance": "Maintenance",
-        "degraded": "Degraded performance",
-        "down": "Service disruption",
-        "archived": "Archived",
-        "experimental": "Experimental"
+    "lastUpdated": "Last updated: {when} UTC",
+    "noUpdates": "No updates available."
+  },
+  "history": {
+    "title": "Maintenance History",
+    "show": "Show full history",
+    "hide": "Hide history",
+    "noScheduled": "No scheduled maintenance at this time.",
+    "noPast": "No past incidents in the last 90 days.",
+    "maintenance": {
+      "scheduled": "Scheduled",
+      "inProgress": "In Progress",
+      "completed": "Completed"
     }
+  },
+  "metrics": {
+    "availability": "Average Availability",
+    "daysWithout": "{days} days without incident",
+    "daysSuffix": "d",
+    "responseTime": "Response Time",
+    "none": "—"
+  },
+  "services": {
+    "none": "No services found.",
+    "live": "Operational",
+    "maintenance": "Maintenance",
+    "degraded": "Degraded performance",
+    "down": "Service disruption",
+    "archived": "Archived",
+    "experimental": "Experimental"
+  }
 }

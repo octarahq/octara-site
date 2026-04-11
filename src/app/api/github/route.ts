@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 
 export const GET = async () => {
-	return NextResponse.redirect('https://github.com/octarahq');
+  return NextResponse.redirect("https://github.com/octarahq");
 };

@@ -1,15 +1,15 @@
 {
-    "loading": "Chargement...",
-    "title": "Connexion",
-    "description": "Accédez à votre compte Octara pour gérer vos services et vos paramètres.",
-    "error_invalid": "Identifiants invalides.",
-    "error_conn": "Erreur de connexion au serveur.",
-    "email_label": "Adresse e-mail",
-    "email_placeholder": "nom@exemple.com",
-    "password_label": "Mot de passe",
-    "password_placeholder": "••••••••",
-    "submit": "Se connecter",
-    "submitting": "Connexion en cours...",
-    "no_account": "Vous n'avez pas de compte ?",
-    "register_link": "S'inscrire gratuitement"
+  "loading": "Chargement...",
+  "title": "Connexion",
+  "description": "Accédez à votre compte Octara pour gérer vos services et vos paramètres.",
+  "error_invalid": "Identifiants invalides.",
+  "error_conn": "Erreur de connexion au serveur.",
+  "email_label": "Adresse e-mail",
+  "email_placeholder": "nom@exemple.com",
+  "password_label": "Mot de passe",
+  "password_placeholder": "••••••••",
+  "submit": "Se connecter",
+  "submitting": "Connexion en cours...",
+  "no_account": "Vous n'avez pas de compte ?",
+  "register_link": "S'inscrire gratuitement"
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useI18n } from '@/lib/I18nProvider'
+import { useI18n } from "@/lib/I18nProvider";
 
 export default function History() {
   const { t } = useI18n();

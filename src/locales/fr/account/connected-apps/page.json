@@ -1,21 +1,21 @@
 {
-    "breadcrumb": {
-        "portal": "Applications Connectées"
+  "breadcrumb": {
+    "portal": "Applications Connectées"
+  },
+  "title": "Applications connectées a votre compte",
+  "description": "Gérez les accès que vous avez accordés aux applications tierces et aux services Octara.",
+  "list": {
+    "empty": {
+      "title": "Aucune application connectée",
+      "description": "Gérez les applications autorisées pour sécuriser votre identité."
     },
-    "title": "Applications connectées a votre compte",
-    "description": "Gérez les accès que vous avez accordés aux applications tierces et aux services Octara.",
-    "list": {
-        "empty": {
-            "title": "Aucune application connectée",
-            "description": "Gérez les applications autorisées pour sécuriser votre identité."
-        },
-        "app": {
-            "official": "Officiel",
-            "permissions_label": "Permissions accordées",
-            "connected_on_label": "Connectée le",
-            "revoke_button": "Révoquer l'accès",
-            "revoking": "Révocation...",
-            "revoke_confirm": "Voulez-vous vraiment révoquer l'accès pour cette application ? Elle ne pourra plus accéder à vos données tant que vous ne vous reconnecterez pas."
-        }
+    "app": {
+      "official": "Officiel",
+      "permissions_label": "Permissions accordées",
+      "connected_on_label": "Connectée le",
+      "revoke_button": "Révoquer l'accès",
+      "revoking": "Révocation...",
+      "revoke_confirm": "Voulez-vous vraiment révoquer l'accès pour cette application ? Elle ne pourra plus accéder à vos données tant que vous ne vous reconnecterez pas."
     }
+  }
 }

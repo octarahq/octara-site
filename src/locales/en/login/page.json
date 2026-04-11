@@ -1,15 +1,15 @@
 {
-    "loading": "Loading...",
-    "title": "Login",
-    "description": "Sign in to your Octara account to manage your services and settings.",
-    "error_invalid": "Invalid credentials.",
-    "error_conn": "Error connecting to server.",
-    "email_label": "Email Address",
-    "email_placeholder": "name@example.com",
-    "password_label": "Password",
-    "password_placeholder": "••••••••",
-    "submit": "Login",
-    "submitting": "Logging in...",
-    "no_account": "Don't have an account?",
-    "register_link": "Sign up for free"
+  "loading": "Loading...",
+  "title": "Login",
+  "description": "Sign in to your Octara account to manage your services and settings.",
+  "error_invalid": "Invalid credentials.",
+  "error_conn": "Error connecting to server.",
+  "email_label": "Email Address",
+  "email_placeholder": "name@example.com",
+  "password_label": "Password",
+  "password_placeholder": "••••••••",
+  "submit": "Login",
+  "submitting": "Logging in...",
+  "no_account": "Don't have an account?",
+  "register_link": "Sign up for free"
 }

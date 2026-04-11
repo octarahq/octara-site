@@ -1,14 +1,14 @@
 {
-    "title": "Create an account",
-    "description": "Join Octara to explore our services and benefit from all features.",
-    "error_invalid": "Registration failed.",
-    "error_conn": "Error connecting to server.",
-    "email_label": "Email Address",
-    "email_placeholder": "name@example.com",
-    "password_label": "Password (8+ characters)",
-    "password_placeholder": "••••••••",
-    "submit": "Get Started",
-    "submitting": "Creating account...",
-    "has_account": "Already have an account?",
-    "login_link": "Login here"
+  "title": "Create an account",
+  "description": "Join Octara to explore our services and benefit from all features.",
+  "error_invalid": "Registration failed.",
+  "error_conn": "Error connecting to server.",
+  "email_label": "Email Address",
+  "email_placeholder": "name@example.com",
+  "password_label": "Password (8+ characters)",
+  "password_placeholder": "••••••••",
+  "submit": "Get Started",
+  "submitting": "Creating account...",
+  "has_account": "Already have an account?",
+  "login_link": "Login here"
 }

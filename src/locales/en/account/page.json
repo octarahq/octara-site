@@ -1,53 +1,53 @@
 {
-    "header": {
-        "identity": "Identity",
-        "anonymous": "Anonymous User"
-    },
-    "title": "Account Settings",
-    "description": "Manage your central identity on the Octara ecosystem and your access privileges.",
-    "profile": {
-        "registered_since": "Registered since {date}",
-        "name_label": "Full name",
-        "name_placeholder": "John Doe",
-        "email_label": "Email address",
-        "email_placeholder": "john@example.com",
-        "update_button": "Update identity",
-        "updating": "Synchronization...",
-        "success": "Profile updated successfully!",
-        "error_conn": "Server connection error"
-    },
-    "security": {
-        "title": "Credentials",
-        "password_modified": "Password modified {timeAgo}. ",
-        "vault_notice": "Keep your credentials secure in the vault.",
-        "change_button": "Change password",
-        "modal_title": "Vault Protection",
-        "current_label": "Current secret",
-        "current_placeholder": "••••••••",
-        "new_label": "New secret",
-        "new_placeholder": "Min. 8 characters",
-        "confirm_label": "Confirm secret",
-        "confirm_placeholder": "Confirmation",
-        "submit": "Modify secret",
-        "processing": "Processing...",
-        "error_match": "Passwords do not match",
-        "error_length": "Password must be at least 8 characters long",
-        "error_old": "Incorrect old password",
-        "success": "Password changed successfully!"
-    },
-    "2fa": {
-        "title": "2FA Security",
-        "soon": "Coming soon"
-    },
-    "danger": {
-        "title": "Danger zone",
-        "description": "Terminate session and leave vault",
-        "logout": "Logout"
-    },
-    "time": {
-        "now": "just now",
-        "minutes": "{n}m ago",
-        "hours": "{n}h ago",
-        "days": "{n}d ago"
-    }
+  "header": {
+    "identity": "Identity",
+    "anonymous": "Anonymous User"
+  },
+  "title": "Account Settings",
+  "description": "Manage your central identity on the Octara ecosystem and your access privileges.",
+  "profile": {
+    "registered_since": "Registered since {date}",
+    "name_label": "Full name",
+    "name_placeholder": "John Doe",
+    "email_label": "Email address",
+    "email_placeholder": "john@example.com",
+    "update_button": "Update identity",
+    "updating": "Synchronization...",
+    "success": "Profile updated successfully!",
+    "error_conn": "Server connection error"
+  },
+  "security": {
+    "title": "Credentials",
+    "password_modified": "Password modified {timeAgo}. ",
+    "vault_notice": "Keep your credentials secure in the vault.",
+    "change_button": "Change password",
+    "modal_title": "Vault Protection",
+    "current_label": "Current secret",
+    "current_placeholder": "••••••••",
+    "new_label": "New secret",
+    "new_placeholder": "Min. 8 characters",
+    "confirm_label": "Confirm secret",
+    "confirm_placeholder": "Confirmation",
+    "submit": "Modify secret",
+    "processing": "Processing...",
+    "error_match": "Passwords do not match",
+    "error_length": "Password must be at least 8 characters long",
+    "error_old": "Incorrect old password",
+    "success": "Password changed successfully!"
+  },
+  "2fa": {
+    "title": "2FA Security",
+    "soon": "Coming soon"
+  },
+  "danger": {
+    "title": "Danger zone",
+    "description": "Terminate session and leave vault",
+    "logout": "Logout"
+  },
+  "time": {
+    "now": "just now",
+    "minutes": "{n}m ago",
+    "hours": "{n}h ago",
+    "days": "{n}d ago"
+  }
 }

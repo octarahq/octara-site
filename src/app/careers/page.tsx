@@ -17,15 +17,14 @@ export default async function CareersPage() {
         <div className="layout-container flex h-full grow flex-col">
           <Header />
           <main className="flex-1 flex flex-col items-center">
-              <Hero />
-              <Mission />
-              <Positions />
-              <CTA />
+            <Hero />
+            <Mission />
+            <Positions />
+            <CTA />
           </main>
-            <Footer />
+          <Footer />
         </div>
       </div>
     </I18nProvider>
   );
 }
-

@@ -1,50 +1,50 @@
 {
-    "title": "Conditions d'utilisation",
-    "updated": "Dernière mise à jour : 2026-03-15",
-    "intro": "Ces Conditions d'utilisation (\"Conditions\") s'appliquent à votre accès et à votre utilisation des services, sites web et applications fournis par LMC Group (\"nous\", \"notre\"). En utilisant nos services, vous acceptez ces Conditions. Si vous n'acceptez pas, n'utilisez pas nos services.",
-    "section1": {
-        "title": "1. Utilisation des services",
-        "body": "Vous pouvez utiliser nos services uniquement à des fins légales et conformément aux présentes Conditions. Nous pouvons imposer des règles supplémentaires pour certains produits ou fonctionnalités."
-    },
-    "section2": {
-        "title": "2. Comptes",
-        "body": "Lorsque vous créez un compte, vous acceptez de fournir des informations exactes et de garder vos identifiants sécurisés. Vous êtes responsable de toute activité liée à votre compte."
-    },
-    "section3": {
-        "title": "3. Propriété intellectuelle",
-        "body": "Tout le contenu fourni par LMC Group est protégé par des droits de propriété intellectuelle. Vous ne pouvez pas reproduire ou redistribuer notre contenu sans autorisation, sauf si la loi l'autorise ou qu'une licence écrite le permet."
-    },
-    "section4": {
-        "title": "4. Contenu utilisateur",
-        "body": "Si vous soumettez du contenu à nos services, vous accordez à LMC Group une licence mondiale, gratuite et transférable pour utiliser, reproduire et afficher ce contenu dans la mesure nécessaire pour fournir le service. Vous êtes responsable du contenu que vous publiez."
-    },
-    "section5": {
-        "title": "5. Conduite interdite",
-        "body": "Vous acceptez de ne pas adopter de comportements illégaux, préjudiciables ou frauduleux ; de ne pas perturber nos services ; de ne pas contourner les mesures de sécurité ; et de ne pas violer les droits d'autrui. Nous pouvons suspendre ou résilier l'accès en cas de violation."
-    },
-    "section6": {
-        "title": "6. Avertissements et limitation de responsabilité",
-        "body": "NOS SERVICES SONT FOURNIS \"EN L'ÉTAT\" ET \"SELON LA DISPONIBILITÉ\". DANS LA LIMITE MAXIMALE AUTORISÉE PAR LA LOI, LMC GROUP DÉCLINE TOUTES GARANTIES. LA RESPONSABILITÉ DE LMC GROUP EST LIMITÉE DANS LES CONDITIONS PRÉVUES PAR LA LOI."
-    },
-    "section7": {
-        "title": "7. Modifications",
-        "body": "Nous pouvons modifier ces Conditions de temps à autre. Nous publierons les modifications avec une date d'entrée en vigueur mise à jour. La poursuite de l'utilisation des services après modification constitue une acceptation des Conditions mises à jour."
-    },
-    "section8": {
-        "title": "8. Droit applicable",
-        "body": "Ces Conditions sont régies et interprétées conformément au droit applicable. Tout litige relatif à leur interprétation ou exécution relève des tribunaux compétents, sauf disposition légale impérative contraire."
-    },
-    "section9": {
-        "title": "9. Divers",
-        "body": "Si une disposition des présentes Conditions est jugée invalide, les autres dispositions resteront en vigueur. L'absence d'exercice d'un droit ne constitue pas une renonciation."
-    },
-    "section10": {
-        "title": "10. Contact",
-        "body": "Pour toute question concernant ces Conditions, contactez-nous sur notre serveur Discord."
-    },
-    "contact": {
-        "title": "Des questions sur ces termes ?",
-        "desc": "Notre équipe juridique est là pour vous aider à comprendre vos droits.",
-        "button": "Contacter le Support"
-    }
+  "title": "Conditions d'utilisation",
+  "updated": "Dernière mise à jour : 2026-03-15",
+  "intro": "Ces Conditions d'utilisation (\"Conditions\") s'appliquent à votre accès et à votre utilisation des services, sites web et applications fournis par LMC Group (\"nous\", \"notre\"). En utilisant nos services, vous acceptez ces Conditions. Si vous n'acceptez pas, n'utilisez pas nos services.",
+  "section1": {
+    "title": "1. Utilisation des services",
+    "body": "Vous pouvez utiliser nos services uniquement à des fins légales et conformément aux présentes Conditions. Nous pouvons imposer des règles supplémentaires pour certains produits ou fonctionnalités."
+  },
+  "section2": {
+    "title": "2. Comptes",
+    "body": "Lorsque vous créez un compte, vous acceptez de fournir des informations exactes et de garder vos identifiants sécurisés. Vous êtes responsable de toute activité liée à votre compte."
+  },
+  "section3": {
+    "title": "3. Propriété intellectuelle",
+    "body": "Tout le contenu fourni par LMC Group est protégé par des droits de propriété intellectuelle. Vous ne pouvez pas reproduire ou redistribuer notre contenu sans autorisation, sauf si la loi l'autorise ou qu'une licence écrite le permet."
+  },
+  "section4": {
+    "title": "4. Contenu utilisateur",
+    "body": "Si vous soumettez du contenu à nos services, vous accordez à LMC Group une licence mondiale, gratuite et transférable pour utiliser, reproduire et afficher ce contenu dans la mesure nécessaire pour fournir le service. Vous êtes responsable du contenu que vous publiez."
+  },
+  "section5": {
+    "title": "5. Conduite interdite",
+    "body": "Vous acceptez de ne pas adopter de comportements illégaux, préjudiciables ou frauduleux ; de ne pas perturber nos services ; de ne pas contourner les mesures de sécurité ; et de ne pas violer les droits d'autrui. Nous pouvons suspendre ou résilier l'accès en cas de violation."
+  },
+  "section6": {
+    "title": "6. Avertissements et limitation de responsabilité",
+    "body": "NOS SERVICES SONT FOURNIS \"EN L'ÉTAT\" ET \"SELON LA DISPONIBILITÉ\". DANS LA LIMITE MAXIMALE AUTORISÉE PAR LA LOI, LMC GROUP DÉCLINE TOUTES GARANTIES. LA RESPONSABILITÉ DE LMC GROUP EST LIMITÉE DANS LES CONDITIONS PRÉVUES PAR LA LOI."
+  },
+  "section7": {
+    "title": "7. Modifications",
+    "body": "Nous pouvons modifier ces Conditions de temps à autre. Nous publierons les modifications avec une date d'entrée en vigueur mise à jour. La poursuite de l'utilisation des services après modification constitue une acceptation des Conditions mises à jour."
+  },
+  "section8": {
+    "title": "8. Droit applicable",
+    "body": "Ces Conditions sont régies et interprétées conformément au droit applicable. Tout litige relatif à leur interprétation ou exécution relève des tribunaux compétents, sauf disposition légale impérative contraire."
+  },
+  "section9": {
+    "title": "9. Divers",
+    "body": "Si une disposition des présentes Conditions est jugée invalide, les autres dispositions resteront en vigueur. L'absence d'exercice d'un droit ne constitue pas une renonciation."
+  },
+  "section10": {
+    "title": "10. Contact",
+    "body": "Pour toute question concernant ces Conditions, contactez-nous sur notre serveur Discord."
+  },
+  "contact": {
+    "title": "Des questions sur ces termes ?",
+    "desc": "Notre équipe juridique est là pour vous aider à comprendre vos droits.",
+    "button": "Contacter le Support"
+  }
 }

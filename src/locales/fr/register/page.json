@@ -1,14 +1,14 @@
 {
-    "title": "Créer un compte",
-    "description": "Rejoignez Octara pour explorer nos services et bénéficier de toutes les fonctionnalités.",
-    "error_invalid": "Échec de l'inscription.",
-    "error_conn": "Erreur de connexion au serveur.",
-    "email_label": "Adresse e-mail",
-    "email_placeholder": "nom@exemple.com",
-    "password_label": "Mot de passe (8+ caractères)",
-    "password_placeholder": "••••••••",
-    "submit": "Démarrer maintenant",
-    "submitting": "Création du compte...",
-    "has_account": "Vous avez déjà un compte ?",
-    "login_link": "Se connecter"
+  "title": "Créer un compte",
+  "description": "Rejoignez Octara pour explorer nos services et bénéficier de toutes les fonctionnalités.",
+  "error_invalid": "Échec de l'inscription.",
+  "error_conn": "Erreur de connexion au serveur.",
+  "email_label": "Adresse e-mail",
+  "email_placeholder": "nom@exemple.com",
+  "password_label": "Mot de passe (8+ caractères)",
+  "password_placeholder": "••••••••",
+  "submit": "Démarrer maintenant",
+  "submitting": "Création du compte...",
+  "has_account": "Vous avez déjà un compte ?",
+  "login_link": "Se connecter"
 }

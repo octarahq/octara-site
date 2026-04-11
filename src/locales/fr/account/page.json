@@ -1,53 +1,53 @@
 {
-    "header": {
-        "identity": "Identité",
-        "anonymous": "Utilisateur Anonyme"
-    },
-    "title": "Paramètres du Compte",
-    "description": "Gérez votre identité centrale sur l'écosystème Octara et vos privilèges d'accès.",
-    "profile": {
-        "registered_since": "Inscrit depuis le {date}",
-        "name_label": "Nom complet",
-        "name_placeholder": "John Doe",
-        "email_label": "Adresse e-mail",
-        "email_placeholder": "john@example.com",
-        "update_button": "Mettre à jour l'identité",
-        "updating": "Synchronisation...",
-        "success": "Profil mis à jour avec succès !",
-        "error_conn": "Erreur de connexion serveur"
-    },
-    "security": {
-        "title": "Identifiants",
-        "password_modified": "Mot de passe modifié {timeAgo}. ",
-        "vault_notice": "Gardez vos identifiants en sécurité dans le vault.",
-        "change_button": "Changer le mot de passe",
-        "modal_title": "Protection Vault",
-        "current_label": "Secret actuel",
-        "current_placeholder": "••••••••",
-        "new_label": "Nouveau secret",
-        "new_placeholder": "Min. 8 caractères",
-        "confirm_label": "Validation du secret",
-        "confirm_placeholder": "Confirmation",
-        "submit": "Modifier le secret",
-        "processing": "Traitement...",
-        "error_match": "Les mots de passe ne correspondent pas",
-        "error_length": "Le mot de passe doit faire au moins 8 caractères",
-        "error_old": "Ancien mot de passe incorrect",
-        "success": "Mot de passe modifié avec succès !"
-    },
-    "2fa": {
-        "title": "Sécurité 2FA",
-        "soon": "Bientôt disponible"
-    },
-    "danger": {
-        "title": "Zone de danger",
-        "description": "Terminer la session et quitter le vault",
-        "logout": "Déconnexion"
-    },
-    "time": {
-        "now": "à l'instant",
-        "minutes": "il y a {n} min",
-        "hours": "il y a {n} h",
-        "days": "il y a {n} j"
-    }
+  "header": {
+    "identity": "Identité",
+    "anonymous": "Utilisateur Anonyme"
+  },
+  "title": "Paramètres du Compte",
+  "description": "Gérez votre identité centrale sur l'écosystème Octara et vos privilèges d'accès.",
+  "profile": {
+    "registered_since": "Inscrit depuis le {date}",
+    "name_label": "Nom complet",
+    "name_placeholder": "John Doe",
+    "email_label": "Adresse e-mail",
+    "email_placeholder": "john@example.com",
+    "update_button": "Mettre à jour l'identité",
+    "updating": "Synchronisation...",
+    "success": "Profil mis à jour avec succès !",
+    "error_conn": "Erreur de connexion serveur"
+  },
+  "security": {
+    "title": "Identifiants",
+    "password_modified": "Mot de passe modifié {timeAgo}. ",
+    "vault_notice": "Gardez vos identifiants en sécurité dans le vault.",
+    "change_button": "Changer le mot de passe",
+    "modal_title": "Protection Vault",
+    "current_label": "Secret actuel",
+    "current_placeholder": "••••••••",
+    "new_label": "Nouveau secret",
+    "new_placeholder": "Min. 8 caractères",
+    "confirm_label": "Validation du secret",
+    "confirm_placeholder": "Confirmation",
+    "submit": "Modifier le secret",
+    "processing": "Traitement...",
+    "error_match": "Les mots de passe ne correspondent pas",
+    "error_length": "Le mot de passe doit faire au moins 8 caractères",
+    "error_old": "Ancien mot de passe incorrect",
+    "success": "Mot de passe modifié avec succès !"
+  },
+  "2fa": {
+    "title": "Sécurité 2FA",
+    "soon": "Bientôt disponible"
+  },
+  "danger": {
+    "title": "Zone de danger",
+    "description": "Terminer la session et quitter le vault",
+    "logout": "Déconnexion"
+  },
+  "time": {
+    "now": "à l'instant",
+    "minutes": "il y a {n} min",
+    "hours": "il y a {n} h",
+    "days": "il y a {n} j"
+  }
 }

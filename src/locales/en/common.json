@@ -1,32 +1,32 @@
 {
-    "nav": {
-        "status": "Status",
-        "about": "About",
-        "careers": "Careers",
-        "login": "Login",
-        "register": "Sign up"
-    },
-    "footer": {
-        "copy": "© {year} Octara. Open source under",
-        "license": "CC BY-NC-SA 4.0",
-        "copyLink": "Copy link",
-        "copied": "Copied",
-        "tagline": "Open source tools and community for everyone.",
-        "product": "Product",
-        "linkStatus": "Status",
-        "linkAbout": "About",
-        "linkCareers": "Careers",
-        "company": "Company",
-        "linkCompany": "About Octara",
-        "legal": "Legal",
-        "linkTerms": "Terms",
-        "linkPrivacy": "Privacy"
-    },
-    "sidebar": {
-        "account": "My Account",
-        "connected_apps": "Connected Apps",
-        "developer_portal": "Developer space",
-        "status_label": "Status",
-        "connected": "Connected"
-    }
+  "nav": {
+    "status": "Status",
+    "about": "About",
+    "careers": "Careers",
+    "login": "Login",
+    "register": "Sign up"
+  },
+  "footer": {
+    "copy": "© {year} Octara. Open source under",
+    "license": "CC BY-NC-SA 4.0",
+    "copyLink": "Copy link",
+    "copied": "Copied",
+    "tagline": "Open source tools and community for everyone.",
+    "product": "Product",
+    "linkStatus": "Status",
+    "linkAbout": "About",
+    "linkCareers": "Careers",
+    "company": "Company",
+    "linkCompany": "About Octara",
+    "legal": "Legal",
+    "linkTerms": "Terms",
+    "linkPrivacy": "Privacy"
+  },
+  "sidebar": {
+    "account": "My Account",
+    "connected_apps": "Connected Apps",
+    "developer_portal": "Developer space",
+    "status_label": "Status",
+    "connected": "Connected"
+  }
 }

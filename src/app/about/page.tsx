@@ -1,12 +1,12 @@
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
-import Hero from './_components/Hero'
-import History from './_components/History'
-import Mission from './_components/Mission'
-import Values from './_components/Values'
-import CTA from './_components/CTA'
-import { I18nProvider } from '@/lib/I18nProvider'
-import { getMessages, getLocale } from 'next-intl/server'
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import Hero from "./_components/Hero";
+import History from "./_components/History";
+import Mission from "./_components/Mission";
+import Values from "./_components/Values";
+import CTA from "./_components/CTA";
+import { I18nProvider } from "@/lib/I18nProvider";
+import { getMessages, getLocale } from "next-intl/server";
 
 export default async function Page() {
   const messages = await getMessages();
@@ -26,6 +26,5 @@ export default async function Page() {
       </main>
       <Footer />
     </I18nProvider>
-  )
+  );
 }
-

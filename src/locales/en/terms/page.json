@@ -1,50 +1,50 @@
 {
-    "title": "Terms of Use",
-    "updated": "Effective date: 2026-03-15",
-    "intro": "These Terms of Use (\"Terms\") apply to your access to and use of services, websites, and applications provided by LMC Group (\"we\", \"us\", \"our\"). By using our services you agree to these Terms. If you do not agree, do not use our services.",
-    "section1": {
-        "title": "1. Use of services",
-        "body": "You may use our services only for lawful purposes and in accordance with these Terms. We may impose additional rules for specific products or features."
-    },
-    "section2": {
-        "title": "2. Accounts",
-        "body": "When you create an account, you agree to provide accurate information and to keep your credentials secure. You are responsible for all activity under your account."
-    },
-    "section3": {
-        "title": "3. Intellectual property",
-        "body": "All content provided by LMC Group is protected by intellectual property laws. You may not reproduce or redistribute our content without permission, except as permitted by applicable law or a written license."
-    },
-    "section4": {
-        "title": "4. User content",
-        "body": "If you submit content to our services, you grant LMC Group a worldwide, royalty-free, transferable license to use, reproduce, and display that content as necessary to provide the service. You are responsible for the content you post."
-    },
-    "section5": {
-        "title": "5. Prohibited conduct",
-        "body": "You must not use our services to engage in unlawful activity, infringe others' rights, transmit malware, or otherwise interfere with the operation of our services."
-    },
-    "section6": {
-        "title": "6. Disclaimers and limitation of liability",
-        "body": "OUR SERVICES ARE PROVIDED \"AS IS\" AND \"AS AVAILABLE\". TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, LMC GROUP DISCLAIMS ALL WARRANTIES. LMC GROUP'S LIABILITY IS LIMITED TO THE EXTENT PERMITTED BY LAW."
-    },
-    "section7": {
-        "title": "7. Termination",
-        "body": "We may suspend or terminate access to services for violations of these Terms or for other legitimate reasons. Termination does not limit other remedies available to us."
-    },
-    "section8": {
-        "title": "8. Governing law",
-        "body": "These Terms are governed by the laws applicable where LMC Group operates, subject to mandatory local consumer protections. Any disputes will be resolved in accordance with those laws."
-    },
-    "section9": {
-        "title": "9. Changes",
-        "body": "We may modify these Terms from time to time. We will post changes with an updated effective date. Continued use of the services after changes constitutes acceptance of the updated Terms."
-    },
-    "section10": {
-        "title": "10. Contact",
-        "body": "For questions about these Terms, contact us in our discord server."
-    },
-    "contact": {
-        "title": "Questions about these terms?",
-        "desc": "Our legal team is here to help you understand your rights.",
-        "button": "Contact Support"
-    }
+  "title": "Terms of Use",
+  "updated": "Effective date: 2026-03-15",
+  "intro": "These Terms of Use (\"Terms\") apply to your access to and use of services, websites, and applications provided by LMC Group (\"we\", \"us\", \"our\"). By using our services you agree to these Terms. If you do not agree, do not use our services.",
+  "section1": {
+    "title": "1. Use of services",
+    "body": "You may use our services only for lawful purposes and in accordance with these Terms. We may impose additional rules for specific products or features."
+  },
+  "section2": {
+    "title": "2. Accounts",
+    "body": "When you create an account, you agree to provide accurate information and to keep your credentials secure. You are responsible for all activity under your account."
+  },
+  "section3": {
+    "title": "3. Intellectual property",
+    "body": "All content provided by LMC Group is protected by intellectual property laws. You may not reproduce or redistribute our content without permission, except as permitted by applicable law or a written license."
+  },
+  "section4": {
+    "title": "4. User content",
+    "body": "If you submit content to our services, you grant LMC Group a worldwide, royalty-free, transferable license to use, reproduce, and display that content as necessary to provide the service. You are responsible for the content you post."
+  },
+  "section5": {
+    "title": "5. Prohibited conduct",
+    "body": "You must not use our services to engage in unlawful activity, infringe others' rights, transmit malware, or otherwise interfere with the operation of our services."
+  },
+  "section6": {
+    "title": "6. Disclaimers and limitation of liability",
+    "body": "OUR SERVICES ARE PROVIDED \"AS IS\" AND \"AS AVAILABLE\". TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, LMC GROUP DISCLAIMS ALL WARRANTIES. LMC GROUP'S LIABILITY IS LIMITED TO THE EXTENT PERMITTED BY LAW."
+  },
+  "section7": {
+    "title": "7. Termination",
+    "body": "We may suspend or terminate access to services for violations of these Terms or for other legitimate reasons. Termination does not limit other remedies available to us."
+  },
+  "section8": {
+    "title": "8. Governing law",
+    "body": "These Terms are governed by the laws applicable where LMC Group operates, subject to mandatory local consumer protections. Any disputes will be resolved in accordance with those laws."
+  },
+  "section9": {
+    "title": "9. Changes",
+    "body": "We may modify these Terms from time to time. We will post changes with an updated effective date. Continued use of the services after changes constitutes acceptance of the updated Terms."
+  },
+  "section10": {
+    "title": "10. Contact",
+    "body": "For questions about these Terms, contact us in our discord server."
+  },
+  "contact": {
+    "title": "Questions about these terms?",
+    "desc": "Our legal team is here to help you understand your rights.",
+    "button": "Contact Support"
+  }
 }

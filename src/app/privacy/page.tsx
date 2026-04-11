@@ -13,11 +13,10 @@ export default async function PrivacyPage() {
       <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden">
         <div className="layout-container flex h-full grow flex-col">
           <Header />
-            <PrivacyContent />
+          <PrivacyContent />
           <Footer />
         </div>
       </div>
     </I18nProvider>
   );
 }
-

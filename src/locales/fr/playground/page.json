@@ -1,21 +1,21 @@
 {
-    "title": "Octara API Playground",
-    "description": "Testez vos routes d'API en temps réel de manière sécurisée.",
-    "auth": {
-        "title": "Authentification",
-        "token_label": "Bearer Token",
-        "token_placeholder": "votre_access_token"
-    },
-    "endpoint": {
-        "title": "Endpoint",
-        "body_label": "Body (JSON)",
-        "submit": "Envoyer la requête",
-        "loading": "Chargement..."
-    },
-    "response": {
-        "title": "Réponse",
-        "waiting": "En attente de votre première requête...",
-        "clear": "Effacer",
-        "status_label": "Status"
-    }
+  "title": "Octara API Playground",
+  "description": "Testez vos routes d'API en temps réel de manière sécurisée.",
+  "auth": {
+    "title": "Authentification",
+    "token_label": "Bearer Token",
+    "token_placeholder": "votre_access_token"
+  },
+  "endpoint": {
+    "title": "Endpoint",
+    "body_label": "Body (JSON)",
+    "submit": "Envoyer la requête",
+    "loading": "Chargement..."
+  },
+  "response": {
+    "title": "Réponse",
+    "waiting": "En attente de votre première requête...",
+    "clear": "Effacer",
+    "status_label": "Status"
+  }
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { NextIntlClientProvider, AbstractIntlMessages } from 'next-intl';
+import { NextIntlClientProvider, AbstractIntlMessages } from "next-intl";
 
 export function I18nProvider({
   children,
@@ -19,8 +19,7 @@ export function I18nProvider({
 }
 
 export function useI18n() {
-  const { useTranslations } = require('next-intl');
+  const { useTranslations } = require("next-intl");
   const t = useTranslations();
   return { t };
 }
-

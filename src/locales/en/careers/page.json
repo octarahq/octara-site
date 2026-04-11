@@ -1,45 +1,45 @@
 {
-    "hero": {
-        "title": "Join \nOctara",
-        "description": "We are building the future of open source technology. Octara is a community-driven initiative powered by passion and collective innovation."
-    },
-    "mission": {
-        "title": "Shape the future of technology",
-        "description": "Octara is currently a self-funded, community-centered project. We are looking for people who believe in free access to technology and want to bring their skills to a growing ecosystem.",
-        "important": "Important information:",
-        "volunteer": "All positions currently listed are voluntary and unpaid. We are building the foundation together with a long-term vision of sustainability for everyone.",
-        "future": "If Octara ever becomes a true economic entity, everyone who contributed to Octara's development—regardless of role—will be offered a reward, such as access to additional services provided for free compared to others.",
-        "why": {
-            "title": "Why join us?",
-            "list1": "Contribute to high-impact open source tools.",
-            "list2": "Strengthen your portfolio with real projects."
-        }
-    },
-    "positions": {
-        "title": "Open positions",
-        "count": "{count} active opportunities",
-        "role1": {
-            "title": "Community Manager",
-            "status": "Volunteer",
-            "description": "Lead our digital presence and foster engagement across our platforms. You will be Octara's voice, connecting developers and users.",
-            "responsibilities": {
-                "title": "Key responsibilities:",
-                "item1": "Content publishing"
-            }
-        },
-        "apply": "Apply",
-        "role2": {
-            "title": "Open contributor roles",
-            "status": "Volunteer",
-            "description": "Help us build Octara’s core infrastructure. Whether you’re a developer, designer, or technical writer, we have projects that need your skills.",
-            "needs": "Current needs:",
-            "need1": "Frontend & Backend",
-            "need2": "UI/UX Design"
-        }
-    },
-    "cta": {
-        "title": "Not sure where to start?",
-        "description": "Join our Discord to find the mission that matches you.",
-        "button": "Join Discord"
+  "hero": {
+    "title": "Join \nOctara",
+    "description": "We are building the future of open source technology. Octara is a community-driven initiative powered by passion and collective innovation."
+  },
+  "mission": {
+    "title": "Shape the future of technology",
+    "description": "Octara is currently a self-funded, community-centered project. We are looking for people who believe in free access to technology and want to bring their skills to a growing ecosystem.",
+    "important": "Important information:",
+    "volunteer": "All positions currently listed are voluntary and unpaid. We are building the foundation together with a long-term vision of sustainability for everyone.",
+    "future": "If Octara ever becomes a true economic entity, everyone who contributed to Octara's development—regardless of role—will be offered a reward, such as access to additional services provided for free compared to others.",
+    "why": {
+      "title": "Why join us?",
+      "list1": "Contribute to high-impact open source tools.",
+      "list2": "Strengthen your portfolio with real projects."
     }
+  },
+  "positions": {
+    "title": "Open positions",
+    "count": "{count} active opportunities",
+    "role1": {
+      "title": "Community Manager",
+      "status": "Volunteer",
+      "description": "Lead our digital presence and foster engagement across our platforms. You will be Octara's voice, connecting developers and users.",
+      "responsibilities": {
+        "title": "Key responsibilities:",
+        "item1": "Content publishing"
+      }
+    },
+    "apply": "Apply",
+    "role2": {
+      "title": "Open contributor roles",
+      "status": "Volunteer",
+      "description": "Help us build Octara’s core infrastructure. Whether you’re a developer, designer, or technical writer, we have projects that need your skills.",
+      "needs": "Current needs:",
+      "need1": "Frontend & Backend",
+      "need2": "UI/UX Design"
+    }
+  },
+  "cta": {
+    "title": "Not sure where to start?",
+    "description": "Join our Discord to find the mission that matches you.",
+    "button": "Join Discord"
+  }
 }

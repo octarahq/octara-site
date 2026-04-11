@@ -1,32 +1,32 @@
 {
-    "nav": {
-        "status": "Statut",
-        "about": "Qui sommes nous ?",
-        "careers": "Carrières",
-        "login": "Se connecter",
-        "register": "S'inscrire"
-    },
-    "footer": {
-        "copy": "© {year} Octara. Open source sous",
-        "license": "CC BY-NC-SA 4.0",
-        "copyLink": "Copier le lien",
-        "copied": "Copié",
-        "tagline": "Outils open source et communauté pour tous.",
-        "product": "Produit",
-        "linkStatus": "Statut",
-        "linkAbout": "À propos",
-        "linkCareers": "Carrières",
-        "company": "Entreprise",
-        "linkCompany": "À propos d'Octara",
-        "legal": "Légal",
-        "linkTerms": "Conditions",
-        "linkPrivacy": "Confidentialité"
-    },
-    "sidebar": {
-        "account": "Mon Compte",
-        "connected_apps": "Apps Connectées",
-        "developer_portal": "Espace Développeur",
-        "status_label": "Statut",
-        "connected": "Connecté"
-    }
+  "nav": {
+    "status": "Statut",
+    "about": "Qui sommes nous ?",
+    "careers": "Carrières",
+    "login": "Se connecter",
+    "register": "S'inscrire"
+  },
+  "footer": {
+    "copy": "© {year} Octara. Open source sous",
+    "license": "CC BY-NC-SA 4.0",
+    "copyLink": "Copier le lien",
+    "copied": "Copié",
+    "tagline": "Outils open source et communauté pour tous.",
+    "product": "Produit",
+    "linkStatus": "Statut",
+    "linkAbout": "À propos",
+    "linkCareers": "Carrières",
+    "company": "Entreprise",
+    "linkCompany": "À propos d'Octara",
+    "legal": "Légal",
+    "linkTerms": "Conditions",
+    "linkPrivacy": "Confidentialité"
+  },
+  "sidebar": {
+    "account": "Mon Compte",
+    "connected_apps": "Apps Connectées",
+    "developer_portal": "Espace Développeur",
+    "status_label": "Statut",
+    "connected": "Connecté"
+  }
 }

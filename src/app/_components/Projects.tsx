@@ -49,7 +49,9 @@ export default function Projects() {
               const hostname = window.location.hostname;
               const parts = hostname.split(".");
               const isLocalhost =
-                hostname === "localhost" || hostname === "127.0.0.1" || /^\d+\.\d+\.\d+\.\d+$/.test(hostname);
+                hostname === "localhost" ||
+                hostname === "127.0.0.1" ||
+                /^\d+\.\d+\.\d+\.\d+$/.test(hostname);
               if (!isLocalhost && parts.length >= 2) {
                 baseDomain = parts.slice(-2).join(".");
               }
@@ -68,7 +70,8 @@ export default function Projects() {
             const buildFavicon = (favicon: string) => {
               if (!favicon) return "";
               if (
-                favicon.startsWith("http://") || favicon.startsWith("https://")
+                favicon.startsWith("http://") ||
+                favicon.startsWith("https://")
               )
                 return favicon;
               try {
