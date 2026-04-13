@@ -190,8 +190,8 @@ export default function ConfigAppClientView({ app }: { app: AppDetail }) {
     return url.toString();
   };
 
-  const removeUri = (uri: string) => {
-    setRedirectUris(redirectUris.filter((u) => u !== uri));
+  const removeUri = (index: number) => {
+    setRedirectUris(redirectUris.filter((_, i) => i !== index));
   };
 
   return (
@@ -550,9 +550,9 @@ export default function ConfigAppClientView({ app }: { app: AppDetail }) {
                         </label>
                       </div>
                       <div className="space-y-3">
-                        {redirectUris.map((uri) => (
+                        {redirectUris.map((uri, idx) => (
                           <div
-                            key={uri}
+                            key={idx}
                             className="flex items-center gap-3 bg-background-dark/30 rounded-xl pr-3 border border-outline"
                           >
                             <input
@@ -560,8 +560,8 @@ export default function ConfigAppClientView({ app }: { app: AppDetail }) {
                               value={uri}
                               onChange={(e) =>
                                 setRedirectUris(
-                                  redirectUris.map((u) =>
-                                    u === uri ? e.target.value : u,
+                                  redirectUris.map((u, i) =>
+                                    i === idx ? e.target.value : u,
                                   ),
                                 )
                               }
@@ -569,7 +569,7 @@ export default function ConfigAppClientView({ app }: { app: AppDetail }) {
                             />
                             <button
                               type="button"
-                              onClick={() => removeUri(uri)}
+                              onClick={() => removeUri(idx)}
                               className="p-2 text-on-surface/20 hover:text-error transition-colors"
                             >
                               <span className="material-symbols-outlined text-lg">
