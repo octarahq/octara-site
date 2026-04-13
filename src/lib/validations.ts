@@ -25,14 +25,14 @@ export const userUpdateSchema = z.object({
 export const appCreateSchema = z.object({
   name: z.string().min(1).max(100),
   description: z.string().max(500).optional().nullable(),
-  redirect_uris: z.array(z.string().url()).min(1),
+  redirect_uris: z.array(z.string().min(1).max(500)).min(1),
 });
 
 export const appUpdateSchema = z.object({
   id: z.string().uuid(),
   name: z.string().min(1).max(100).optional(),
   description: z.string().max(500).optional().nullable(),
-  redirect_uris: z.array(z.string().url()).min(1).optional(),
+  redirect_uris: z.array(z.string().min(1).max(500)).min(1).optional(),
   logoData: z
     .string()
     .max(5 * 1024 * 1024)
@@ -50,7 +50,7 @@ export const tokenSchema = z.discriminatedUnion("grant_type", [
     client_id: z.string().min(1).max(100),
     client_secret: z.string().min(1).max(255),
     code: z.string().min(1).max(255),
-    redirect_uri: z.string().url().max(500),
+    redirect_uri: z.string().min(1).max(500),
   }),
   z.object({
     grant_type: z.literal("refresh_token"),

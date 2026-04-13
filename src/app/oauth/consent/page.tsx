@@ -44,7 +44,7 @@ function ConsentContent() {
       });
       const data = await res.json();
       if (data.redirect_url) {
-        router.push(data.redirect_url);
+        window.location.href = data.redirect_url;
       } else {
         alert("Erreur d'approbation");
       }
@@ -100,9 +100,18 @@ function ConsentContent() {
             <span className="material-symbols-outlined text-[10px] text-slate-400">
               link
             </span>
-            <span className="text-[10px] font-bold text-slate-500 truncate max-w-[200px]">
+            <span className="text-[10px] font-bold text-slate-500 truncate max-w-[250px]">
               Redirection vers :{" "}
-              {new URL(redirect_uri, window.location.origin).hostname}
+              {(() => {
+                try {
+                  const url = new URL(redirect_uri, window.location.origin);
+                  return url.protocol === "http:" || url.protocol === "https:"
+                    ? url.hostname
+                    : redirect_uri;
+                } catch {
+                  return redirect_uri;
+                }
+              })()}
             </span>
           </div>
         )}
