@@ -159,7 +159,7 @@ export default function DeveloperPortalClientView({
                       value={redirectUris}
                       onChange={(e) => setRedirectUris(e.target.value)}
                       className="w-full bg-background-dark/50 border border-outline rounded-xl px-5 py-4 focus:border-primary outline-none transition-all text-sm font-mono"
-                      placeholder="http://localhost:3000/callback"
+                      placeholder="https://app.com/callback ou exp://..."
                     />
                   </div>
                 </div>

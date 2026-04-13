@@ -142,7 +142,7 @@ export default function ConfigAppClientView({ app }: { app: AppDetail }) {
   const isValidUrl = (url: string) => {
     try {
       const parsed = new URL(url);
-      return parsed.protocol === "http:" || parsed.protocol === "https:";
+      return !!parsed.protocol;
     } catch {
       return false;
     }
@@ -153,7 +153,7 @@ export default function ConfigAppClientView({ app }: { app: AppDetail }) {
 
     if (!isValidUrl(newUri)) {
       setUriError(
-        "L'URL doit être valide et commencer par http:// ou https:// (ex: https://mon-app.com)",
+        "L'URL doit être valide (ex: https://mon-app.com ou exp://...)",
       );
       return;
     }
@@ -583,7 +583,7 @@ export default function ConfigAppClientView({ app }: { app: AppDetail }) {
                         >
                           <input
                             className="flex-1 bg-transparent border-0 focus:ring-0 text-on-surface font-semibold py-4 px-6 text-xs placeholder:opacity-70"
-                            placeholder="Ajouter une URL (https://...)"
+                            placeholder="Ajouter une URL (https://... ou exp://...)"
                             type="text"
                             value={newUri}
                             onChange={(e) => {

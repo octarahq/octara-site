@@ -69,10 +69,7 @@ export async function PUT(request: Request) {
     if (redirect_uris && Array.isArray(redirect_uris)) {
       for (const uri of redirect_uris) {
         try {
-          const parsed = new URL(uri);
-          if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
-            throw new Error();
-          }
+          new URL(uri);
         } catch {
           return NextResponse.json(
             { error: `URL de redirection invalide: ${uri}` },
