@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "ts-node -r dotenv/config -r tsconfig-paths/register --project tsconfig.server.json server.ts",
-  "build": "next build",
-  "start": "NODE_ENV=production ts-node -r dotenv/config -r tsconfig-paths/register --project tsconfig.server.json server.ts",
+    "build": "prisma generate && next build",
+    "start": "NODE_ENV=production ts-node -r dotenv/config -r tsconfig-paths/register --project tsconfig.server.json server.ts",
     "lint": "biome check",
     "format": "biome format --write",
     "prod": "git fetch && git reset --hard origin/main && git clean -fd && npm run build && npm run start"
