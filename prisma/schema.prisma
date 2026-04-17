@@ -18,6 +18,11 @@ model User {
   consents          UserConsent[]
   accessTokens      AccessToken[]
   refreshTokens     RefreshToken[]
+  nearbyOwned       NearbyPerson[]  @relation("NearbyOwner")
+  nearbyAsPerson    NearbyPerson[]  @relation("NearbyPerson")
+  sharesSent        LocationShare[] @relation("LocationSharer")
+  sharesReceived    LocationShare[] @relation("LocationTarget")
+  locations         UserLocation[]
   createdAt         DateTime         @default(now())
   updatedAt         DateTime         @updatedAt
   searchSettings    SearchSettings?
@@ -142,4 +147,38 @@ model RefreshTokenScope {
   scope          String
   refreshTokenId String
   refreshToken   RefreshToken @relation(fields: [refreshTokenId], references: [id], onDelete: Cascade)
+}
+
+model NearbyPerson {
+  id        String   @id @default(uuid())
+  ownerId   String
+  personId  String
+  owner     User     @relation("NearbyOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  person    User     @relation("NearbyPerson", fields: [personId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([ownerId, personId])
+}
+
+model LocationShare {
+  id        String   @id @default(uuid())
+  sharerId  String
+  targetId  String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  sharer    User     @relation("LocationSharer", fields: [sharerId], references: [id], onDelete: Cascade)
+  target    User     @relation("LocationTarget", fields: [targetId], references: [id], onDelete: Cascade)
+}
+
+model UserLocation {
+  id        String   @id @default(uuid())
+  userId    String   @unique
+  latitude  Float
+  longitude Float
+  battery   Int?
+  timestamp DateTime @default(now())
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, timestamp])
 }

@@ -50,4 +50,18 @@
     "hours": "il y a {n} h",
     "days": "il y a {n} j"
   }
+  ,
+  "nearby": {
+    "title": "Personnes proches",
+    "empty": "Aucune personne proche pour le moment",
+    "add_button": "Ajouter",
+    "add_title": "Ajouter une personne proche",
+    "search_label": "Rechercher par e-mail ou nom",
+    "search_placeholder": "cruchot.ludovic@example.com ou Cruchot",
+    "searching": "Recherche...",
+    "no_results": "Aucun résultat",
+    "select": "Sélectionner",
+    "cancel": "Annuler",
+    "add_confirm": "Ajouter"
+  }
 }

@@ -42,6 +42,12 @@ export const AVAILABLE_SCOPES: ScopeDefinition[] = [
     description: "Accès à vos paramètres de recherche Octara",
   },
   {
+    id: "share:location",
+    label: "Partager votre position",
+    description:
+      "Autorise une application à partager votre position avec des personnes spécifiques pour une durée limitée (max 24h)",
+  },
+  {
     id: "write:search_settings",
     label: "Paramètres de recherche (modification)",
     description: "Modification de vos paramètres de recherche Octara",

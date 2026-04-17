@@ -50,4 +50,18 @@
     "hours": "{n}h ago",
     "days": "{n}d ago"
   }
+  ,
+  "nearby": {
+    "title": "Nearby people",
+    "empty": "No nearby people yet",
+    "add_button": "Add",
+    "add_title": "Add nearby person",
+    "search_label": "Search by email or name",
+    "search_placeholder": "john@example.com or John",
+    "searching": "Searching...",
+    "no_results": "No results",
+    "select": "Select",
+    "cancel": "Cancel",
+    "add_confirm": "Add"
+  }
 }

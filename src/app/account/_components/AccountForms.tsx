@@ -50,6 +50,12 @@ export default function AccountForms({ initialUser }: { initialUser: User }) {
     type: "success" | "error";
     msg: string;
   } | null>(null);
+  const [nearby, setNearby] = useState<Array<{ id: string; name?: string | null; email?: string; addedAt?: string }>>([]);
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState<Array<{ id: string; name?: string | null; email?: string }>>([]);
+  const [isSearching, setIsSearching] = useState(false);
+  
 
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [currentPassword, setCurrentPassword] = useState("");
@@ -63,7 +69,72 @@ export default function AccountForms({ initialUser }: { initialUser: User }) {
   useEffect(() => {
     setName(user.name || "");
     setEmail(user.email || "");
+    (async () => {
+      try {
+        const res = await fetch("/api/v1/me/nearby");
+        if (res.ok) {
+          const json = await res.json();
+          if (json.ok && Array.isArray(json.nearby)) setNearby(json.nearby);
+        }
+      } catch (err) {}
+    })();
   }, [user]);
+
+  useEffect(() => {
+    if (!showAddModal) return;
+    const timer = setTimeout(async () => {
+      if (!searchQuery || searchQuery.length < 2) {
+        setSearchResults([]);
+        setIsSearching(false);
+        return;
+      }
+      setIsSearching(true);
+      try {
+        const res = await fetch(`/api/v1/users/search?q=${encodeURIComponent(searchQuery)}`);
+        if (res.ok) {
+          const json = await res.json();
+          if (json.ok) setSearchResults(json.users || []);
+        }
+      } catch (err) {}
+      setIsSearching(false);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [searchQuery, showAddModal]);
+
+  const addNearbyById = async (userId: string) => {
+    try {
+      const res = await fetch("/api/v1/me/nearby", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ targetUserId: userId }),
+      });
+      if (res.ok) {
+        const json = await res.json();
+        if (json.ok && json.nearby) {
+          setNearby((prev) => [json.nearby, ...prev]);
+          setShowAddModal(false);
+          setSearchQuery("");
+          setSearchResults([]);
+        }
+      }
+    } catch (err) {
+    }
+  };
+
+  const removeNearby = async (targetUserId: string) => {
+    try {
+      const res = await fetch(`/api/v1/me/nearby?targetUserId=${encodeURIComponent(targetUserId)}`, {
+        method: "DELETE",
+      });
+      if (res.ok) {
+        const json = await res.json();
+        if (json.ok) {
+          setNearby((prev) => prev.filter((p) => p.id !== targetUserId));
+        }
+      }
+    } catch (err) {
+    }
+  };
 
   const handleUpdateProfile = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -412,6 +483,7 @@ export default function AccountForms({ initialUser }: { initialUser: User }) {
             </section>
 
             <section className="col-span-12 lg:col-span-4 flex flex-col gap-8">
+              {/* existing right-column cards (security, 2FA) remain here */}
               <div className="bg-surface-container rounded-[2rem] p-8 border border-outline hover:border-primary/40 transition-all shadow-xl group">
                 <div className="flex items-center gap-4 mb-8">
                   <div className="w-12 h-12 rounded-2xl bg-background-dark border border-outline flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500">
@@ -486,6 +558,105 @@ export default function AccountForms({ initialUser }: { initialUser: User }) {
                 {t("account.danger.logout")}
               </button>
             </section>
+
+            <section className="col-span-12 bg-surface-container rounded-[2rem] p-8 border border-outline shadow-xl">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-12 rounded-2xl bg-background-dark border border-outline flex items-center justify-center text-primary">
+                  <span className="material-symbols-outlined font-black">near_me</span>
+                </div>
+                <div className="flex items-center gap-4 w-full justify-between">
+                  <h3 className="text-base font-black font-display uppercase tracking-widest">
+                    {t("account.nearby.title")}
+                  </h3>
+                  <div className="ml-auto">
+                    <button
+                      onClick={() => setShowAddModal(true)}
+                      className="text-[10px] font-black uppercase tracking-widest bg-primary text-white px-4 py-2 rounded-lg shadow-sm"
+                    >
+                      {t("account.nearby.add_button")}
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div className="space-y-3">
+                {nearby.length === 0 ? (
+                  <p className="text-[10px] text-on-surface/40">{t("account.nearby.empty")}</p>
+                ) : (
+                  nearby.map((p) => (
+                    <div key={p.id} className="flex items-center justify-between">
+                      <div className="flex items-center gap-4">
+                        <img src={`/api/v1/users/${p.id}/avatar`} alt="avatar" className="w-10 h-10 rounded-xl object-cover border border-outline" />
+                        <div>
+                          <div className="text-sm font-black">{p.name || p.email?.split("@")[0]}</div>
+                          <div className="text-[10px] text-on-surface/40">{p.email}</div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-4">
+                        <div className="text-[10px] text-on-surface/30">{p.addedAt ? new Date(p.addedAt).toLocaleDateString() : ""}</div>
+                        <button onClick={() => removeNearby(p.id)} title="Remove" className="px-3 py-2 bg-error text-white rounded-lg">
+                          <span className="material-symbols-outlined text-[14px] font-black">
+                            delete
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                  ))
+                )}
+              </div>
+            </section>
+
+      {showAddModal && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
+          <div
+            className="absolute inset-0 bg-background-dark/90 backdrop-blur-sm"
+            onClick={() => setShowAddModal(false)}
+          ></div>
+          <div className="relative w-full max-w-2xl bg-surface-container rounded-3xl border border-outline shadow-2xl p-8">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-xl font-black">{t("account.nearby.add_title")}</h3>
+              <button onClick={() => setShowAddModal(false)} className="p-2">
+                <span className="material-symbols-outlined">close</span>
+              </button>
+            </div>
+            <div className="space-y-4">
+              <label className="text-[10px] uppercase font-black text-on-surface/40">{t("account.nearby.search_label")}</label>
+              <input
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full bg-background-dark/50 border border-outline rounded-xl px-5 py-4 focus:border-primary outline-none text-sm font-semibold"
+                placeholder={t("account.nearby.search_placeholder")}
+              />
+
+              <div className="max-h-64 overflow-auto space-y-2">
+                {isSearching && <div className="text-[12px]">{t("account.nearby.searching")}</div>}
+                {!isSearching && searchResults.length === 0 && searchQuery.length >= 2 && (
+                  <div className="text-[12px] text-on-surface/40">{t("account.nearby.no_results")}</div>
+                )}
+                {searchResults.map((u) => (
+                  <div key={u.id} className={`p-3 rounded-xl border border-outline flex items-center justify-between`}> 
+                    <div className="flex items-center gap-4">
+                      <img src={`/api/v1/users/${u.id}/avatar`} alt="avatar" className="w-10 h-10 rounded-xl object-cover border border-outline" />
+                      <div>
+                        <div className="font-black">{u.name || u.email?.split("@")[0]}</div>
+                        <div className="text-[10px] text-on-surface/40">{u.email}</div>
+                      </div>
+                    </div>
+                    <div>
+                      <button onClick={() => addNearbyById(u.id)} title="Add" className="w-8 h-8 flex items-center justify-center bg-primary text-white rounded-lg">+
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex justify-end gap-3">
+                <button onClick={() => setShowAddModal(false)} className="px-6 py-3 rounded-xl border border-outline">{t("account.nearby.cancel")}</button>
+                <button className="px-6 py-3 rounded-xl bg-primary text-white">{t("account.nearby.add_confirm")}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
           </div>
         </div>
       </main>

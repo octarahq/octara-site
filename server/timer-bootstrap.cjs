@@ -44,8 +44,10 @@ async function fetchProjects() {
         '$1"$2":',
       );
       try {
+        console.log(normalized)
         return JSON.parse(normalized);
       } catch (e2) {
+        console.error(e2);
         return [];
       }
     }
