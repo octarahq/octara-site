@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { verifyAccessToken, insufficientScopesResponse } from "@/lib/oauth-resources";
+import { useSearchParams } from "next/navigation";
 
 export async function GET(request: Request) {
   const auth = await verifyAccessToken(request);
@@ -8,6 +9,8 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: auth.error }, { status: (auth as any).status || 401 });
   }
 
+  const searchParams = useSearchParams();
+  const userId = searchParams.get("userId");
   const { user } = auth as any;
   const scopes = (auth as any).scopes as string[];
 
@@ -17,6 +20,7 @@ export async function GET(request: Request) {
 
   const shares = await prisma.locationShare.findMany({
     where: {
+      ...(userId && { sharerId: userId }),
       targetId: user.id,
       expiresAt: {
         gt: new Date(),
