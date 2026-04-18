@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import path from 'path'
 import { PrismaPg } from "@prisma/adapter-pg";
 import pg from "pg";
 
