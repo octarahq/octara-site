@@ -2,6 +2,41 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { verifyAccessToken, insufficientScopesResponse } from "@/lib/oauth-resources";
 
+export async function GET(request: Request) {
+  const auth = await verifyAccessToken(request);
+  if ((auth as any).error) {
+    return NextResponse.json({ error: auth.error }, { status: (auth as any).status || 401 });
+  }
+
+  const { user } = auth as any;
+  const scopes = (auth as any).scopes as string[];
+
+  if (!scopes.includes("share:location")) {
+    return insufficientScopesResponse(["share:location"]);
+  }
+
+  const shares = await prisma.locationShare.findMany({
+    where: {
+      targetId: user.id,
+      expiresAt: {
+        gt: new Date(),
+      },
+    },
+    include: {
+      sharer: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+        },
+      },
+    },
+  });
+
+  return NextResponse.json({ ok: true, shares });
+
+}
+
 export async function POST(request: Request) {
   const auth = await verifyAccessToken(request);
   if ((auth as any).error) {
