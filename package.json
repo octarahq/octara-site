@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "ts-node -r dotenv/config -r tsconfig-paths/register --project tsconfig.server.json server.ts",
-    "build": "next build",
+    "build": "prisma generate && next build --webpack",
     "start": "NODE_ENV=production ts-node -r dotenv/config -r tsconfig-paths/register --project tsconfig.server.json server.ts",
     "lint": "biome check",
     "format": "biome format --write",
