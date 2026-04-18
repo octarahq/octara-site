@@ -10,7 +10,7 @@ try {
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  serverExternalPackages: ['@prisma/client'],
 };
 
 export default withNextIntl(nextConfig);
