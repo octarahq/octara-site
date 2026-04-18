@@ -8,7 +8,7 @@
     "start": "NODE_ENV=production ts-node -r dotenv/config -r tsconfig-paths/register --project tsconfig.server.json server.ts",
     "lint": "biome check",
     "format": "biome format --write",
-    "prod": "npm install && npx prisma generate && npm run build && npm run start"
+    "prod": "npm install && npx prisma generate && npm run start"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.7.0",
