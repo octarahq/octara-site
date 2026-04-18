@@ -1,0 +1,38 @@
+name: Deploy on Orion
+
+on:
+    push:
+        branches: ["main"]
+
+    release:
+        types: [published]
+
+    workflow_dispatch:
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v6
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v6
+              with:
+                  node-version: 24
+                  registry-url: "https://registry.npmjs.org"
+
+            - name: Install Orion CLI
+              run: npm i -g @orionhosting/cli@latest
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Build
+              run: npm run build
+
+            - name: Deploy
+              run: orion deploy
+              env:
+                  ORION_TOKEN: ${{ secrets.ORION_TOKEN }}
+                  ORION_SERVER_ID: ${{ vars.ORION_SERVER_ID }}
