@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { verifyAccessToken, insufficientScopesResponse } from "@/lib/oauth-resources";
+import buildAvatarUrl from "@/utils/users/buildAvatarUrl";
 
 export async function GET(request: Request) {
   const auth = await verifyAccessToken(request);
@@ -47,12 +48,14 @@ export async function GET(request: Request) {
     whoShare: {
       id: s.sharer.id,
       name: s.sharer.name,
-      mail: s.sharer.email,
+      email: s.sharer.email,
+      avatar_url: buildAvatarUrl({ id: s.sharer.id }),
     },
     toWho: {
       id: s.target.id,
       name: s.target.name,
-      mail: s.target.email,
+      email: s.target.email,
+      avatar_url: buildAvatarUrl({ id: s.target.id }),
     },
     expiresAt: s.expiresAt,
   }));
