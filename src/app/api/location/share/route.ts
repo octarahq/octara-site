@@ -110,3 +110,38 @@ export async function POST(request: Request) {
 
   return NextResponse.json({ ok: true, share });
 }
+
+export async function DELETE(request: Request) {
+  const auth = await verifyAccessToken(request);
+  if ((auth as any).error) {
+    return NextResponse.json({ error: auth.error }, { status: (auth as any).status || 401 });
+  }
+
+  const { user } = auth as any;
+  const scopes = (auth as any).scopes as string[];
+
+  if (!scopes.includes("share:location")) {
+    return insufficientScopesResponse(["share:location"]);
+  }
+
+  const searchParams = new URL(request.url).searchParams;
+  const targetUserId = searchParams.get("targetUserId");
+
+  if (!targetUserId) {
+    return NextResponse.json({ error: "targetUserId is required" }, { status: 400 });
+  }
+
+  try {
+    await prisma.locationShare.deleteMany({
+      where: {
+        sharerId: user.id,
+        targetId: targetUserId,
+      },
+    });
+
+    return NextResponse.json({ ok: true, message: "Partage arrêté avec succès" });
+  } catch (error) {
+    console.error("Erreur lors de l'arrêt du partage:", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  }
+}
