@@ -29,12 +29,14 @@ export async function GET(request: Request) {
         select: {
           id: true,
           name: true,
+          email: true,
         },
       },
       target: {
         select: {
           id: true,
           name: true,
+          email: true,
         },
       },
     },
@@ -44,11 +46,13 @@ export async function GET(request: Request) {
     id: s.id,
     whoShare: {
       id: s.sharer.id,
-      nom: s.sharer.name,
+      name: s.sharer.name,
+      mail: s.sharer.email,
     },
     toWho: {
       id: s.target.id,
-      nom: s.target.name,
+      name: s.target.name,
+      mail: s.target.email,
     },
     expiresAt: s.expiresAt,
   }));
