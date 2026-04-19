@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { verifyAccessToken, insufficientScopesResponse } from "@/lib/oauth-resources";
 
-export async function GET(request: Request) { // permet de savoir si on partage et qui nous fait un partage
+export async function GET(request: Request) {
   const auth = await verifyAccessToken(request);
   if ((auth as any).error) {
     return NextResponse.json({ error: auth.error }, { status: (auth as any).status || 401 });
@@ -17,7 +17,7 @@ export async function GET(request: Request) { // permet de savoir si on partage 
     return insufficientScopesResponse(["share:location"]);
   }
 
-  const shares = await prisma.locationShare.findMany({
+  const sharesRaw = await prisma.locationShare.findMany({
     where: {
       OR: [
         { sharerId: userId || user.id },
@@ -39,6 +39,19 @@ export async function GET(request: Request) { // permet de savoir si on partage 
       },
     },
   });
+
+  const shares = sharesRaw.map((s) => ({
+    id: s.id,
+    whoShare: {
+      id: s.sharer.id,
+      nom: s.sharer.name,
+    },
+    toWho: {
+      id: s.target.id,
+      nom: s.target.name,
+    },
+    expiresAt: s.expiresAt,
+  }));
 
   return NextResponse.json({ ok: true, shares });
 }
