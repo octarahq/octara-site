@@ -26,7 +26,26 @@ export class LocationWebsocketService {
     
     this.broadcastInterval = setInterval(() => {
       void this.broadcastLastPositions();
-    }, 10000);
+    }, 5000);
+  }
+
+  private async buildPayloadBroadcastLastPosition(sharerId: string) {
+    const lastLoc = await prisma.userLocation.findFirst({
+      where: { userId: sharerId },
+      orderBy: { timestamp: 'desc' },
+    });
+
+    if (!lastLoc) return null;
+
+    return JSON.stringify({
+      type: "location_sync",
+      sharerId: sharerId,
+      lat: lastLoc.latitude,
+      lng: lastLoc.longitude,
+      battery: lastLoc.battery,
+      timestamp: lastLoc.timestamp.getTime(),
+      isLive: lastLoc.timestamp.getTime() > Date.now() - 60000,
+    });
   }
 
   private async broadcastLastPositions() {
@@ -39,23 +58,14 @@ export class LocationWebsocketService {
           orderBy: { timestamp: 'desc' },
         });
 
-        if (lastLoc) {
-          const payload = JSON.stringify({
-            type: "location_sync",
-            sharerId: sharerId,
-            lat: lastLoc.latitude,
-            lng: lastLoc.longitude,
-            battery: lastLoc.battery,
-            timestamp: lastLoc.timestamp.getTime(),
-            isLive: lastLoc.timestamp.getTime() > Date.now() - 60000,
-          });
+        const payload = await this.buildPayloadBroadcastLastPosition(sharerId);
+        if (!payload) continue;
 
-          for (const viewerSocket of viewers) {
-            if (viewerSocket.readyState === WebSocket.OPEN) {
-              viewerSocket.send(payload);
-            }
+        for (const viewerSocket of viewers) {
+          if (viewerSocket.readyState === WebSocket.OPEN) {
+            viewerSocket.send(payload);
           }
-        }
+        } 
       }
     } catch (err) {
       console.error("Erreur lors du broadcast périodique:", err);
@@ -121,6 +131,8 @@ export class LocationWebsocketService {
         ws.send(JSON.stringify({ ok: true, role: "sharer", userId }));
       } else {
         await this.subscribeViewerToSharers(ws, userId);
+        const payload = await this.buildPayloadBroadcastLastPosition(userId);
+        if (payload) ws.send(payload);
         ws.send(JSON.stringify({ ok: true, role: "viewer", userId }));
       }
 
