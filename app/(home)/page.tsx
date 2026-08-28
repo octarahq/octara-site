@@ -1,6 +1,7 @@
 "use client";
 
 import Hero, { HeroBackground } from "@/app/(home)/_components/hero";
+import Stats from "@/app/(home)/_components/stats";
 import { Section } from "@/components/ui/section";
 import { motion } from "motion/react";
 
@@ -17,8 +18,12 @@ export default function Home() {
         >
           <HeroBackground />
         </motion.div>
-        <Section container className="overflow-visible">
+        <Section
+          container
+          className="overflow-visible flex flex-col pb-24 md:pb-40"
+        >
           <Hero />
+          <Stats />
         </Section>
       </div>
     </main>
