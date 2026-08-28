@@ -17,6 +17,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import OctaraLogo from "./OctaraLogo";
 
 const HamburgerIcon = ({
   className,
@@ -79,15 +80,7 @@ export const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
   (
     {
       className,
-      logo = (
-        <Image
-          src="/favicon.svg"
-          alt="Logo"
-          width={32}
-          height={32}
-          className="rounded-full"
-        />
-      ),
+      logo = <OctaraLogo size="lg" />,
       logoHref = "/",
       navigationLinks = defaultNavigationLinks,
       signInText = "Login",
@@ -141,14 +134,14 @@ export const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
     return (
       <header
         className={cn(
-          "sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 px-4 md:px-6 **:no-underline",
+          "sticky top-0 z-50 w-full border-b border-border/40 bg-background/60 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 px-4 md:px-8",
           className,
         )}
         ref={combinedRef}
         {...(props as React.HTMLAttributes<HTMLElement>)}
       >
-        <div className="container mx-auto flex h-16 max-w-screen-2xl items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4">
+          <div className="flex items-center gap-6 md:gap-8">
             {isMobile && (
               <Popover>
                 <PopoverTrigger
@@ -172,8 +165,8 @@ export const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
                             className={cn(
                               "flex w-full items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground cursor-pointer no-underline",
                               link.active
-                                ? "bg-accent text-accent-foreground"
-                                : "text-foreground/80",
+                                ? "bg-accent/50 text-foreground font-semibold"
+                                : "text-foreground/70",
                             )}
                             onClick={(e) => e.preventDefault()}
                           >
@@ -187,53 +180,52 @@ export const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
               </Popover>
             )}
 
-            <div className="flex items-center gap-6">
-              <Link
-                type="button"
-                className="flex items-center space-x-2 text-primary hover:text-primary/90 transition-colors cursor-pointer"
-                href={logoHref}
-              >
-                <div className="text-2xl">{logo}</div>
-                <span className="hidden font-bold text-xl sm:inline-block">
-                  Octara
-                </span>
-              </Link>
+            <Link
+              type="button"
+              className="flex items-center gap-2 hover:opacity-90 transition-opacity cursor-pointer"
+              href={logoHref}
+            >
+              <div className="flex items-center justify-center">{logo}</div>
+              <span className="hidden font-bold text-xl sm:inline-block tracking-tight">
+                Octara
+              </span>
+            </Link>
 
-              {!isMobile && (
-                <NavigationMenu className="flex">
-                  <NavigationMenuList className="gap-1">
-                    {navigationLinks.map((link, index) => (
-                      <NavigationMenuItem key={index}>
-                        <Link
-                          type="button"
-                          className={cn(
-                            "group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 cursor-pointer no-underline",
-                            link.active
-                              ? "bg-accent text-accent-foreground"
-                              : "text-foreground/80 hover:text-foreground",
-                          )}
-                          href={link.href}
-                        >
-                          {link.label}
-                        </Link>
-                      </NavigationMenuItem>
-                    ))}
-                  </NavigationMenuList>
-                </NavigationMenu>
-              )}
-            </div>
+            {!isMobile && (
+              <NavigationMenu className="hidden md:flex">
+                <NavigationMenuList className="gap-2">
+                  {navigationLinks.map((link, index) => (
+                    <NavigationMenuItem key={index}>
+                      <Link
+                        type="button"
+                        className={cn(
+                          "group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent/50 hover:text-foreground focus:bg-accent focus:text-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 cursor-pointer no-underline",
+                          link.active
+                            ? "bg-accent/40 text-foreground"
+                            : "text-foreground/70 hover:text-foreground",
+                        )}
+                        href={link.href}
+                      >
+                        {link.label}
+                      </Link>
+                    </NavigationMenuItem>
+                  ))}
+                </NavigationMenuList>
+              </NavigationMenu>
+            )}
           </div>
 
-          <div className="flex items-center gap-3">
-            <Link
-              className="text-sm font-medium hover:bg-accent hover:text-accent-foreground"
-              href={signInHref}
-            >
-              {signInText}
-            </Link>
+          <div className="flex items-center gap-2 md:gap-4">
             <Button
-              className="text-sm font-medium px-4 h-9 rounded-md shadow-sm"
+              variant="ghost"
               size="sm"
+              className="hidden sm:inline-flex text-sm font-medium text-foreground/80 hover:text-foreground"
+            >
+              <Link href={signInHref}>{signInText}</Link>
+            </Button>
+            <Button
+              size="sm"
+              className="text-sm font-medium px-5 h-9 rounded-full shadow-sm"
             >
               <Link href={ctaHref}>{ctaText}</Link>
             </Button>
