@@ -14,6 +14,10 @@ const nextConfig: NextConfig = {
       source: "/favicon.ico",
       destination: "/favicon.svg",
     },
+    {
+      source: "/api/:path*",
+      destination: "https://api.octara.xyz/api/:path*",
+    },
   ],
 };
 
