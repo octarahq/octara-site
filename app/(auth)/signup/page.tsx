@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import Gradient90 from "@/app/background/shadergradients/90";
+import { useSearchParams } from "next/navigation";
 
 const formSchema = z.object({
   email: z.string().email("Enter a valid email."),
@@ -33,6 +34,8 @@ const formSchema = z.object({
 });
 
 export function TsfRecipes03() {
+  const searchParams = useSearchParams();
+  const redirectUrl = searchParams.get("redirectUrl") || "/account";
   const { signup } = useAuth();
   const [authError, setAuthError] = useState(false);
   const form = useForm({
@@ -42,7 +45,9 @@ export function TsfRecipes03() {
       setAuthError(false);
       try {
         await signup(value);
-      } catch (error) {
+        const url = redirectUrl || "/account";
+        window.location.href = url;
+      } catch {
         setAuthError(true);
       }
     },
@@ -76,7 +81,8 @@ export function TsfRecipes03() {
               <form.Field name="username">
                 {(field) => {
                   const isInvalid =
-                    (field.state.meta.isTouched && !field.state.meta.isValid) || authError;
+                    (field.state.meta.isTouched && !field.state.meta.isValid) ||
+                    authError;
                   return (
                     <Field data-invalid={isInvalid} className="space-y-2">
                       <FieldLabel htmlFor={field.name} className="text-base">
@@ -106,7 +112,8 @@ export function TsfRecipes03() {
               <form.Field name="email">
                 {(field) => {
                   const isInvalid =
-                    (field.state.meta.isTouched && !field.state.meta.isValid) || authError;
+                    (field.state.meta.isTouched && !field.state.meta.isValid) ||
+                    authError;
                   return (
                     <Field data-invalid={isInvalid} className="space-y-2">
                       <FieldLabel htmlFor={field.name} className="text-base">
@@ -136,7 +143,8 @@ export function TsfRecipes03() {
               <form.Field name="password">
                 {(field) => {
                   const isInvalid =
-                    (field.state.meta.isTouched && !field.state.meta.isValid) || authError;
+                    (field.state.meta.isTouched && !field.state.meta.isValid) ||
+                    authError;
                   return (
                     <Field data-invalid={isInvalid} className="space-y-2">
                       <FieldLabel htmlFor={field.name} className="text-base">
@@ -177,7 +185,7 @@ export function TsfRecipes03() {
           <p className="text-muted-foreground text-sm">
             Already have an account?{" "}
             <Link
-              href="/login"
+              href={`/login?redirectUrl=${encodeURIComponent(redirectUrl)}`}
               className="text-primary hover:underline font-medium"
             >
               Login

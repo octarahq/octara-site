@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import Gradient from "@/app/background/shadergradients/06";
+import { useSearchParams } from "next/navigation";
 
 const formSchema = z.object({
   email: z.email("Enter a valid email."),
@@ -32,6 +33,8 @@ const formSchema = z.object({
 });
 
 export function LoginPage() {
+  const searchParams = useSearchParams();
+  const redirectUrl = searchParams.get("redirectUrl") || "/account";
   const { login } = useAuth();
   const [authError, setAuthError] = useState(false);
   const form = useForm({
@@ -41,7 +44,8 @@ export function LoginPage() {
       setAuthError(false);
       try {
         await login(value);
-      } catch (error) {
+        window.location.href = redirectUrl;
+      } catch {
         setAuthError(true);
       }
     },
@@ -75,7 +79,8 @@ export function LoginPage() {
               <form.Field name="email">
                 {(field) => {
                   const isInvalid =
-                    (field.state.meta.isTouched && !field.state.meta.isValid) || authError;
+                    (field.state.meta.isTouched && !field.state.meta.isValid) ||
+                    authError;
                   return (
                     <Field data-invalid={isInvalid} className="space-y-2">
                       <FieldLabel htmlFor={field.name} className="text-base">
@@ -105,7 +110,8 @@ export function LoginPage() {
               <form.Field name="password">
                 {(field) => {
                   const isInvalid =
-                    (field.state.meta.isTouched && !field.state.meta.isValid) || authError;
+                    (field.state.meta.isTouched && !field.state.meta.isValid) ||
+                    authError;
                   return (
                     <Field data-invalid={isInvalid} className="space-y-2">
                       <FieldLabel htmlFor={field.name} className="text-base">
@@ -145,7 +151,10 @@ export function LoginPage() {
         <CardFooter className="flex justify-center border-t border-border/50 pt-6 mt-2">
           <p className="text-muted-foreground text-sm">
             Don&apos;t have an account?{" "}
-            <Link href="/signup" className="text-primary hover:underline font-medium">
+            <Link
+              href={`/signup?redirectUrl=${encodeURIComponent(redirectUrl)}`}
+              className="text-primary hover:underline font-medium"
+            >
               Sign up
             </Link>
           </p>

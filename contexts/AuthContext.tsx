@@ -51,6 +51,7 @@ interface AuthContextType {
   login: (credentials: AuthCredentials) => Promise<void>;
   signup: (credentials: AuthCredentials) => Promise<void>;
   logout: () => void;
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -66,9 +67,27 @@ export function AuthProvider({
 }) {
   const [user, setUser] = useState<User | null>(initialUser);
   const [token, setToken] = useState<string | null>(initialToken);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
-  // SSR handles initialization
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const res = await fetch("/api/v1/auth/status");
+        if (res.ok) {
+          const data = await res.json();
+          if (data.isAuthenticated) {
+            setUser(data.user);
+          }
+        }
+      } catch (err) {
+        console.error("Error while getting session:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    checkAuth();
+  }, []);
 
   const login = async (credentials: AuthCredentials) => {
     try {
@@ -86,15 +105,12 @@ export function AuthProvider({
       }
 
       const data = await res.json();
-      const token = data.token;
       const userObj: User = data.user || {
         email: credentials.email,
         username: credentials.username || "Unknown",
       };
 
-      setToken(token);
       setUser(userObj);
-      document.cookie = `auth_token=${token}; path=/; max-age=${72 * 3600}; SameSite=Lax`;
 
       toast.success("Welcome back", { description: userObj.email });
       router.push("/");
@@ -136,19 +152,21 @@ export function AuthProvider({
     }
   };
 
-  const logout = () => {
+  const logout = async () => {
+    try {
+      await fetch("/api/v1/auth/logout", { method: "POST" });
+    } catch (e) {}
     setToken(null);
     setUser(null);
-    document.cookie = "auth_token=; path=/; max-age=0";
     toast.info("Logged out successfully");
     router.push("/");
   };
 
-  const isAuthenticated = !!token;
+  const isAuthenticated = !!user;
 
   return (
     <AuthContext.Provider
-      value={{ user, token, isAuthenticated, login, signup, logout }}
+      value={{ user, token, isAuthenticated, login, signup, logout, setUser }}
     >
       {children}
     </AuthContext.Provider>
