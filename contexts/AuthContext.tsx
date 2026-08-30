@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 
 export interface User {
   email: string;
+  role?: "USER" | "ADMIN";
   username: string;
 }
 
@@ -189,7 +190,16 @@ export function AuthProvider({
 
   return (
     <AuthContext.Provider
-      value={{ user, token, isAuthenticated, login, signup, verify, logout, setUser }}
+      value={{
+        user,
+        token,
+        isAuthenticated,
+        login,
+        signup,
+        verify,
+        logout,
+        setUser,
+      }}
     >
       {children}
     </AuthContext.Provider>

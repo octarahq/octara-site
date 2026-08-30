@@ -241,6 +241,16 @@ export const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
                           My Account
                         </Button>
                       </Link>
+                      {user.role === "ADMIN" && (
+                        <Link href="/admin" className="w-full">
+                          <Button
+                            variant="ghost"
+                            className="w-full justify-start text-foreground/80 hover:text-foreground"
+                          >
+                            Admin Panel
+                          </Button>
+                        </Link>
+                      )}
                       <Button
                         variant="ghost"
                         className="w-full justify-start text-foreground/80 hover:text-foreground"
