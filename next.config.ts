@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  reactStrictMode: false,
   images: {
     remotePatterns: [
       {
@@ -16,7 +17,7 @@ const nextConfig: NextConfig = {
     },
     {
       source: "/api/:path*",
-      destination: "https://api.octara.xyz/api/:path*",
+      destination: "http://localhost:4059/api/:path*",
     },
   ],
 };

@@ -6,10 +6,12 @@ import { useRouter } from "next/navigation";
 
 export interface User {
   email: string;
+  username: string;
 }
 
 export interface AuthCredentials {
   email: string;
+  username?: string;
   password?: string;
 }
 
@@ -53,31 +55,20 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
-  const [token, setToken] = useState<string | null>(null);
+export function AuthProvider({
+  children,
+  initialUser = null,
+  initialToken = null,
+}: {
+  children: React.ReactNode;
+  initialUser?: User | null;
+  initialToken?: string | null;
+}) {
+  const [user, setUser] = useState<User | null>(initialUser);
+  const [token, setToken] = useState<string | null>(initialToken);
   const router = useRouter();
 
-  useEffect(() => {
-    const initializeAuth = async () => {
-      await Promise.resolve();
-
-      const storedToken = localStorage.getItem("auth_token");
-      const storedUser = localStorage.getItem("auth_user");
-
-      if (storedToken && storedUser) {
-        setToken(storedToken);
-        try {
-          setUser(JSON.parse(storedUser));
-        } catch (e) {
-          console.error("Failed to parse stored user", e);
-          setUser(null);
-        }
-      }
-    };
-
-    initializeAuth();
-  }, []);
+  // SSR handles initialization
 
   const login = async (credentials: AuthCredentials) => {
     try {
@@ -96,12 +87,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       const data = await res.json();
       const token = data.token;
-      const userObj: User = data.user || { email: credentials.email };
+      const userObj: User = data.user || {
+        email: credentials.email,
+        username: credentials.username || "Unknown",
+      };
 
       setToken(token);
       setUser(userObj);
-      localStorage.setItem("auth_token", token);
-      localStorage.setItem("auth_user", JSON.stringify(userObj));
+      document.cookie = `auth_token=${token}; path=/; max-age=${72 * 3600}; SameSite=Lax`;
 
       toast.success("Welcome back", { description: userObj.email });
       router.push("/");
@@ -128,7 +121,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         throw new Error(errorData?.error || "Failed to sign up");
       }
 
-      toast.success("Account created", { description: credentials.email });
+      toast.success("Account created", {
+        description: credentials.username || credentials.email,
+      });
 
       await login(credentials);
     } catch (error: unknown) {
@@ -144,8 +139,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const logout = () => {
     setToken(null);
     setUser(null);
-    localStorage.removeItem("auth_token");
-    localStorage.removeItem("auth_user");
+    document.cookie = "auth_token=; path=/; max-age=0";
     toast.info("Logged out successfully");
     router.push("/");
   };

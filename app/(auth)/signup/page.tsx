@@ -27,15 +27,16 @@ import { Input } from "@/components/ui/input";
 import Gradient90 from "@/app/background/shadergradients/90";
 
 const formSchema = z.object({
-  email: z.email("Enter a valid email."),
-  password: z.string().min(1, "Enter your password."),
+  email: z.string().email("Enter a valid email."),
+  username: z.string().min(3, "Username must be at least 3 characters."),
+  password: z.string().min(6, "Password must be at least 6 characters."),
 });
 
 export function TsfRecipes03() {
   const { signup } = useAuth();
   const [authError, setAuthError] = useState(false);
   const form = useForm({
-    defaultValues: { email: "", password: "" },
+    defaultValues: { email: "", username: "", password: "" },
     validators: { onSubmit: formSchema },
     onSubmit: async ({ value }) => {
       setAuthError(false);
@@ -71,7 +72,37 @@ export function TsfRecipes03() {
               form.handleSubmit();
             }}
           >
-            <FieldGroup>
+            <FieldGroup className="">
+              <form.Field name="username">
+                {(field) => {
+                  const isInvalid =
+                    (field.state.meta.isTouched && !field.state.meta.isValid) || authError;
+                  return (
+                    <Field data-invalid={isInvalid} className="space-y-2">
+                      <FieldLabel htmlFor={field.name} className="text-base">
+                        Username
+                      </FieldLabel>
+                      <Input
+                        id={field.name}
+                        name={field.name}
+                        type="text"
+                        placeholder="ludovic_cruchot"
+                        aria-invalid={isInvalid}
+                        value={field.state.value}
+                        onBlur={field.handleBlur}
+                        onChange={(e) => {
+                          setAuthError(false);
+                          field.handleChange(e.target.value);
+                        }}
+                        className="h-12 text-lg"
+                      />
+                      {isInvalid && (
+                        <FieldError errors={field.state.meta.errors} />
+                      )}
+                    </Field>
+                  );
+                }}
+              </form.Field>
               <form.Field name="email">
                 {(field) => {
                   const isInvalid =

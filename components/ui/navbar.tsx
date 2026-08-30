@@ -14,10 +14,11 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import OctaraLogo from "./OctaraLogo";
+import { useAuth } from "@/contexts/AuthContext";
+import { Avatar } from "./avatar";
 
 const HamburgerIcon = ({
   className,
@@ -92,6 +93,7 @@ export const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
     ref,
   ) => {
     const path = usePathname();
+    const { isAuthenticated, user, logout } = useAuth();
     navigationLinks = navigationLinks.map((link) => ({
       ...link,
       active: link.href === path,
@@ -216,19 +218,57 @@ export const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
           </div>
 
           <div className="flex items-center gap-2 md:gap-4">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="hidden sm:inline-flex text-sm font-medium text-foreground/80 hover:text-foreground"
-            >
-              <Link href={signInHref}>{signInText}</Link>
-            </Button>
-            <Button
-              size="sm"
-              className="text-sm font-medium px-5 h-9 rounded-full shadow-sm"
-            >
-              <Link href={ctaHref}>{ctaText}</Link>
-            </Button>
+            {isAuthenticated && user ? (
+              <div className="flex items-center gap-3">
+                <span className="text-sm font-medium hidden sm:inline-block">
+                  {user.username}
+                </span>
+                <Popover>
+                  <PopoverTrigger className="rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ring-offset-2 ring-offset-background hover:opacity-90 transition-opacity">
+                    <Avatar username={user.username} size={36} />
+                  </PopoverTrigger>
+                  <PopoverContent align="end" className="w-48 p-2 mt-2">
+                    <div className="flex flex-col gap-1">
+                      <div className="px-2 py-1.5 text-sm font-medium sm:hidden">
+                        {user.username}
+                      </div>
+                      <div className="h-px bg-border/50 sm:hidden my-1" />
+                      <Link href="/account" className="w-full">
+                        <Button
+                          variant="ghost"
+                          className="w-full justify-start text-foreground/80 hover:text-foreground"
+                        >
+                          My Account
+                        </Button>
+                      </Link>
+                      <Button
+                        variant="ghost"
+                        className="w-full justify-start text-foreground/80 hover:text-foreground"
+                        onClick={logout}
+                      >
+                        Logout
+                      </Button>
+                    </div>
+                  </PopoverContent>
+                </Popover>
+              </div>
+            ) : (
+              <>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="hidden sm:inline-flex text-sm font-medium text-foreground/80 hover:text-foreground"
+                >
+                  <Link href={signInHref}>{signInText}</Link>
+                </Button>
+                <Button
+                  size="sm"
+                  className="text-sm font-medium px-5 h-9 rounded-full shadow-sm"
+                >
+                  <Link href={ctaHref}>{ctaText}</Link>
+                </Button>
+              </>
+            )}
           </div>
         </div>
       </header>

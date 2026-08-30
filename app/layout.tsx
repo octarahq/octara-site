@@ -5,6 +5,7 @@ import { Navbar } from "@/components/ui/navbar";
 import FooterWithCTA from "@/components/ui/footer-with-cta";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { Toaster } from "sonner";
+import { cookies } from "next/headers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,7 +22,32 @@ export const metadata: Metadata = {
   description:
     "Octara is a platform dedicated to providing open source projects and tools that are accessible to everyone. Our mission is to make computing accessible without barriers, while respecting privacy.",
 };
-export default function RootLayout({ children }: LayoutProps<"/">) {
+
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("auth_token")?.value || null;
+
+  let initialUser = null;
+  if (token) {
+    try {
+      const parts = token.split(".");
+      if (parts.length === 3) {
+        const payload = JSON.parse(
+          Buffer.from(parts[1], "base64").toString("utf-8")
+        );
+        initialUser = {
+          email: payload.email,
+          username: payload.username,
+        };
+      }
+    } catch (e) {
+      console.error("Failed to parse token payload", e);
+    }
+  }
   return (
     <html
       lang="en"
@@ -30,7 +56,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body
         className={`${geistSans.className} min-h-screen flex flex-col dark overflow-x-hidden`}
       >
-        <AuthProvider>
+        <AuthProvider initialUser={initialUser} initialToken={token}>
           <Navbar />
           {children}
           <FooterWithCTA />
