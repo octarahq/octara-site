@@ -46,7 +46,11 @@ export function LoginPage() {
         await login(value);
         const url = redirectUrl || "/account";
         router.push(url);
-      } catch {
+      } catch (err: unknown) {
+        if (err instanceof Error && err.message === "email not verified") {
+          router.push(`/signup?verify=true&email=${encodeURIComponent(value.email)}`);
+          return;
+        }
         setAuthError(true);
       }
     },
@@ -115,9 +119,17 @@ export function LoginPage() {
                     authError;
                   return (
                     <Field data-invalid={isInvalid} className="space-y-2">
-                      <FieldLabel htmlFor={field.name} className="text-base">
-                        Password
-                      </FieldLabel>
+                      <div className="flex items-center justify-between">
+                        <FieldLabel htmlFor={field.name} className="text-base">
+                          Password
+                        </FieldLabel>
+                        <Link
+                          href="/forgot-password"
+                          className="text-sm font-medium text-primary hover:underline"
+                        >
+                          Forgot password?
+                        </Link>
+                      </div>
                       <Input
                         id={field.name}
                         name={field.name}

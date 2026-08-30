@@ -35,11 +35,13 @@ const signupSchema = z.object({
 export function SignupPage() {
   const searchParams = useSearchParams();
   const redirectUrl = searchParams.get("redirectUrl") || "/account";
+  const defaultVerify = searchParams.get("verify") === "true";
+  const defaultEmail = searchParams.get("email") || "";
   const { signup, verify } = useAuth();
   const [authError, setAuthError] = useState(false);
 
-  const [isVerifying, setIsVerifying] = useState(false);
-  const [registeredEmail, setRegisteredEmail] = useState("");
+  const [isVerifying, setIsVerifying] = useState(defaultVerify);
+  const [registeredEmail, setRegisteredEmail] = useState(defaultEmail);
   const [code, setCode] = useState("");
   const [verifyLoading, setVerifyLoading] = useState(false);
 
