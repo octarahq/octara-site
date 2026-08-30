@@ -2,7 +2,6 @@
 
 import { useForm } from "@tanstack/react-form";
 import { LogIn } from "lucide-react";
-import { toast } from "sonner";
 import * as z from "zod";
 import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext";
@@ -25,14 +24,15 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import Gradient from "@/app/background/shadergradients/06";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 
 const formSchema = z.object({
-  email: z.email("Enter a valid email."),
+  email: z.string().email("Enter a valid email."),
   password: z.string().min(1, "Enter your password."),
 });
 
 export function LoginPage() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const redirectUrl = searchParams.get("redirectUrl") || "/account";
   const { login } = useAuth();
@@ -44,7 +44,8 @@ export function LoginPage() {
       setAuthError(false);
       try {
         await login(value);
-        window.location.href = redirectUrl;
+        const url = redirectUrl || "/account";
+        router.push(url);
       } catch {
         setAuthError(true);
       }

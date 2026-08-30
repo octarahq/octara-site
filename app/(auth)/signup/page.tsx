@@ -1,7 +1,7 @@
 "use client";
 
 import { useForm } from "@tanstack/react-form";
-import { UserPlus } from "lucide-react";
+import { UserPlus, ShieldCheck, ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
 import * as z from "zod";
 import Link from "next/link";
@@ -27,31 +27,54 @@ import { Input } from "@/components/ui/input";
 import Gradient90 from "@/app/background/shadergradients/90";
 import { useSearchParams } from "next/navigation";
 
-const formSchema = z.object({
+const signupSchema = z.object({
   email: z.string().email("Enter a valid email."),
-  username: z.string().min(3, "Username must be at least 3 characters."),
   password: z.string().min(6, "Password must be at least 6 characters."),
 });
 
-export function TsfRecipes03() {
+export function SignupPage() {
   const searchParams = useSearchParams();
   const redirectUrl = searchParams.get("redirectUrl") || "/account";
-  const { signup } = useAuth();
+  const { signup, verify } = useAuth();
   const [authError, setAuthError] = useState(false);
+
+  const [isVerifying, setIsVerifying] = useState(false);
+  const [registeredEmail, setRegisteredEmail] = useState("");
+  const [code, setCode] = useState("");
+  const [verifyLoading, setVerifyLoading] = useState(false);
+
   const form = useForm({
-    defaultValues: { email: "", username: "", password: "" },
-    validators: { onSubmit: formSchema },
+    defaultValues: { email: "", password: "" },
+    validators: { onSubmit: signupSchema },
     onSubmit: async ({ value }) => {
       setAuthError(false);
       try {
         await signup(value);
-        const url = redirectUrl || "/account";
-        window.location.href = url;
+        setRegisteredEmail(value.email);
+        setIsVerifying(true);
       } catch {
         setAuthError(true);
       }
     },
   });
+
+  const handleVerifySubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (code.length !== 6) {
+      toast.error("Please enter the 6-digit code sent to your email.");
+      return;
+    }
+
+    setVerifyLoading(true);
+    try {
+      await verify(registeredEmail, code);
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Code incorrect ou expiré";
+      toast.error(message);
+    } finally {
+      setVerifyLoading(false);
+    }
+  };
 
   return (
     <main className="relative min-h-screen flex items-center justify-center p-4">
@@ -61,140 +84,178 @@ export function TsfRecipes03() {
         </div>
       </div>
       <Card className="w-full max-w-lg z-10 shadow-2xl border-primary/20 bg-background/60 backdrop-blur-md">
-        <CardHeader className="space-y-3 pb-2">
-          <CardTitle className="flex items-center gap-2 text-3xl">
-            <UserPlus className="text-primary size-8" />
-            Sign up
-          </CardTitle>
-          <CardDescription className="text-base">
-            Create an account to get started.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              form.handleSubmit();
-            }}
-          >
-            <FieldGroup className="">
-              <form.Field name="username">
-                {(field) => {
-                  const isInvalid =
-                    (field.state.meta.isTouched && !field.state.meta.isValid) ||
-                    authError;
-                  return (
-                    <Field data-invalid={isInvalid} className="space-y-2">
-                      <FieldLabel htmlFor={field.name} className="text-base">
-                        Username
-                      </FieldLabel>
-                      <Input
-                        id={field.name}
-                        name={field.name}
-                        type="text"
-                        placeholder="ludovic_cruchot"
-                        aria-invalid={isInvalid}
-                        value={field.state.value}
-                        onBlur={field.handleBlur}
-                        onChange={(e) => {
-                          setAuthError(false);
-                          field.handleChange(e.target.value);
-                        }}
-                        className="h-12 text-lg"
-                      />
-                      {isInvalid && (
-                        <FieldError errors={field.state.meta.errors} />
-                      )}
-                    </Field>
-                  );
-                }}
-              </form.Field>
-              <form.Field name="email">
-                {(field) => {
-                  const isInvalid =
-                    (field.state.meta.isTouched && !field.state.meta.isValid) ||
-                    authError;
-                  return (
-                    <Field data-invalid={isInvalid} className="space-y-2">
-                      <FieldLabel htmlFor={field.name} className="text-base">
-                        Email
-                      </FieldLabel>
-                      <Input
-                        id={field.name}
-                        name={field.name}
-                        type="email"
-                        placeholder="ludovic.cruchot@octara.xyz"
-                        aria-invalid={isInvalid}
-                        value={field.state.value}
-                        onBlur={field.handleBlur}
-                        onChange={(e) => {
-                          setAuthError(false);
-                          field.handleChange(e.target.value);
-                        }}
-                        className="h-12 text-lg"
-                      />
-                      {isInvalid && (
-                        <FieldError errors={field.state.meta.errors} />
-                      )}
-                    </Field>
-                  );
-                }}
-              </form.Field>
-              <form.Field name="password">
-                {(field) => {
-                  const isInvalid =
-                    (field.state.meta.isTouched && !field.state.meta.isValid) ||
-                    authError;
-                  return (
-                    <Field data-invalid={isInvalid} className="space-y-2">
-                      <FieldLabel htmlFor={field.name} className="text-base">
-                        Password
-                      </FieldLabel>
-                      <Input
-                        id={field.name}
-                        name={field.name}
-                        type="password"
-                        placeholder="My awesome password"
-                        aria-invalid={isInvalid}
-                        value={field.state.value}
-                        onBlur={field.handleBlur}
-                        onChange={(e) => {
-                          setAuthError(false);
-                          field.handleChange(e.target.value);
-                        }}
-                        className="h-12 text-lg"
-                      />
-                      {isInvalid && (
-                        <FieldError errors={field.state.meta.errors} />
-                      )}
-                    </Field>
-                  );
-                }}
-              </form.Field>
-              <Button
-                type="submit"
-                size="lg"
-                className="w-full text-lg h-12 mt-4"
+        {isVerifying ? (
+          <>
+            <CardHeader className="space-y-3 pb-2">
+              <CardTitle className="flex items-center gap-2 text-3xl">
+                <ShieldCheck className="text-primary size-8" />
+                Check your email
+              </CardTitle>
+              <CardDescription className="text-base">
+                A 6-digit code has been sent to{" "}
+                <strong className="text-foreground">{registeredEmail}</strong>.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleVerifySubmit} className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="verification-code" className="text-base">
+                    Verification Code
+                  </Label>
+                  <Input
+                    id="verification-code"
+                    type="text"
+                    maxLength={6}
+                    value={code}
+                    onChange={(e) => setCode(e.target.value.replace(/\D/g, ""))} // Uniquement des chiffres
+                    placeholder="123456"
+                    className="h-12 text-lg text-center tracking-widest font-mono"
+                    disabled={verifyLoading}
+                  />
+                </div>
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="w-full text-lg h-12 mt-4"
+                  disabled={verifyLoading}
+                >
+                  {verifyLoading ? "Verifying..." : "Verify and continue"}
+                </Button>
+              </form>
+            </CardContent>
+            <CardFooter className="flex justify-between border-t border-border/50 pt-6 mt-2">
+              <button
+                onClick={() => setIsVerifying(false)}
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                disabled={verifyLoading}
               >
+                <ArrowLeft className="size-4" />
+                Return to signup
+              </button>
+            </CardFooter>
+          </>
+        ) : (
+          <>
+            <CardHeader className="space-y-3 pb-2">
+              <CardTitle className="flex items-center gap-2 text-3xl">
+                <UserPlus className="text-primary size-8" />
                 Sign up
-              </Button>
-            </FieldGroup>
-          </form>
-        </CardContent>
-        <CardFooter className="flex justify-center border-t border-border/50 pt-6 mt-2">
-          <p className="text-muted-foreground text-sm">
-            Already have an account?{" "}
-            <Link
-              href={`/login?redirectUrl=${encodeURIComponent(redirectUrl)}`}
-              className="text-primary hover:underline font-medium"
-            >
-              Login
-            </Link>
-          </p>
-        </CardFooter>
+              </CardTitle>
+              <CardDescription className="text-base">
+                Create an account to get started.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  form.handleSubmit();
+                }}
+              >
+                <FieldGroup className="">
+                  <form.Field name="email">
+                    {(field) => {
+                      const isInvalid =
+                        (field.state.meta.isTouched &&
+                          !field.state.meta.isValid) ||
+                        authError;
+                      return (
+                        <Field data-invalid={isInvalid} className="space-y-2">
+                          <FieldLabel
+                            htmlFor={field.name}
+                            className="text-base"
+                          >
+                            Email
+                          </FieldLabel>
+                          <Input
+                            id={field.name}
+                            name={field.name}
+                            type="email"
+                            placeholder="ludovic.cruchot@octara.xyz"
+                            aria-invalid={isInvalid}
+                            value={field.state.value}
+                            onBlur={field.handleBlur}
+                            onChange={(e) => {
+                              setAuthError(false);
+                              field.handleChange(e.target.value);
+                            }}
+                            className="h-12 text-lg"
+                          />
+                          {isInvalid && (
+                            <FieldError errors={field.state.meta.errors} />
+                          )}
+                        </Field>
+                      );
+                    }}
+                  </form.Field>
+                  <form.Field name="password">
+                    {(field) => {
+                      const isInvalid =
+                        (field.state.meta.isTouched &&
+                          !field.state.meta.isValid) ||
+                        authError;
+                      return (
+                        <Field data-invalid={isInvalid} className="space-y-2">
+                          <FieldLabel
+                            htmlFor={field.name}
+                            className="text-base"
+                          >
+                            Password
+                          </FieldLabel>
+                          <Input
+                            id={field.name}
+                            name={field.name}
+                            type="password"
+                            placeholder="My awesome password"
+                            aria-invalid={isInvalid}
+                            value={field.state.value}
+                            onBlur={field.handleBlur}
+                            onChange={(e) => {
+                              setAuthError(false);
+                              field.handleChange(e.target.value);
+                            }}
+                            className="h-12 text-lg"
+                          />
+                          {isInvalid && (
+                            <FieldError errors={field.state.meta.errors} />
+                          )}
+                        </Field>
+                      );
+                    }}
+                  </form.Field>
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="w-full text-lg h-12 mt-4"
+                  >
+                    Sign up
+                  </Button>
+                </FieldGroup>
+              </form>
+            </CardContent>
+            <CardFooter className="flex justify-center border-t border-border/50 pt-6 mt-2">
+              <p className="text-muted-foreground text-sm">
+                Already have an account?{" "}
+                <Link
+                  href={`/login?redirectUrl=${encodeURIComponent(redirectUrl)}`}
+                  className="text-primary hover:underline font-medium"
+                >
+                  Login
+                </Link>
+              </p>
+            </CardFooter>
+          </>
+        )}
       </Card>
     </main>
   );
 }
 
-export default TsfRecipes03;
+const Label = ({ className, ...props }: React.ComponentProps<"label">) => (
+  <label
+    className={`text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ${className}`}
+    {...props}
+  />
+);
+
+export default SignupPage;

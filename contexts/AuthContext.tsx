@@ -50,6 +50,7 @@ interface AuthContextType {
   isAuthenticated: boolean;
   login: (credentials: AuthCredentials) => Promise<void>;
   signup: (credentials: AuthCredentials) => Promise<void>;
+  verify: (email: string, code: string) => Promise<void>;
   logout: () => void;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
 }
@@ -137,17 +138,39 @@ export function AuthProvider({
         throw new Error(errorData?.error || "Failed to sign up");
       }
 
-      toast.success("Account created", {
-        description: credentials.username || credentials.email,
-      });
-
-      await login(credentials);
+      toast.success("Account created, verification code sent!");
     } catch (error: unknown) {
       const backendError = error instanceof Error ? error.message : "";
       const { message } = getErrorDetails(backendError);
       toast.error("Oups, something went wrong", {
         description: message,
       });
+      throw error;
+    }
+  };
+
+  const verify = async (email: string, code: string) => {
+    try {
+      const res = await fetch("/api/v1/auth/verify", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, code }),
+      });
+
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => null);
+        throw new Error(errorData?.error || "Failed to verify");
+      }
+
+      const data = await res.json();
+      setUser(data.user);
+      toast.success("Email verified and logged in!");
+      router.push("/onboarding");
+    } catch (error: unknown) {
+      const backendError = error instanceof Error ? error.message : "";
+      toast.error("Verification failed", { description: backendError });
       throw error;
     }
   };
@@ -166,7 +189,7 @@ export function AuthProvider({
 
   return (
     <AuthContext.Provider
-      value={{ user, token, isAuthenticated, login, signup, logout, setUser }}
+      value={{ user, token, isAuthenticated, login, signup, verify, logout, setUser }}
     >
       {children}
     </AuthContext.Provider>
