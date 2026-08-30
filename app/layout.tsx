@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/ui/navbar";
 import FooterWithCTA from "@/components/ui/footer-with-cta";
+import { AuthProvider } from "@/contexts/AuthContext";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,9 +30,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body
         className={`${geistSans.className} min-h-screen flex flex-col dark overflow-x-hidden`}
       >
-        <Navbar />
-        {children}
-        <FooterWithCTA />
+        <AuthProvider>
+          <Navbar />
+          {children}
+          <FooterWithCTA />
+        </AuthProvider>
+        <Toaster theme="dark" />
       </body>
     </html>
   );

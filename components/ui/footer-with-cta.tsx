@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Footer from "./footer";
 import { Button, Button as FancyButton } from "./button";
@@ -5,13 +7,19 @@ import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { Section } from "./section";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
 export default function FooterWithCTA() {
+  const pathname = usePathname();
+  const hideCTA = pathname === "/login" || pathname === "/signup";
+
   return (
-    <SectionFooterContainer className="flex flex-col">
-      <Section className="flex-1">
-        <SectionCTA />
-      </Section>
+    <SectionFooterContainer className="flex flex-col" hasCTA={!hideCTA}>
+      {!hideCTA && (
+        <Section className="flex-1">
+          <SectionCTA />
+        </Section>
+      )}
       <Footer />
     </SectionFooterContainer>
   );
@@ -23,23 +31,28 @@ import Image from "next/image";
 function SectionFooterContainer({
   className,
   children,
+  hasCTA = true,
 }: {
   children: React.ReactNode;
   className?: string;
+  hasCTA?: boolean;
 }) {
   return (
     <div
       className={cn(
-        "relative w-full h-full min-h-screen rounded-t-3xl md:rounded-t-[50px] overflow-hidden border-t",
+        "relative w-full overflow-hidden border-t",
+        hasCTA ? "h-full min-h-screen rounded-t-3xl md:rounded-t-[50px]" : "mt-auto",
         className,
       )}
     >
-      <div className="absolute inset-0 -z-10 pointer-events-none">
-        <div className="w-full h-full opacity-60">
-          <Gradient88 />
+      {hasCTA && (
+        <div className="absolute inset-0 -z-10 pointer-events-none">
+          <div className="w-full h-full opacity-60">
+            <Gradient88 />
+          </div>
+          <div className="absolute inset-0 bg-linear-to-b from-transparent to-background" />
         </div>
-        <div className="absolute inset-0 bg-linear-to-b from-transparent to-background" />
-      </div>
+      )}
       {children}
     </div>
   );
