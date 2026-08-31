@@ -6,9 +6,10 @@ import { useEffect, useState } from "react";
 export default function Stats() {
   const [stars, setStars] = useState<number | null>(null);
   const [repos, setRepos] = useState<number | null>(null);
+  const [projectsCount, setProjectsCount] = useState<number | null>(null);
 
   useEffect(() => {
-    async function fetchGitHubStats() {
+    async function fetchStats() {
       try {
         const orgRes = await fetch("https://api.github.com/users/octarahq");
         if (orgRes.ok) {
@@ -32,18 +33,27 @@ export default function Stats() {
           );
           setStars(totalStars);
         }
+
+        const projectsRes = await fetch("/api/v1/projects");
+        if (projectsRes.ok) {
+          const projectsData = await projectsRes.json();
+          if (Array.isArray(projectsData)) {
+            const publicProjects = projectsData.filter((p: { is_public: boolean }) => p.is_public);
+            setProjectsCount(publicProjects.length);
+          }
+        }
       } catch (error) {
-        console.error("Error fetching GitHub stats:", error);
+        console.error("Error fetching stats:", error);
       }
     }
 
-    fetchGitHubStats();
+    fetchStats();
   }, []);
 
   const stats = [
     {
       title: "Active Projects",
-      value: "6 (faire un blog pour publier et gerer les projets sur le site)",
+      value: projectsCount !== null ? `${projectsCount}` : "...",
       description: "innovative initiatives currently in development",
     },
     {
