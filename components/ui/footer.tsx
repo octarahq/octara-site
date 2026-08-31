@@ -37,6 +37,12 @@ export default function Footer() {
               Status
             </Link>
             <Link
+              href="/changelog"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Changelog
+            </Link>
+            <Link
               href="/careers"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
