@@ -98,7 +98,11 @@ export default function StatusPage() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 3 }}
-        className="fixed inset-0 z-0 pointer-events-none opacity-40"
+        className="absolute inset-x-0 top-0 z-0 pointer-events-none opacity-40 h-[800px] overflow-hidden"
+        style={{
+          maskImage: "linear-gradient(to bottom, black 40%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to bottom, black 40%, transparent 100%)"
+        }}
       >
         <HeroBackground />
       </motion.div>
