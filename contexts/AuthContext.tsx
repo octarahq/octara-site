@@ -49,6 +49,7 @@ interface AuthContextType {
   user: User | null;
   token: string | null;
   isAuthenticated: boolean;
+  loading: boolean;
   login: (credentials: AuthCredentials) => Promise<void>;
   signup: (credentials: AuthCredentials) => Promise<void>;
   verify: (email: string, code: string) => Promise<void>;
@@ -194,6 +195,7 @@ export function AuthProvider({
         user,
         token,
         isAuthenticated,
+        loading,
         login,
         signup,
         verify,
