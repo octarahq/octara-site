@@ -58,18 +58,24 @@ export default function Footer() {
             >
               About Octara
             </Link>
+            <Link
+              href="/api/discord"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Our Discord
+            </Link>
           </div>
 
           <div className="flex flex-col gap-4">
             <h3 className="font-semibold text-foreground">Legal</h3>
             <Link
-              href="#"
+              href="/privacy"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               Privacy policy
             </Link>
             <Link
-              href="#"
+              href="/tos"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               Terms of Service
