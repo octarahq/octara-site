@@ -13,6 +13,7 @@ interface Service {
   label: string;
   url: string;
   is_public: boolean;
+  show_in_discord: boolean;
   orion_id: string;
 }
 
@@ -22,6 +23,7 @@ interface Project {
   description: string;
   avatar_url: string;
   github_url: string;
+  discord_ping_role_id: string;
   is_public: boolean;
   services: Service[];
 }
@@ -37,6 +39,7 @@ export default function AdminProjects() {
   const [description, setDescription] = useState("");
   const [avatarUrl, setAvatarUrl] = useState("");
   const [githubUrl, setGithubUrl] = useState("");
+  const [discordPingRoleId, setDiscordPingRoleId] = useState("");
   const [isPublic, setIsPublic] = useState(false);
   const [services, setServices] = useState<Service[]>([]);
   const [submitting, setSubmitting] = useState(false);
@@ -58,7 +61,7 @@ export default function AdminProjects() {
   }, []);
 
   const handleAddServiceField = () => {
-    setServices([...services, { label: "", url: "", is_public: false, orion_id: "" }]);
+    setServices([...services, { label: "", url: "", is_public: false, show_in_discord: false, orion_id: "" }]);
   };
 
   const handleRemoveServiceField = (index: number) => {
@@ -77,6 +80,7 @@ export default function AdminProjects() {
     setDescription("");
     setAvatarUrl("");
     setGithubUrl("");
+    setDiscordPingRoleId("");
     setIsPublic(false);
     setServices([]);
     setShowForm(true);
@@ -88,6 +92,7 @@ export default function AdminProjects() {
     setDescription(project.description || "");
     setAvatarUrl(project.avatar_url || "");
     setGithubUrl(project.github_url || "");
+    setDiscordPingRoleId(project.discord_ping_role_id || "");
     setIsPublic(project.is_public);
     setServices(project.services || []);
     setShowForm(true);
@@ -99,6 +104,7 @@ export default function AdminProjects() {
     setDescription("");
     setAvatarUrl("");
     setGithubUrl("");
+    setDiscordPingRoleId("");
     setIsPublic(false);
     setServices([]);
     setShowForm(false);
@@ -126,11 +132,13 @@ export default function AdminProjects() {
           description,
           avatar_url: avatarUrl,
           github_url: githubUrl,
+          discord_ping_role_id: discordPingRoleId,
           is_public: isPublic,
           services: services.map((s) => ({
             label: s.label,
             url: s.url,
             is_public: s.is_public,
+            show_in_discord: s.show_in_discord,
             orion_id: s.orion_id,
           })),
         }),
@@ -251,15 +259,27 @@ export default function AdminProjects() {
                 </div>
               </div>
 
-              <div className="grid gap-2">
-                <Label htmlFor="githubUrl">Github URL</Label>
-                <Input
-                  id="githubUrl"
-                  value={githubUrl}
-                  onChange={(e) => setGithubUrl(e.target.value)}
-                  placeholder="https://github.com/..."
-                  disabled={submitting}
-                />
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="grid gap-2">
+                  <Label htmlFor="githubUrl">Github URL</Label>
+                  <Input
+                    id="githubUrl"
+                    value={githubUrl}
+                    onChange={(e) => setGithubUrl(e.target.value)}
+                    placeholder="https://github.com/..."
+                    disabled={submitting}
+                  />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="discordPingRoleId">Discord Ping Role ID</Label>
+                  <Input
+                    id="discordPingRoleId"
+                    value={discordPingRoleId}
+                    onChange={(e) => setDiscordPingRoleId(e.target.value)}
+                    placeholder="e.g. 1335608623661056091"
+                    disabled={submitting}
+                  />
+                </div>
               </div>
 
               <div className="space-y-3">
@@ -325,16 +345,29 @@ export default function AdminProjects() {
                           disabled={submitting}
                         />
                       </div>
-                      <div className="flex items-center gap-2 pt-5">
-                        <input
-                          id={`svc-public-${index}`}
-                          type="checkbox"
-                          checked={svc.is_public}
-                          onChange={(e) => handleServiceChange(index, "is_public", e.target.checked)}
-                          className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
-                          disabled={submitting}
-                        />
-                        <Label htmlFor={`svc-public-${index}`} className="cursor-pointer text-xs">Public service</Label>
+                      <div className="flex flex-col gap-2 pt-5">
+                        <div className="flex items-center gap-2">
+                          <input
+                            id={`svc-public-${index}`}
+                            type="checkbox"
+                            checked={svc.is_public}
+                            onChange={(e) => handleServiceChange(index, "is_public", e.target.checked)}
+                            className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                            disabled={submitting}
+                          />
+                          <Label htmlFor={`svc-public-${index}`} className="cursor-pointer text-xs">Public service</Label>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <input
+                            id={`svc-discord-${index}`}
+                            type="checkbox"
+                            checked={svc.show_in_discord}
+                            onChange={(e) => handleServiceChange(index, "show_in_discord", e.target.checked)}
+                            className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                            disabled={submitting}
+                          />
+                          <Label htmlFor={`svc-discord-${index}`} className="cursor-pointer text-xs">Show in Discord changelogs</Label>
+                        </div>
                       </div>
                     </div>
                   </div>

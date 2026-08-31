@@ -89,6 +89,9 @@ export default function AdminDashboard() {
               <Link href="/admin/projects">
                 <Button>Manage Projects</Button>
               </Link>
+              <Link href="/admin/changelogs">
+                <Button variant="secondary">Manage Changelogs</Button>
+              </Link>
             </CardContent>
           </Card>
         </>
