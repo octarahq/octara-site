@@ -49,20 +49,27 @@ export default function StatusPage() {
       try {
         const res = await fetch("/api/v1/status");
         if (!res.ok) throw new Error("Failed to fetch status");
-        
+
         const data: ProjectStatusResponse[] = await res.json();
-        
-        const enhanced: EnhancedProject[] = data.map(project => {
+
+        const enhanced: EnhancedProject[] = data.map((project) => {
           return {
             id: project.id,
             name: project.name,
-            services: project.services.map(svc => {
-              let currentStatus: "Operational" | "Degraded" | "Down" | "Unknown" = "Operational";
+            services: project.services.map((svc) => {
+              let currentStatus:
+                | "Operational"
+                | "Degraded"
+                | "Down"
+                | "Unknown" = "Operational";
               if (svc.metrics.length > 0) {
                 const latest = svc.metrics[svc.metrics.length - 1];
                 if (latest.online_count === 0) {
                   currentStatus = "Down";
-                } else if (latest.cpu_avg > 80 || latest.memory_avg > 1000000000) {
+                } else if (
+                  latest.cpu_avg > 80 ||
+                  latest.memory_avg > 1000000000
+                ) {
                   currentStatus = "Degraded";
                 }
               } else {
@@ -74,12 +81,12 @@ export default function StatusPage() {
                 label: svc.label,
                 url: svc.url,
                 metrics: svc.metrics,
-                status: currentStatus
+                status: currentStatus,
               };
-            })
+            }),
           };
         });
-        
+
         setProjects(enhanced);
       } catch {
       } finally {
@@ -90,7 +97,7 @@ export default function StatusPage() {
     fetchStatus();
   }, []);
 
-  const totalBars = 84; 
+  const totalBars = 84;
 
   return (
     <main className="min-h-screen relative bg-[#0a0a0a] text-zinc-50 overflow-hidden font-sans">
@@ -98,10 +105,11 @@ export default function StatusPage() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 3 }}
-        className="absolute inset-x-0 top-0 z-0 pointer-events-none opacity-40 h-[800px] overflow-hidden"
+        className="absolute inset-x-0 top-0 z-0 pointer-events-none opacity-40 h-200 overflow-hidden"
         style={{
           maskImage: "linear-gradient(to bottom, black 40%, transparent 100%)",
-          WebkitMaskImage: "linear-gradient(to bottom, black 40%, transparent 100%)"
+          WebkitMaskImage:
+            "linear-gradient(to bottom, black 40%, transparent 100%)",
         }}
       >
         <HeroBackground />
@@ -129,9 +137,11 @@ export default function StatusPage() {
                 <div key={project.id} className="space-y-6">
                   {/* Project Header */}
                   <div className="flex items-center gap-3 border-b border-zinc-800 pb-3">
-                    {project.services.some(s => s.status === "Down") ? (
+                    {project.services.some((s) => s.status === "Down") ? (
                       <XCircle className="size-6 text-[#ef4444]" />
-                    ) : project.services.some(s => s.status === "Degraded") ? (
+                    ) : project.services.some(
+                        (s) => s.status === "Degraded",
+                      ) ? (
                       <AlertTriangle className="size-6 text-[#eab308]" />
                     ) : (
                       <CheckCircle2 className="size-6 text-[#22c55e]" />
@@ -140,7 +150,7 @@ export default function StatusPage() {
                       {project.name}
                     </h2>
                   </div>
-                  
+
                   {/* Services List for this Project */}
                   <div className="space-y-8 pl-1">
                     {project.services.map((svc) => {
@@ -148,18 +158,22 @@ export default function StatusPage() {
                       while (paddedMetrics.length < totalBars) {
                         paddedMetrics.unshift({
                           timestamp: 0,
-                          online_count: -1, 
+                          online_count: -1,
                           sample_count: 0,
                           cpu_avg: 0,
-                          memory_avg: 0
+                          memory_avg: 0,
                         });
                       }
-                      
+
                       const displayMetrics = paddedMetrics.slice(-totalBars);
-                      
-                      const lastValidMetric = [...svc.metrics].reverse().find(m => m.timestamp > 0);
-                      const lastDateStr = lastValidMetric 
-                        ? new Date(lastValidMetric.timestamp).toISOString().split('T')[0]
+
+                      const lastValidMetric = [...svc.metrics]
+                        .reverse()
+                        .find((m) => m.timestamp > 0);
+                      const lastDateStr = lastValidMetric
+                        ? new Date(lastValidMetric.timestamp)
+                            .toISOString()
+                            .split("T")[0]
                         : "N/A";
 
                       return (
@@ -175,7 +189,12 @@ export default function StatusPage() {
                               )}
                               <h3 className="text-lg font-semibold text-zinc-200 tracking-wide">
                                 {svc.url ? (
-                                  <a href={svc.url} target="_blank" rel="noopener noreferrer" className="hover:underline hover:text-white transition-colors">
+                                  <a
+                                    href={svc.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:underline hover:text-white transition-colors"
+                                  >
                                     {svc.label}
                                   </a>
                                 ) : (
@@ -191,13 +210,13 @@ export default function StatusPage() {
                             </div>
                           </div>
 
-                          <div className="flex gap-[3px] h-6 items-end w-full">
+                          <div className="flex gap-0.75 h-6 items-end w-full">
                             {displayMetrics.map((m, i) => {
-                              let bgColor = "bg-zinc-800"; 
+                              let bgColor = "bg-zinc-800";
                               let title = "No data";
-                              
+
                               if (m.timestamp > 0) {
-                                title = `${new Date(m.timestamp).toLocaleString()} - ${m.online_count > 0 ? 'Online' : 'Offline'}`;
+                                title = `${new Date(m.timestamp).toLocaleString()} - ${m.online_count > 0 ? "Online" : "Offline"}`;
                                 if (m.online_count === 0) {
                                   bgColor = "bg-[#ef4444]";
                                 } else if (m.cpu_avg > 80) {

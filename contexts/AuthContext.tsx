@@ -180,7 +180,7 @@ export function AuthProvider({
   const logout = async () => {
     try {
       await fetch("/api/v1/auth/logout", { method: "POST" });
-    } catch (e) {}
+    } catch {}
     setToken(null);
     setUser(null);
     toast.info("Logged out successfully");

@@ -3,7 +3,13 @@
 import { useEffect, useState, useCallback } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Plus, Trash2, X, Pencil } from "lucide-react";
@@ -28,7 +34,9 @@ export default function AdminChangelogs() {
   const [loading, setLoading] = useState(true);
 
   const [showForm, setShowForm] = useState(false);
-  const [editingChangelog, setEditingChangelog] = useState<Changelog | null>(null);
+  const [editingChangelog, setEditingChangelog] = useState<Changelog | null>(
+    null,
+  );
   const [projectId, setProjectId] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -53,15 +61,15 @@ export default function AdminChangelogs() {
   }, []);
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     let mounted = true;
     const load = async () => {
-      await Promise.all([
-        fetchChangelogs(),
-        fetchProjects()
-      ]);
+      await Promise.all([fetchChangelogs(), fetchProjects()]);
     };
     load();
-    return () => { mounted = false; };
+    return () => {
+      mounted = false;
+    };
   }, [fetchChangelogs, fetchProjects]);
 
   const handleOpenCreate = () => {
@@ -93,7 +101,9 @@ export default function AdminChangelogs() {
     }
 
     setSubmitting(true);
-    const url = editingChangelog ? `/api/v1/changelogs/${editingChangelog.id}` : "/api/v1/changelogs";
+    const url = editingChangelog
+      ? `/api/v1/changelogs/${editingChangelog.id}`
+      : "/api/v1/changelogs";
     const method = editingChangelog ? "PATCH" : "POST";
 
     try {
@@ -105,11 +115,19 @@ export default function AdminChangelogs() {
 
       if (!res.ok) throw new Error();
 
-      toast.success(editingChangelog ? "Changelog updated!" : "Changelog created and sent to Discord!");
+      toast.success(
+        editingChangelog
+          ? "Changelog updated!"
+          : "Changelog created and sent to Discord!",
+      );
       handleCloseForm();
       fetchChangelogs();
     } catch {
-      toast.error(editingChangelog ? "Failed to update changelog." : "Failed to create changelog.");
+      toast.error(
+        editingChangelog
+          ? "Failed to update changelog."
+          : "Failed to create changelog.",
+      );
     } finally {
       setSubmitting(false);
     }
@@ -132,7 +150,9 @@ export default function AdminChangelogs() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Changelogs</h1>
-          <p className="text-muted-foreground">Post updates and sync them to Discord.</p>
+          <p className="text-muted-foreground">
+            Post updates and sync them to Discord.
+          </p>
         </div>
         {!showForm && (
           <Button onClick={handleOpenCreate} className="gap-2">
@@ -147,14 +167,21 @@ export default function AdminChangelogs() {
           <form onSubmit={handleSubmit}>
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle>{editingChangelog ? "Edit Update" : "Create New Update"}</CardTitle>
-                <Button type="button" variant="ghost" size="icon" onClick={handleCloseForm}>
+                <CardTitle>
+                  {editingChangelog ? "Edit Update" : "Create New Update"}
+                </CardTitle>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  onClick={handleCloseForm}
+                >
                   <X className="size-4" />
                 </Button>
               </div>
               <CardDescription>
-                {editingChangelog 
-                  ? "Update the content of this changelog." 
+                {editingChangelog
+                  ? "Update the content of this changelog."
                   : "Post an update. It will be immediately sent via the Discord webhook."}
               </CardDescription>
             </CardHeader>
@@ -169,9 +196,13 @@ export default function AdminChangelogs() {
                   required
                   disabled={submitting}
                 >
-                  <option value="" disabled>Select a project</option>
+                  <option value="" disabled>
+                    Select a project
+                  </option>
                   {projects.map((p) => (
-                    <option key={p.id} value={p.id}>{p.name}</option>
+                    <option key={p.id} value={p.id}>
+                      {p.name}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -197,16 +228,25 @@ export default function AdminChangelogs() {
                   placeholder="- Added new feature X..."
                   required
                   disabled={submitting}
-                  className="flex min-h-[150px] w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                  className="flex min-h-37.5 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
                 />
               </div>
 
               <div className="flex justify-end gap-3 pt-2">
-                <Button type="button" variant="ghost" onClick={handleCloseForm} disabled={submitting}>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  onClick={handleCloseForm}
+                  disabled={submitting}
+                >
                   Cancel
                 </Button>
                 <Button type="submit" disabled={submitting}>
-                  {submitting ? "Saving..." : (editingChangelog ? "Save Changes" : "Post Update")}
+                  {submitting
+                    ? "Saving..."
+                    : editingChangelog
+                      ? "Save Changes"
+                      : "Post Update"}
                 </Button>
               </div>
             </CardContent>
@@ -222,16 +262,23 @@ export default function AdminChangelogs() {
         <Card className="flex flex-col items-center justify-center p-12 text-center">
           <CardHeader>
             <CardTitle>No changelogs yet</CardTitle>
-            <CardDescription>Keep your users informed by posting your first update.</CardDescription>
+            <CardDescription>
+              Keep your users informed by posting your first update.
+            </CardDescription>
           </CardHeader>
           <CardContent>
-            <Button onClick={handleOpenCreate} className="mt-2">Post Update</Button>
+            <Button onClick={handleOpenCreate} className="mt-2">
+              Post Update
+            </Button>
           </CardContent>
         </Card>
       ) : (
         <div className="grid gap-4">
           {changelogs.map((log) => (
-            <Card key={log.id} className="hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors">
+            <Card
+              key={log.id}
+              className="hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors"
+            >
               <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-3">
                 <div className="space-y-1">
                   <div className="flex items-center gap-2 text-xs font-semibold text-muted-foreground mb-1">

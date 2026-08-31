@@ -137,7 +137,7 @@ export const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
     return (
       <header
         className={cn(
-          "sticky top-0 z-50 w-full border-b border-border/40 bg-background/60 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 px-4 md:px-8",
+          "sticky top-0 z-50 w-full border-b border-border/40 bg-background/60 backdrop-blur-xl supports-backdrop-filter:bg-background/60 px-4 md:px-8",
           className,
         )}
         ref={combinedRef}

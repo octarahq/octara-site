@@ -38,7 +38,9 @@ export default function Stats() {
         if (projectsRes.ok) {
           const projectsData = await projectsRes.json();
           if (Array.isArray(projectsData)) {
-            const publicProjects = projectsData.filter((p: { is_public: boolean }) => p.is_public);
+            const publicProjects = projectsData.filter(
+              (p: { is_public: boolean }) => p.is_public,
+            );
             setProjectsCount(publicProjects.length);
           }
         }
@@ -77,7 +79,7 @@ export default function Stats() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: index * 0.1 }}
-          className="bg-[#242424] rounded-xl p-6 md:p-8 flex flex-col justify-between min-h-[220px]"
+          className="bg-[#242424] rounded-xl p-6 md:p-8 flex flex-col justify-between min-h-55"
         >
           <div className="text-zinc-300 text-[15px]">{stat.title}</div>
           <div>
