@@ -12,7 +12,7 @@ function decodeJwtPayload(token: string) {
     }
     const decoded = atob(base64);
     return JSON.parse(decoded);
-  } catch (e) {
+  } catch (e: unknown /* eslint-disable-line @typescript-eslint/no-unused-vars */) {
     return null;
   }
 }
