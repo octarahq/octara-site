@@ -3,7 +3,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, FolderKanban, ArrowLeft } from "lucide-react";
+import { LayoutDashboard, FolderKanban, ArrowLeft, Blocks, Users } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 
 export default function AdminLayout({
@@ -22,10 +22,12 @@ export default function AdminLayout({
     notFound();
   }
 
-  const links = [
-    { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
-    { href: "/admin/projects", label: "Projects", icon: FolderKanban },
-  ];
+	const links = [
+		{ href: "/admin", label: "Dashboard", icon: LayoutDashboard },
+		{ href: "/admin/projects", label: "Projects", icon: FolderKanban },
+		{ href: "/admin/apps", label: "OAuth Apps", icon: Blocks },
+		{ href: "/admin/users", label: "Users", icon: Users },
+	];
 
   return (
     <div className="flex min-h-screen bg-zinc-50 dark:bg-zinc-950 text-foreground">

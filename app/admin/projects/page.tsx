@@ -415,11 +415,14 @@ export default function AdminProjects() {
               <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-3">
                 <div className="flex gap-4 items-start">
                   {project.avatar_url ? (
-                    <img
-                      src={project.avatar_url}
-                      alt={project.name}
-                      className="size-12 rounded-lg object-cover border border-zinc-200 dark:border-zinc-800"
-                    />
+                    <>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={project.avatar_url}
+                        alt={project.name}
+                        className="size-12 rounded-lg object-cover border border-zinc-200 dark:border-zinc-800"
+                      />
+                    </>
                   ) : (
                     <div className="size-12 rounded-lg bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center font-bold text-lg text-zinc-500 border border-zinc-200 dark:border-zinc-800">
                       {project.name.charAt(0).toUpperCase()}

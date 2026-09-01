@@ -61,7 +61,6 @@ export default function AdminChangelogs() {
   }, []);
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     let mounted = true;
     const load = async () => {
       await Promise.all([fetchChangelogs(), fetchProjects()]);
