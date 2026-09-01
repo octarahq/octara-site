@@ -2,8 +2,6 @@
 import React from "react";
 import { Button } from "../../../components/ui/button";
 import { motion } from "motion/react";
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
 import OctaraLogo from "../../../components/ui/OctaraLogo";
 import ScrambleText from "../../../components/ui/scramble-text";
 

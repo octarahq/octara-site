@@ -28,8 +28,7 @@ const images = {
   "Orion Hosting": orion,
   "Octara Maps": maps,
   "Octara Search": search,
-  //   "Onyx Bot": null,
-};
+  };
 
 export default function Projects() {
   const [api, setApi] = React.useState<CarouselApi>();

@@ -135,7 +135,6 @@ export default function StatusPage() {
             <div className="space-y-16">
               {projects.map((project) => (
                 <div key={project.id} className="space-y-6">
-                  {/* Project Header */}
                   <div className="flex items-center gap-3 border-b border-zinc-800 pb-3">
                     {project.services.some((s) => s.status === "Down") ? (
                       <XCircle className="size-6 text-[#ef4444]" />
@@ -151,7 +150,6 @@ export default function StatusPage() {
                     </h2>
                   </div>
 
-                  {/* Services List for this Project */}
                   <div className="space-y-8 pl-1">
                     {project.services.map((svc) => {
                       const paddedMetrics = [...svc.metrics];
