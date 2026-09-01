@@ -25,18 +25,19 @@ export default function AccountLayout({
           </Link>
 
           <Link
-            href="#"
+            href="/account/apps"
             className="flex items-center gap-3 rounded-lg px-3 py-2 text-zinc-500 dark:text-zinc-400 transition-all hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-50"
           >
             <LayoutDashboard className="h-4 w-4" />
-            <span className="text-sm font-medium">Projects</span>
+            <span className="text-sm font-medium">Connected Apps</span>
           </Link>
+
           <Link
-            href="#"
+            href="/account/developer"
             className="flex items-center gap-3 rounded-lg px-3 py-2 text-zinc-500 dark:text-zinc-400 transition-all hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-50"
           >
             <Settings className="h-4 w-4" />
-            <span className="text-sm font-medium">Settings</span>
+            <span className="text-sm font-medium">Developer</span>
           </Link>
         </nav>
 
