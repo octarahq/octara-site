@@ -171,7 +171,6 @@ export const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
                                 ? "bg-accent/50 text-foreground font-semibold"
                                 : "text-foreground/70",
                             )}
-                            onClick={(e) => e.preventDefault()}
                           >
                             {link.label}
                           </Link>

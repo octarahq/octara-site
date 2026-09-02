@@ -9,7 +9,7 @@ import Projects from "./_components/projects";
 export default function Home() {
   return (
     <main>
-      <div className="w-full relative">
+      <div className="w-full relative overflow-x-hidden">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           viewport={{ once: true }}

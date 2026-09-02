@@ -30,10 +30,10 @@ export default function Hero() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
             viewport={{ once: true }}
-            className="flex gap-4 mt-16"
+            className="flex flex-col sm:flex-row items-center gap-4 mt-16"
           >
             <Link href={"/api/discord"}>
-              <Button variant="default" size={"xl"}>
+              <Button variant="default" size={"xl"} className="w-full sm:w-auto">
                 Join our Discord
               </Button>
             </Link>
@@ -41,7 +41,7 @@ export default function Hero() {
             <Link href={"#projects"}>
               <Button
                 variant="outline"
-                className="border-none shadow-none bg-transparent"
+                className="border-none shadow-none bg-transparent w-full sm:w-auto"
                 size={"xl"}
               >
                 Explore Projects <ArrowRight className="ml-2 w-4 h-4" />

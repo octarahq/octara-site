@@ -13,7 +13,7 @@ export function Section({
   return (
     <div
       {...props}
-      className={cn(container ? "container mx-auto" : "", className)}
+      className={cn(container ? "container mx-auto px-4 md:px-8" : "", className)}
     >
       {children}
     </div>
