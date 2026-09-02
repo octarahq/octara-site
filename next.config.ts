@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  reactStrictMode: false,
   images: {
     remotePatterns: [
       {
@@ -17,9 +16,10 @@ const nextConfig: NextConfig = {
     },
     {
       source: "/api/:path*",
-      destination: "http://localhost:4059/api/:path*",
+      destination: "http://172.18.0.1:4059/api/:path*",
     },
   ],
+  allowedDevOrigins: ["172.18.0.1"],
 };
 
 export default nextConfig;

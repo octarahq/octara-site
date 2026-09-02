@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 4025",
-    "build": "next build",
+    "build": "NODE_OPTIONS='--max-old-space-size=512' next build",
     "start": "next start -p 4025",
-    "lint": "eslint"
+    "lint": "eslint",
+    "prod": "rm -rf .next && npm run build && npm run start",
+    "deploy": "rm -rf .next && orion deploy"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

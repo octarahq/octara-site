@@ -4,6 +4,7 @@
     "clean": true,
     "exclude": [
       "node_modules",
+      ".next",
       "dist",
       ".git",
       ".env",
