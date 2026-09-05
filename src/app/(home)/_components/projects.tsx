@@ -11,10 +11,10 @@ import Autoplay from "embla-carousel-autoplay";
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 
-import maps from "@/public/www/home/octaramaps.jpg";
-import trainflow from "@/public/www/home/trainflow.jpg";
-import orion from "@/public/www/home/orionhosting.png";
-import search from "@/public/www/home/octarasearch.png";
+import maps from "@public/www/home/octaramaps.jpg";
+import trainflow from "@public/www/home/trainflow.jpg";
+import orion from "@public/www/home/orionhosting.png";
+import search from "@public/www/home/octarasearch.png";
 
 const categories = [
   "Trainflow",
@@ -28,7 +28,7 @@ const images = {
   "Orion Hosting": orion,
   "Octara Maps": maps,
   "Octara Search": search,
-  };
+};
 
 export default function Projects() {
   const [api, setApi] = React.useState<CarouselApi>();

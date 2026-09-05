@@ -73,7 +73,8 @@ export default function ChangelogPage() {
         className="absolute inset-x-0 top-0 z-0 pointer-events-none opacity-40 h-[800px] overflow-hidden"
         style={{
           maskImage: "linear-gradient(to bottom, black 40%, transparent 100%)",
-          WebkitMaskImage: "linear-gradient(to bottom, black 40%, transparent 100%)"
+          WebkitMaskImage:
+            "linear-gradient(to bottom, black 40%, transparent 100%)",
         }}
       >
         <HeroBackground />

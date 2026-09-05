@@ -41,7 +41,9 @@ function SectionFooterContainer({
     <div
       className={cn(
         "relative w-full overflow-hidden border-t",
-        hasCTA ? "h-full min-h-screen rounded-t-3xl md:rounded-t-[50px]" : "mt-auto",
+        hasCTA
+          ? "h-full min-h-screen rounded-t-3xl md:rounded-t-[50px]"
+          : "mt-auto",
         className,
       )}
     >
